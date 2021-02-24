@@ -39,7 +39,7 @@ func _process(delta):
 		$AnimatedSprite.animation = "walk"
 		$AnimatedSprite.flip_v = false
 		# See the note below about boolean assignment
-		$AnimatedSprite.flip_h = velocity.x < 0  # change the direction of the animation 
+		$AnimatedSprite.flip_h = velocity.x < 0  # change the direction 
 	elif velocity.y != 0:
 		$AnimatedSprite.animation = "up"
 		$AnimatedSprite.flip_v = velocity.y > 0
