@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="Register" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.600891
+margin_top = 2.40353
+margin_right = -0.600891
+margin_bottom = 2.40356
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 116.558
+margin_top = 136.452
+margin_right = 234.558
+margin_bottom = 176.452
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="log-in button " type="Button" parent="HBoxContainer"]
+margin_right = 50.0
+margin_bottom = 40.0
+text = "Log in"
+
+[node name="register button" type="Button" parent="HBoxContainer"]
+margin_left = 54.0
+margin_right = 118.0
+margin_bottom = 40.0
+text = "Register"
