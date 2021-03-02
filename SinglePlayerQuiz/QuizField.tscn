@@ -40,3 +40,18 @@ margin_left = -0.452087
 margin_top = 0.0833588
 margin_right = 6.15594
 margin_bottom = 0.283295
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.194
+anchor_top = 0.107
+anchor_right = 0.623
+anchor_bottom = 0.737
+margin_left = 0.343994
+margin_top = -0.200005
+margin_right = 0.0479736
+margin_bottom = -0.200043
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
