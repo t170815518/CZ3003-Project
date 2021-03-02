@@ -4,10 +4,6 @@ extends Control
 const MCQ_TYPE = "mcq"
 
 # Declare member variables here. Examples:
-var option1
-var option2
-var option3
-var option4
 
 signal correct_answer 
 signal wrong_answer 
@@ -18,23 +14,20 @@ func _ready():
 	pass 
 
 
-func update_questions(type):
+func update_questions(option_num, type="mcq"):
 	if type == MCQ_TYPE:
-		option1 = Button.new()
-		option1.set_position(Vector2(64, 256))
-		add_child(option1)
-		option2 = Button.new()
-		option2.set_position(Vector2(320, 256))
-		add_child(option2)
-		option3 = Button.new()
-		option3.set_position(Vector2(574, 256))
-		add_child(option3)
-		option4 = Button.new()
-		option4.set_position(Vector2(704, 256))
-		add_child(option4)
+		var h = 15 + self.get_position()[0]
+		var offset = self.get_size()[0] / option_num
+		var v = self.get_size()[1] + self.get_position()[1]
+		var options = []
+		for i in range(option_num):
+			var option = Button.new()
+			option.set_position(Vector2(h + offset * i, v / 2))
+			add_child(option)
+			options.append(option)
+		return options
 	else:
 		pass 
-	return [option1, option2, option3, option4]
 
 
 # check if the answer is correct for MCQ question 

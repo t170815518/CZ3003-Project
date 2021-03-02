@@ -54,4 +54,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="HTTPRequestQuiz" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequestQuestion" type="HTTPRequest" parent="."]
