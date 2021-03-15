@@ -15,9 +15,6 @@ font_data = ExtResource( 3 )
 position = Vector2( 318.532, 178.92 )
 scale = Vector2( 0.274543, 0.258213 )
 texture = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="login_button" parent="." instance=ExtResource( 2 )]
 margin_left = 224.0
