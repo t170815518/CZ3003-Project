@@ -19,6 +19,10 @@ config/name="Game"
 run/main_scene="res://class_room.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Network="*res://MultiPlayerQuiz/Network.tscn"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
