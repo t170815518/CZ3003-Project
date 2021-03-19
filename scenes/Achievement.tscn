@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/Achievement.gd" type="Script" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 244.243
+margin_top = -1.7855
+margin_right = 284.243
+margin_bottom = 38.2145
+rect_scale = Vector2( 11.6362, 18.9938 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Panel"]
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 13.111
+margin_top = 1.50604
+margin_right = 105.111
+margin_bottom = 15.506
+rect_scale = Vector2( 0.159914, 0.125869 )
+text = "Achievements"
