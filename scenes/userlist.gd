@@ -15,7 +15,7 @@ func _ready():
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	var json =JSON.parse(body.get_string_from_utf8())
-	#print(json.result.users)
+	print(json.result.users)
 	var shift=0.0
 	for player in json.result.users:
 		var lbl= Label.new()
