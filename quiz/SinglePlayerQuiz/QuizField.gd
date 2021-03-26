@@ -2,7 +2,7 @@ extends Control
 
 
 # Declare member variables here. Examples:
-var current_ques_id = -1
+var current_ques_id = -1  # to facilitate access questions by index from 0 
 var questions_num = -1
 var correct_answer = 0 
 var questions = []
@@ -49,7 +49,7 @@ func _on_correct_answer():
 		var next_scene = preload("res://quiz/summary/Summary.tscn").instance()
 		next_scene.is_win = true
 		next_scene.time = end_time - start_time
-		next_scene.total_questions = questions_num
+		next_scene.total_questions = questions_num + 1 # because it starts from -1
 		next_scene.correct_answers = correct_answer
 		var root = get_tree().get_root()
 		root.remove_child(self)
@@ -68,7 +68,7 @@ func _on_wrong_answer():
 		var next_scene = preload("res://quiz/summary/Summary.tscn").instance()
 		next_scene.is_win = true
 		next_scene.time = end_time - start_time
-		next_scene.total_questions = questions_num
+		next_scene.total_questions = questions_num + 1  # because it starts from -1
 		next_scene.correct_answers = correct_answer
 		var root = get_tree().get_root()
 		root.remove_child(self)
