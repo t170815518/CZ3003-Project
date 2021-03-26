@@ -9,6 +9,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
+	$Achivement.connect("body_entered", self, "_on_enter_achievement")
 
 
 func _on_enter_door(collision_body):
@@ -19,6 +20,8 @@ func _on_enter_door(collision_body):
 	root.add_child(next_scnene)
 
 
+func _on_enter_achievement(body):
+	print("Go to achievement selection...")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

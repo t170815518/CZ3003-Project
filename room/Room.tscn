@@ -20,7 +20,7 @@ normal = Vector2( -0.0119552, -0.999929 )
 d = 279.109
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 12.6616
+radius = 30.0028
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 93.6437, 49.6467 )
@@ -74,10 +74,7 @@ margin_right = 1025.84
 margin_bottom = 602.794
 script = ExtResource( 5 )
 
-[node name="Achivement" type="RigidBody2D" parent="."]
-mode = 1
-contacts_reported = 1
-contact_monitor = true
+[node name="Achivement" type="Area2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Achivement"]
 position = Vector2( 98.9704, 150.966 )
