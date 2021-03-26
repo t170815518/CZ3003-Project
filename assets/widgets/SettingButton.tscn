@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/widgets/BTN SETTINGS.png" type="Texture" id=1]
+
+[node name="SettingButton" type="TextureButton"]
+anchor_right = 0.119
+anchor_bottom = 0.078
+margin_right = 0.143997
+margin_bottom = 0.200001
+texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
