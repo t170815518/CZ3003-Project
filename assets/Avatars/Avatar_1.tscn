@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://avatars/avatar_1/idle/3.png" type="Texture" id=1]
 [ext_resource path="res://avatars/avatar_1/idle/1.png" type="Texture" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://avatars/avatar_1/idle/5.png" type="Texture" id=6]
 [ext_resource path="res://avatars/avatar_1/idle/8.png" type="Texture" id=7]
 [ext_resource path="res://avatars/avatar_1/idle/7.png" type="Texture" id=8]
+[ext_resource path="res://avatars/avatar_1/run/4.png" type="Texture" id=9]
+[ext_resource path="res://avatars/avatar_1/run/5.png" type="Texture" id=10]
+[ext_resource path="res://avatars/avatar_1/run/1.png" type="Texture" id=11]
+[ext_resource path="res://avatars/avatar_1/run/6.png" type="Texture" id=12]
+[ext_resource path="res://avatars/avatar_1/run/3.png" type="Texture" id=13]
+[ext_resource path="res://avatars/avatar_1/run/0.png" type="Texture" id=14]
+[ext_resource path="res://avatars/avatar_1/run/2.png" type="Texture" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,9 +22,16 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
 } ]
 
 [node name="Avatar_1" type="AnimatedSprite"]
-position = Vector2( 41.3191, 48.2056 )
+position = Vector2( 48.0463, 48.626 )
 frames = SubResource( 1 )
-animation = "idle"
+animation = "run"
+frame = 5
+playing = true

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://avatars/Avatar_1.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://avatars/KinematicBody2D.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 19.7769
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1.26276, 0 )
+frames = ExtResource( 2 )
+animation = "idle"
+frame = 1
+playing = true
