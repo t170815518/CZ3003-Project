@@ -1,0 +1,86 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Summary/Button.gd" type="Script" id=1]
+[ext_resource path="res://Summary/SummaryInterface.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.51984
+margin_top = 2.51984
+margin_right = 2.51978
+margin_bottom = 2.51984
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="."]
+anchor_left = 0.314
+anchor_top = 0.168
+anchor_right = 0.603
+anchor_bottom = 0.276
+margin_left = -12.8713
+margin_top = -0.249413
+margin_right = 0.192688
+margin_bottom = -0.049408
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CorrectAnswerLabel" type="Label" parent="."]
+anchor_left = 0.191
+anchor_top = 0.351
+anchor_right = 0.345
+anchor_bottom = 0.422
+margin_left = 0.0562897
+margin_top = -0.265167
+margin_right = 0.360291
+margin_bottom = 7.13483
+text = "Correct answers: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeUsedLabel" type="Label" parent="."]
+anchor_left = 0.199
+anchor_top = 0.508
+anchor_right = 0.291
+anchor_bottom = 0.55
+margin_left = -0.448669
+margin_top = 0.190948
+margin_right = 0.343353
+margin_bottom = -0.0090332
+text = "Time used: "
+
+[node name="CorrectAnswerNum" type="Label" parent="."]
+anchor_left = 0.364
+anchor_top = 0.336
+anchor_right = 0.5
+anchor_bottom = 0.382
+margin_left = 0.264008
+margin_top = 5.39998
+margin_right = 3.05176e-05
+margin_bottom = -0.200012
+
+[node name="TimeUsed" type="Label" parent="."]
+anchor_left = 0.398
+anchor_top = 0.485
+anchor_right = 0.523
+anchor_bottom = 0.524
+margin_left = 0.302124
+margin_top = 0.19104
+margin_right = 0.302185
+margin_bottom = 5.79102
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.361
+anchor_top = 0.766
+anchor_right = 0.497
+anchor_bottom = 0.826
+margin_left = 0.504395
+margin_top = 0.10376
+margin_right = 0.240417
+margin_bottom = 0.10376
+text = "OK"
+script = ExtResource( 1 )

@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://quiz/summary/Summary.gd" type="Script" id=1]
+
+[node name="Summary" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.323
+anchor_top = 0.08
+anchor_right = 0.688
+anchor_bottom = 0.217
+margin_left = 4.62305
+margin_top = 0.202358
+margin_right = -0.136963
+margin_bottom = 0.00234985
+text = "Title"
+align = 1
+valign = 1
+percent_visible = -0.2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TotalTimeUsedLabel" type="Label" parent="."]
+anchor_left = 0.189
+anchor_top = 0.238
+anchor_right = 0.437
+anchor_bottom = 0.322
+margin_left = -0.536011
+margin_top = -14.8
+margin_right = 0.511993
+margin_bottom = -0.200012
+text = "Total Time Used"
+
+[node name="CorrectAnswerLabel" type="Label" parent="."]
+anchor_left = 0.197
+anchor_top = 0.432
+anchor_right = 0.44
+anchor_bottom = 0.538
+margin_left = -11.728
+margin_top = -2.20001
+margin_right = 0.439972
+margin_bottom = 0.199982
+text = "Correct Answer "
+
+[node name="CorrectAnswer" type="Label" parent="."]
+anchor_left = 0.566
+anchor_top = 0.423
+anchor_right = 0.747
+anchor_bottom = 0.533
+margin_left = -0.367859
+margin_top = 6.2
+margin_right = 0.288147
+margin_bottom = 0.199982
+text = "10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TotalAnswerLabel" type="Label" parent="."]
+anchor_left = 0.194
+anchor_top = 0.33
+anchor_right = 0.437
+anchor_bottom = 0.43
+margin_left = 0.343994
+margin_top = -1.52588e-05
+margin_right = 32.837
+margin_bottom = 8.39999
+text = "Total Anwsers "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TotalAnswer" type="Label" parent="."]
+anchor_left = 0.563
+anchor_top = 0.32
+anchor_right = 0.753
+anchor_bottom = 0.438
+margin_left = 0.487976
+margin_top = -1.52588e-05
+margin_right = -0.0720215
+margin_bottom = 0.199982
+text = "10"
+
+[node name="TotalTime" type="Label" parent="."]
+anchor_left = 0.563
+anchor_top = 0.217
+anchor_right = 0.752
+anchor_bottom = 0.317
+margin_left = 0.487976
+margin_top = -0.200012
+margin_right = -0.0480347
+margin_bottom = -0.199997
+text = "0:00"
+
+[node name="OKButton" type="Button" parent="."]
+anchor_left = 0.377
+anchor_top = 0.643
+anchor_right = 0.624
+anchor_bottom = 0.74
+margin_left = -0.0480042
+margin_top = 0.199982
+margin_right = 0.0239868
+text = "OK"

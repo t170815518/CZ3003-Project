@@ -4,14 +4,21 @@ extends Control
 # Declare member variables here. Examples:
 var current_ques_id = -1
 var questions_num = -1
+var correct_answer = 0 
 var questions = []
 var quiz_id = "6038511a21ef180015b2176f"
 
+var start_time
+var end_time
+
 const QUESTION_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/question"
 const QUIZ_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/quiz"
-const QUESTION_ID_TEST = "6037f74f8debf30015505660"
+
 
 signal complete_request
+signal question_runs_out
+signal win_quiz
+signal lose
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +28,8 @@ func _ready():
 	get_node("AnswerField").connect("wrong_answer", self, "_on_wrong_answer")	
 	$HTTPRequestQuiz.connect("request_completed", self, "_on_request_completed")
 	$HTTPRequestQuestion.connect("request_completed", self, "_on_question_request_completed")
+	
+	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
 	$HTTPRequestQuestion.timeout = 100
 	$HTTPRequestQuiz.request(QUIZ_GET_BASE_URL, [])
@@ -31,12 +40,20 @@ func _on_correct_answer():
 	var enemy 
 	enemy = get_node("Enemy")
 	enemy.hp -= 1
+	correct_answer += 1
 	if enemy.hp > 0: 
 		get_node("Enemy/HpValue").set_text(str(enemy.hp))
 		update_question()
 	else:
-		print("User wins the quiz!")  # player wins the quiz 
-	# refresh the question 
+		end_time = OS.get_unix_time()
+		var next_scene = preload("res://quiz/summary/Summary.tscn").instance()
+		next_scene.is_win = true
+		next_scene.time = end_time - start_time
+		next_scene.total_questions = questions_num
+		next_scene.correct_answers = correct_answer
+		var root = get_tree().get_root()
+		root.remove_child(self)
+		root.add_child(next_scene)
 
 
 func _on_wrong_answer():
@@ -47,8 +64,15 @@ func _on_wrong_answer():
 	if player.hp > 0: 
 		get_node("Player/HpValue").set_text(str(player.hp))
 	else:
-		print("User loses the quiz!")  # player loses the quiz 
-	# refresh the question 
+		end_time = OS.get_unix_time()
+		var next_scene = preload("res://quiz/summary/Summary.tscn").instance()
+		next_scene.is_win = true
+		next_scene.time = end_time - start_time
+		next_scene.total_questions = questions_num
+		next_scene.correct_answers = correct_answer
+		var root = get_tree().get_root()
+		root.remove_child(self)
+		root.add_child(next_scene)
 	
 
 func _on_request_completed(result, response_code, headers, body):
@@ -58,7 +82,9 @@ func _on_request_completed(result, response_code, headers, body):
 		if response_code == 200:
 			print(body.get_string_from_utf8())
 			body = JSON.parse(body.get_string_from_utf8()).result["quizzes"][0]
+			
 			var question_ids = body["question_list"]
+			$Enemy.hp = len(question_ids)
 			print(question_ids)
 			for question_id in question_ids:
 				questions_num += 1
@@ -70,6 +96,7 @@ func _on_request_completed(result, response_code, headers, body):
 				if status == 0:
 					yield(self, "complete_request")
 				print(question_id)
+			remove_child($LoadingPopUp)
 			update_question()
 
 
@@ -96,7 +123,7 @@ func update_question():
 	
 	current_ques_id += 1
 	if current_ques_id > questions_num:
-		print("User wins")
+		emit_signal("question_runs_out")
 	else: 
 		var question = questions[current_ques_id]
 		var options = question["option"]
@@ -109,3 +136,4 @@ func update_question():
 				buttons[i].connect("pressed", self, "_on_correct_answer")
 			else:
 				buttons[i].connect("pressed", self, "_on_wrong_answer")
+	start_time = OS.get_unix_time()

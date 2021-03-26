@@ -16,12 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Game"
-run/main_scene="res://class_room.tscn"
+run/main_scene="res://quiz/QuizSelection/QuizSelectionUI.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-Network="*res://MultiPlayerQuiz/Network.tscn"
 
 [rendering]
 

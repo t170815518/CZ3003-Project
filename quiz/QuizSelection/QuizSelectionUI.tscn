@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://quiz/QuizSelection/QuizSelectionUI.gd" type="Script" id=1]
+
+[node name="QuizSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuizList" type="ItemList" parent="."]
+anchor_left = 0.225
+anchor_top = 0.396
+anchor_right = 0.758
+anchor_bottom = 0.496
+margin_left = -0.0696869
+margin_top = -0.286484
+margin_right = 0.138306
+margin_bottom = -0.286469
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SubmitSelection" type="Button" parent="."]
+anchor_left = 0.384
+anchor_top = 0.627
+anchor_right = 0.571
+anchor_bottom = 0.693
+margin_left = -0.216003
+margin_top = -0.200012
+margin_right = 0.295959
+margin_bottom = 0.199982
+text = "Select this"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.384
+anchor_top = 0.756
+anchor_right = 0.574
+anchor_bottom = 0.828
+margin_left = 0.303772
+margin_top = 0.289795
+margin_right = -0.256226
+margin_bottom = 0.0897827
+text = "Back"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="PopupDialog" type="PopupDialog" parent="."]
+anchor_left = 0.287
+anchor_top = 0.307
+anchor_right = 0.701
+anchor_bottom = 0.683
+margin_left = -0.416779
+margin_top = -5.68048
+margin_right = -0.352844
+margin_bottom = -0.280487
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PopupDialog"]
+anchor_left = 0.182
+anchor_top = 0.195
+anchor_right = 0.786
+anchor_bottom = 0.762
+margin_left = 0.172821
+margin_top = -0.0178108
+margin_right = 0.0768433
+margin_bottom = 0.00518799
+text = "Loading Quizzes"
