@@ -17,6 +17,7 @@ func _on_enter_door(collision_body):
 	var root = get_tree().get_root()
 	var next_scnene = preload("res://quiz/QuizSelection/QuizSelectionUI.tscn").instance()
 	root.remove_child(self)
+	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)
 
 
