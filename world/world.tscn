@@ -1,0 +1,100 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://objects/WelcomePage_button.tscn" type="PackedScene" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" parent="." instance=ExtResource( 1 )]
+margin_left = 365.76
+margin_top = 37.7167
+margin_right = 659.76
+margin_bottom = 91.7167
+text = "world Selection Portal"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 160.512
+margin_top = 131.328
+margin_right = 413.512
+margin_bottom = 145.328
+rect_scale = Vector2( 2.92553, 5.7324 )
+text = "Please select one world before proceed"
+
+[node name="world 1" type="Button" parent="."]
+margin_left = 62.9961
+margin_top = 237.324
+margin_right = 121.996
+margin_bottom = 257.324
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 1"
+
+[node name="world 2" type="Button" parent="."]
+margin_left = 389.316
+margin_top = 236.064
+margin_right = 448.316
+margin_bottom = 256.064
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="world 3" type="Button" parent="."]
+margin_left = 706.816
+margin_top = 238.583
+margin_right = 765.816
+margin_bottom = 258.583
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 3"
+
+[node name="world 4" type="Button" parent="."]
+margin_left = 62.9961
+margin_top = 364.575
+margin_right = 121.996
+margin_bottom = 384.575
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 4"
+
+[node name="world 5" type="Button" parent="."]
+margin_left = 386.796
+margin_top = 365.835
+margin_right = 445.796
+margin_bottom = 385.835
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 5"
+
+[node name="world 6" type="Button" parent="."]
+margin_left = 706.816
+margin_top = 368.355
+margin_right = 765.816
+margin_bottom = 388.355
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 6"
+
+[node name="world 7" type="Button" parent="."]
+margin_left = 60.751
+margin_top = 486.788
+margin_right = 119.751
+margin_bottom = 506.788
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 7"
+
+[node name="world 8" type="Button" parent="."]
+margin_left = 385.842
+margin_top = 491.555
+margin_right = 444.842
+margin_bottom = 511.555
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 8"
+
+[node name="world 9" type="Button" parent="."]
+margin_left = 703.072
+margin_top = 489.718
+margin_right = 762.072
+margin_bottom = 509.718
+rect_scale = Vector2( 3.57457, 3.64426 )
+text = "world 9"

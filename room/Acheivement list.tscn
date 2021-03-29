@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://room/Acheivement list.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 339.327
+margin_top = 41.6572
+margin_right = 455.327
+margin_bottom = 55.6572
+rect_scale = Vector2( 3.01108, 4.45245 )
+text = "Achievement List "
+
+[node name="ItemList" type="ItemList" parent="."]
+margin_left = 175.129
+margin_top = 119.693
+margin_right = 838.73
+margin_bottom = 306.3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
