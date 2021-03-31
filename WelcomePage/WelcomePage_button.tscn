@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=1]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=2]
+[ext_resource path="res://assets/font/ArialCE.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://WelcomePage/WelcomePage_button.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0431373, 0.129412, 0.0431373, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.54902, 0.584314, 0.545098, 1 )
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+shadow_offset = Vector2( 0.633, 0 )
+anti_aliasing_size = 2
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+extra_spacing_top = 2
+extra_spacing_bottom = 2
+extra_spacing_char = 2
+extra_spacing_space = 2
+font_data = ExtResource( 3 )
+
+[node name="Button" type="Button"]
+margin_left = 3.86658
+margin_top = -0.951828
+margin_right = 199.867
+margin_bottom = 53.0482
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+custom_fonts/font = SubResource( 2 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

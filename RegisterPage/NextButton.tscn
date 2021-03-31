@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=1]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=2]
+[ext_resource path="res://assets/font/ArialCE.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://WelcomePage/WelcomePage_button.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+extra_spacing_top = 2
+extra_spacing_bottom = 2
+extra_spacing_char = 2
+extra_spacing_space = 2
+font_data = ExtResource( 3 )
+
+[node name="Button" type="Button"]
+margin_left = 3.86658
+margin_top = -0.951828
+margin_right = 199.867
+margin_bottom = 53.0482
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 1 )
+custom_styles/focus = ExtResource( 1 )
+custom_styles/normal = ExtResource( 2 )
+custom_fonts/font = SubResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+reference_path = "res://EmptyPage/Empty.tscn"

@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/font/WelcomePageFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://WelcomePage/WelcomePage_button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/background/1.png" type="Texture" id=3]
+
+[node name="WelcomePage" type="Node2D"]
+
+[node name="WelcomeBackground" type="Sprite" parent="."]
+position = Vector2( 510.253, 300.586 )
+scale = Vector2( 0.532736, 0.557836 )
+texture = ExtResource( 3 )
+
+[node name="login_button" parent="." instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_top = 328.0
+margin_right = 664.0
+margin_bottom = 384.0
+focus_neighbour_top = NodePath("../exit_button")
+focus_neighbour_bottom = NodePath("../register_button")
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.913725, 0.988235, 0.964706, 1 )
+text = "Login"
+reference_path = "res://LoginPage/LoginPage.tscn"
+start_focused = true
+
+[node name="register_button" parent="." instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_top = 408.0
+margin_right = 664.0
+margin_bottom = 464.0
+focus_neighbour_top = NodePath("../login_button")
+focus_neighbour_bottom = NodePath("../exit_button")
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.913725, 0.988235, 0.964706, 1 )
+text = "Register"
+reference_path = "res://RegisterPage/RegisterPage.tscn"
+
+[node name="exit_button" parent="." instance=ExtResource( 2 )]
+margin_left = 384.0
+margin_top = 488.0
+margin_right = 664.0
+margin_bottom = 544.0
+focus_neighbour_top = NodePath("../register_button")
+focus_neighbour_bottom = NodePath("../login_button")
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.913725, 0.988235, 0.964706, 1 )
+text = "Exit"

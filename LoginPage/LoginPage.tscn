@@ -1,0 +1,133 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/font/WelcomePageFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://RegisterPage/NextButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RegisterPage/GoBack_button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/font/RegisterPageTitleSmallerFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://LoginPage/LoginPage.gd" type="Script" id=5]
+[ext_resource path="res://assets/font/RegisterPageBack&Next.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/theme/BackgroundTexture.tres" type="Texture" id=7]
+[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=8]
+
+[node name="RegisterPage" type="Control"]
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="NinePatchRect" parent="."]
+margin_left = -3.0
+margin_top = -5.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 640, 360 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 344.0
+margin_top = 130.0
+margin_right = -323.0
+margin_bottom = -44.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="background/VBoxContainer"]
+margin_right = 372.0
+margin_bottom = 62.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Login Screen"
+align = 1
+valign = 1
+
+[node name="EmailTitle" type="Label" parent="background/VBoxContainer"]
+margin_top = 142.0
+margin_right = 372.0
+margin_bottom = 174.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Email"
+
+[node name="Email" type="LineEdit" parent="background/VBoxContainer"]
+margin_top = 178.0
+margin_right = 372.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 350, 35 )
+
+[node name="PasswordTitle" type="Label" parent="background/VBoxContainer"]
+margin_top = 217.0
+margin_right = 372.0
+margin_bottom = 249.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Password"
+
+[node name="Password" type="LineEdit" parent="background/VBoxContainer"]
+margin_top = 253.0
+margin_right = 372.0
+margin_bottom = 288.0
+rect_min_size = Vector2( 350, 35 )
+
+[node name="NextButton" parent="background/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 106.0
+margin_top = 371.0
+margin_right = 266.0
+margin_bottom = 431.0
+rect_min_size = Vector2( 160, 60 )
+size_flags_horizontal = 4
+size_flags_vertical = 10
+custom_fonts/font = ExtResource( 6 )
+script = null
+
+[node name="Label" type="Label" parent="background/VBoxContainer/NextButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 6 )
+text = "Next"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Invalid" type="Popup" parent="background"]
+visible = true
+margin_left = 421.0
+margin_top = 420.0
+margin_right = 802.0
+margin_bottom = 522.0
+rect_scale = Vector2( 0.628959, 0.764356 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="background/Invalid"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Invalid username or password"
+align = 1
+valign = 1
+
+[node name="backButton" parent="." instance=ExtResource( 3 )]
+margin_left = 32.0
+margin_top = 24.0
+margin_right = 196.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 6 )
+
+[node name="HTTPlogin" type="HTTPRequest" parent="."]
+
+[node name="HTTPAllUser" type="HTTPRequest" parent="."]
+[connection signal="text_changed" from="background/VBoxContainer/Password" to="." method="_on_Password_text_changed"]
+[connection signal="pressed" from="background/VBoxContainer/NextButton" to="." method="_on_NextButton_pressed"]
