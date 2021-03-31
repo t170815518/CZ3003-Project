@@ -48,7 +48,8 @@ func submit_selection():
 	print(topic_id)  # for log-in info 
 	# change scene to quiz 
 	var next_scene = preload("res://quiz/SinglePlayerQuiz/QuizField.tscn").instance()
-	next_scene.topic_id = topic_id
+	next_scene.quiz_id = topic_id
+	# next_scene.background_path = background_path
 	var root = get_tree().get_root()
 	root.remove_child(self)
 	root.add_child(next_scene)

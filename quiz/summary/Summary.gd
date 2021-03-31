@@ -12,6 +12,16 @@ var correct_answers = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass 
+	
+
+func refresh():
+	# set background 
+	# print("Loading " + background_path)
+	# var background_node = load(background_path).instance()
+	# self.add_child(background_node)
+	# self.move_child(background_node, 0) # re-order the scene to the end 
+	
 	if is_win:
 		$Title.set_text("Congratulations! You win the quiz!")
 	else:
@@ -20,10 +30,6 @@ func _ready():
 	$TotalAnswer.set_text(str(total_questions))
 	$CorrectAnswer.set_text(str(correct_answers))
 	$OKButton.connect("pressed", self, "_on_pressed_ok")
-
-
-func _on_pressed_ok():
-	self.queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -3,10 +3,20 @@ extends Control
 
 # Declare member variables here. Examples:
 var current_ques_id = -1  # to facilitate access questions by index from 0 
-var questions_num = -1
+var questions_num = 0
 var correct_answer = 0 
 var questions = []
 var quiz_id = "6038511a21ef180015b2176f"
+
+# HP values 
+export var player_hp = 5
+var enemy_hp
+
+# assest
+var background_path = "res://assets/background/background_2.tscn"
+var player_sprite_id = 1
+var enemy_sprite_id = 2
+
 
 var start_time
 var end_time
@@ -23,11 +33,25 @@ signal lose
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# add background 
+	print("Loading " + background_path)
+	var background_node = load(background_path).instance()
+	self.add_child(background_node)
+	self.move_child(background_node, 0) # re-order the scene to the end 
+	
+	# load sprites 
+	var player_frames = load("res://avatars/Avatar_%s.tres" % str(player_sprite_id))
+	var enemy_frames = load("res://avatars/Avatar_%s.tres" % str(enemy_sprite_id))
+	$PlayerSprite.set_sprite_frames(player_frames)
+	$EnemySprite.set_sprite_frames(enemy_frames)
+	
 	# link signals 
 	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
 	get_node("AnswerField").connect("wrong_answer", self, "_on_wrong_answer")	
+	self.connect("question_runs_out", self, "_on_question_runs_out")
 	$HTTPRequestQuiz.connect("request_completed", self, "_on_request_completed")
 	$HTTPRequestQuestion.connect("request_completed", self, "_on_question_request_completed")
+	$Summary.get_node("OKButton").connect("pressed", self, "_on_finish_quiz")
 	
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
@@ -37,42 +61,41 @@ func _ready():
 
 # when the user gives the correct answer 
 func _on_correct_answer():
-	var enemy 
-	enemy = get_node("Enemy")
-	enemy.hp -= 1
 	correct_answer += 1
-	if enemy.hp > 0: 
-		get_node("Enemy/HpValue").set_text(str(enemy.hp))
+	enemy_hp -= 1
+	if enemy_hp > 0: 
+		$PlayerSprite.set_animation("attack")
+		$EnemyHP.set_text(str(enemy_hp))
+		$EnemySprite.set_animation("hit")
 		update_question()
 	else:
 		end_time = OS.get_unix_time()
-		var next_scene = preload("res://quiz/summary/Summary.tscn").instance()
+		var next_scene = $Summary
 		next_scene.is_win = true
 		next_scene.time = end_time - start_time
-		next_scene.total_questions = questions_num + 1 # because it starts from -1
+		next_scene.total_questions = questions_num 
 		next_scene.correct_answers = correct_answer
-		var root = get_tree().get_root()
-		root.remove_child(self)
-		root.add_child(next_scene)
+		$Summary.refresh()
+		$Summary.popup_centered()
 
 
 func _on_wrong_answer():
 	# Assume not to update the question 
-	var player 
-	player = get_node("Player")
-	player.hp -= 1
-	if player.hp > 0: 
-		get_node("Player/HpValue").set_text(str(player.hp))
+	player_hp -= 1
+	if player_hp > 0: 
+		$EnemySprite.set_animation("attack")
+		$PlayerHP.set_text(str(player_hp))
+		$PlayerSprite.set_animation("hit")
+		update_question()
 	else:
 		end_time = OS.get_unix_time()
-		var next_scene = preload("res://quiz/summary/Summary.tscn").instance()
-		next_scene.is_win = true
+		var next_scene = $Summary
+		next_scene.is_win = false
 		next_scene.time = end_time - start_time
-		next_scene.total_questions = questions_num + 1  # because it starts from -1
+		next_scene.total_questions = questions_num 
 		next_scene.correct_answers = correct_answer
-		var root = get_tree().get_root()
-		root.remove_child(self)
-		root.add_child(next_scene)
+		$Summary.refresh()
+		$Summary.popup_centered()
 	
 
 func _on_request_completed(result, response_code, headers, body):
@@ -84,7 +107,10 @@ func _on_request_completed(result, response_code, headers, body):
 			body = JSON.parse(body.get_string_from_utf8()).result["quizzes"][0]
 			
 			var question_ids = body["question_list"]
-			$Enemy.hp = len(question_ids)
+			$EnemyHP.set_text(str(len(question_ids)))
+			enemy_hp = len(question_ids)
+			player_hp = enemy_hp / 2
+			$PlayerHP.set_text(str(player_hp))
 			print(question_ids)
 			for question_id in question_ids:
 				questions_num += 1
@@ -113,7 +139,18 @@ static func delete_children(node):
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
-			
+
+
+func _on_question_runs_out():
+	end_time = OS.get_unix_time()
+	var next_scene = $Summary
+	next_scene.is_win = true
+	next_scene.time = end_time - start_time
+	next_scene.total_questions = questions_num 
+	next_scene.correct_answers = correct_answer
+	$Summary.refresh()
+	$Summary.popup_centered()
+
 			
 func update_question():
 	# display the question description and options 
@@ -121,8 +158,12 @@ func update_question():
 	$RichTextLabel.text = ""
 	delete_children($AnswerField)
 	
+	OS.delay_msec(50)  # for user response  
+	$PlayerSprite.set_animation("idle")
+	$EnemySprite.set_animation("idle")
+	
 	current_ques_id += 1
-	if current_ques_id > questions_num:
+	if current_ques_id >= questions_num:
 		emit_signal("question_runs_out")
 	else: 
 		var question = questions[current_ques_id]
@@ -137,3 +178,11 @@ func update_question():
 			else:
 				buttons[i].connect("pressed", self, "_on_wrong_answer")
 	start_time = OS.get_unix_time()
+
+
+func _on_finish_quiz():
+	self.queue_free()
+	var main_node = load("res://room/Room.tscn").instance()
+	var root = get_tree().get_root()
+	root.remove_child(self)
+	root.add_child(main_node)

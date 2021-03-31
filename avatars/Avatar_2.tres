@@ -1,0 +1,35 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=2]
+
+[ext_resource path="res://avatars/avatar_2/attack/C1 A4.png" type="Texture" id=1]
+[ext_resource path="res://avatars/avatar_2/down/C1 F1.png" type="Texture" id=2]
+[ext_resource path="res://avatars/avatar_2/attack/C1 A1.png" type="Texture" id=3]
+[ext_resource path="res://avatars/avatar_2/attack/C1 A2.png" type="Texture" id=4]
+[ext_resource path="res://avatars/avatar_2/attack/C1 A3.png" type="Texture" id=5]
+[ext_resource path="res://avatars/avatar_2/right/C1 R2.png" type="Texture" id=6]
+[ext_resource path="res://avatars/avatar_2/right/C1 R1.png" type="Texture" id=7]
+[ext_resource path="res://avatars/avatar_2/right/C1 R4.png" type="Texture" id=8]
+[ext_resource path="res://avatars/avatar_2/C1 HIT.png" type="Texture" id=9]
+[ext_resource path="res://avatars/avatar_2/right/C1 R3.png" type="Texture" id=10]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 1 ) ],
+"loop": false,
+"name": "attack",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "hit",
+"speed": 2.0
+} ]
