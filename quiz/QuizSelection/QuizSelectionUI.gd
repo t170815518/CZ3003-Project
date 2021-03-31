@@ -7,10 +7,16 @@ extends Control
 export var topic_url = "https://ssad-api.herokuapp.com/api/v1/topic/quizzes/"
 var quiz_ids = []
 var topic_id = ""
+var background_path = ""
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("Loading " + background_path)
+	var background_node = load(background_path).instance()
+	self.add_child(background_node)
+	self.move_child(background_node, 0) # re-order the scene to the end 
+	
 	# connect signals 
 	$HTTPRequest.connect("request_completed", self, "_refresh_quiz_list")
 	$SubmitSelection.connect("pressed", self, "submit_selection")

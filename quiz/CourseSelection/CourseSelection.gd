@@ -10,6 +10,7 @@ var course_names = []
 var topics_names = []
 var topics = []
 var background_node = null
+var background_path = ""
 
 const BACKGROUND_ID_UPPER_LIMIT = 4
 
@@ -55,7 +56,7 @@ func fresh_topic_list_right():
 	if background_node != null:
 		self.remove_child(background_node)
 	var random_background_id = randi() % BACKGROUND_ID_UPPER_LIMIT
-	var background_path = "res://assets/background/background_%s.tscn" % (str(random_background_id))
+	background_path = "res://assets/background/background_%s.tscn" % (str(random_background_id))
 	print("Loading " + background_path)
 	background_node = load(background_path).instance()
 	self.add_child(background_node)
@@ -104,6 +105,7 @@ func submit_selection():
 		print(topic_id)  # for log-in info 
 		# change scene to quiz 
 		var next_scene = preload("res://quiz/QuizSelection/QuizSelectionUI.tscn").instance()
+		next_scene.background_path = background_path
 		next_scene.topic_id = topic_id
 		var root = get_tree().get_root()
 		root.remove_child(self)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://quiz/QuizSelection/QuizSelectionUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/Quiz Selection.png" type="Texture" id=2]
 
 [node name="QuizSelection" type="Control"]
 anchor_right = 1.0
@@ -64,16 +65,16 @@ margin_right = 0.0768433
 margin_bottom = 0.00518799
 text = "Loading Quizzes"
 
-[node name="Label" type="Label" parent="."]
-anchor_left = 0.386
-anchor_top = 0.145
-anchor_right = 0.536
-anchor_bottom = 0.22
-margin_left = -0.264008
-margin_top = -7.62939e-06
-margin_right = 0.135986
-margin_bottom = -1.52588e-05
-text = "Quiz Selection"
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 496.56, 72.0813 )
+scale = Vector2( 1.08959, 0.967041 )
+texture = ExtResource( 2 )
+
+[node name="QuizList" type="ItemList" parent="."]
+margin_left = 180.871
+margin_top = 136.154
+margin_right = 781.871
+margin_bottom = 359.154
 __meta__ = {
 "_edit_use_anchors_": false
 }

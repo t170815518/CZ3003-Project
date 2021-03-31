@@ -15,7 +15,7 @@ func _ready():
 func _on_enter_door(collision_body):
 	print("Go to world selection...")
 	var root = get_tree().get_root()
-	var next_scnene = preload("res://quiz/QuizSelection/QuizSelectionUI.tscn").instance()
+	var next_scnene = preload("res://quiz/CourseSelection/CourseSelection.tscn").instance()
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)
