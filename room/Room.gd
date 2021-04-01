@@ -22,12 +22,13 @@ func _on_enter_door(collision_body):
 
 
 func _on_enter_achievement(collision_body):
-	print("Go to achievement selection...")
-	var root = get_tree().get_root()
-	var next_scnene = preload("res://room/Acheivement list.tscn").instance()
-	root.remove_child(self)
-	OS.delay_msec(50)  # for user response  
-	root.add_child(next_scnene)
+	if collision_body == $Avatar.get_node("KinematicBody2D"):
+		print("Go to achievement selection...")
+		var root = get_tree().get_root()
+		var next_scnene = preload("res://room/Acheivement list.tscn").instance()
+		root.remove_child(self)
+		OS.delay_msec(50)  # for user response  
+		root.add_child(next_scnene)
 
 
 

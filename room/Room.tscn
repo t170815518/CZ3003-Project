@@ -20,7 +20,7 @@ normal = Vector2( -0.0119552, -0.999929 )
 d = 279.109
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 30.0028
+radius = 22.1224
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 93.6437, 49.6467 )
@@ -82,7 +82,7 @@ scale = Vector2( 1.39296, 1.50988 )
 texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Achivement"]
-position = Vector2( 100.351, 152.21 )
+position = Vector2( 111.014, 152.771 )
 shape = SubResource( 4 )
 
 [node name="Door" type="Area2D" parent="."]
