@@ -56,7 +56,8 @@ func _ready():
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
 	$HTTPRequestQuestion.timeout = 100
-	$HTTPRequestQuiz.request(QUIZ_GET_BASE_URL, [])
+	print("Requesting ", QUIZ_GET_BASE_URL+"/"+quiz_id)
+	$HTTPRequestQuiz.request(QUIZ_GET_BASE_URL+"/"+quiz_id, [])
 
 
 func _process(delta):
@@ -109,13 +110,14 @@ func _on_request_completed(result, response_code, headers, body):
 	# TODO: support multi-size mcq
 	if result == HTTPRequest.RESULT_SUCCESS:
 		if response_code == 200:
-			print(body.get_string_from_utf8())
-			body = JSON.parse(body.get_string_from_utf8()).result["quizzes"][0]
+			print("========Loading Question ids=======")
+			
+			body = JSON.parse(body.get_string_from_utf8()).result
 			
 			var question_ids = body["question_list"]
 			$EnemyHP.set_text(str(len(question_ids)))
 			enemy_hp = len(question_ids)
-			player_hp = enemy_hp / 2
+			player_hp = enemy_hp / 2 + 1
 			$PlayerHP.set_text(str(player_hp))
 			print(question_ids)
 			for question_id in question_ids:
@@ -166,7 +168,7 @@ func update_question():
 	# OS.delay_msec(50)  # for user response  
 	# $PlayerSprite.set_animation("idle")
 	# $EnemySprite.set_animation("idle")
-	
+	$AnswerField.clear_options()
 	current_ques_id += 1
 	if current_ques_id >= questions_num:
 		emit_signal("question_runs_out")
