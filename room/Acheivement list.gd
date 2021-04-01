@@ -18,4 +18,3 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	print(json.result.users[0])
 	for n in json.result.users[0].achievement.size():
 		$ItemList.add_item(str(json.result.users[0].achievement[n]))
-	

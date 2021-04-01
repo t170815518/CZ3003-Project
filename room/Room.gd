@@ -9,7 +9,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
-	#$Achivement.connect("body_entered", self, "_on_enter_achievement")
+	$Achivement.connect("body_entered", self, "_on_enter_achievement")
 
 
 func _on_enter_door(collision_body):
