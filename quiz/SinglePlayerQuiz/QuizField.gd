@@ -7,6 +7,7 @@ var questions_num = 0
 var correct_answer = 0 
 var questions = []
 var quiz_id = "6038511a21ef180015b2176f"
+var attempts = {}
 
 # HP values 
 export var player_hp = 5
@@ -45,6 +46,9 @@ func _ready():
 	$PlayerSprite.set_sprite_frames(player_frames)
 	$EnemySprite.set_sprite_frames(enemy_frames)
 	
+	# OS.delay_msec(50)  # for user response  
+	$PlayerSprite.set_animation("idle")
+	$EnemySprite.set_animation("idle")
 	# link signals 
 	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
 	get_node("AnswerField").connect("wrong_answer", self, "_on_wrong_answer")	
@@ -60,13 +64,13 @@ func _ready():
 
 
 # when the user gives the correct answer 
-func _on_correct_answer():
+func _on_correct_answer(option_id):
 	correct_answer += 1
 	enemy_hp -= 1
 	if enemy_hp > 0: 
-		$PlayerSprite.set_animation("attack")
+		$PlayerSprite.play("attack")
 		$EnemyHP.set_text(str(enemy_hp))
-		$EnemySprite.set_animation("hit")
+		$EnemySprite.play("hit")
 		update_question()
 	else:
 		end_time = OS.get_unix_time()
@@ -79,13 +83,13 @@ func _on_correct_answer():
 		$Summary.popup_centered()
 
 
-func _on_wrong_answer():
+func _on_wrong_answer(option_id):
 	# Assume not to update the question 
 	player_hp -= 1
 	if player_hp > 0: 
-		$EnemySprite.set_animation("attack")
+		$EnemySprite.play("attack")
 		$PlayerHP.set_text(str(player_hp))
-		$PlayerSprite.set_animation("hit")
+		$PlayerSprite.play("hit")
 		update_question()
 	else:
 		end_time = OS.get_unix_time()
@@ -158,9 +162,9 @@ func update_question():
 	$RichTextLabel.text = ""
 	delete_children($AnswerField)
 	
-	OS.delay_msec(50)  # for user response  
-	$PlayerSprite.set_animation("idle")
-	$EnemySprite.set_animation("idle")
+	# OS.delay_msec(50)  # for user response  
+	# $PlayerSprite.set_animation("idle")
+	# $EnemySprite.set_animation("idle")
 	
 	current_ques_id += 1
 	if current_ques_id >= questions_num:
@@ -174,9 +178,9 @@ func update_question():
 		for i in range(options.size()):
 			buttons[i].set_text(options[i]["answer_desc"])
 			if options[i]["is_correct"] == true:
-				buttons[i].connect("pressed", self, "_on_correct_answer")
+				buttons[i].connect("pressed", self, "_on_correct_answer", [options[i]["_id"]])
 			else:
-				buttons[i].connect("pressed", self, "_on_wrong_answer")
+				buttons[i].connect("pressed", self, "_on_wrong_answer", [options[i]["_id"]])
 	start_time = OS.get_unix_time()
 
 
