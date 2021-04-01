@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/font/WelcomePageFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=1]
 [ext_resource path="res://WelcomePage/WelcomePage_button.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/background/1.png" type="Texture" id=3]
+
 
 [node name="WelcomePage" type="Node2D"]
 

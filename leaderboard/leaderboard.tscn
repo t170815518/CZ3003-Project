@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/background/2.png" type="Texture" id=2]
+[ext_resource path="res://leaderboard/leaderboard.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends HTTPRequest
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = SubResource( 1 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 25.5855, 15.0122 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 412.619
+margin_top = 59.6691
+margin_right = 500.619
+margin_bottom = 77.6691
+rect_scale = Vector2( 2.55916, 3.41172 )
+custom_fonts/font = ExtResource( 1 )
+text = "Leader Board"
+percent_visible = -0.0909091
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="."]
+margin_left = 218.467
+margin_top = 123.249
+margin_right = 818.467
+margin_bottom = 500.0
+custom_fonts/font = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
