@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/room.tres" type="TileSet" id=1]
 [ext_resource path="res://room/Room.gd" type="Script" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://assets/widgets/SettingButton.gd" type="Script" id=5]
 [ext_resource path="res://assets/widgets/loot01goblet.png" type="Texture" id=6]
 [ext_resource path="res://assets/widgets/door.png" type="Texture" id=7]
-[ext_resource path="res://assets/theme/world map.png" type="Texture" id=8]
-[ext_resource path="res://assets/theme/leaderboard.tres.png" type="Texture" id=9]
 
 [sub_resource type="LineShape2D" id=1]
 normal = Vector2( 0.999999, -0.00107941 )
@@ -26,12 +24,6 @@ radius = 22.1224
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 93.6437, 49.6467 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 0.106205, 0.778103 )
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 45.2267, 57.9319 )
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 2 )
@@ -102,27 +94,3 @@ texture = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( 242.856, 468.019 )
 shape = SubResource( 5 )
-
-[node name="outdoor" type="Area2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="outdoor"]
-position = Vector2( 648.512, 522.575 )
-texture = ExtResource( 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="outdoor"]
-position = Vector2( 647.542, 518.484 )
-scale = Vector2( 752.094, 40.9242 )
-shape = SubResource( 6 )
-
-[node name="leaderboard" type="Area2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="leaderboard"]
-position = Vector2( 946.109, 311.127 )
-texture = ExtResource( 9 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leaderboard"]
-position = Vector2( 940.647, 320.487 )
-shape = SubResource( 7 )
-[connection signal="body_entered" from="Achivement" to="." method="_on_Achivement_body_entered"]
-[connection signal="body_entered" from="outdoor" to="." method="_on_outdoor_body_entered"]
-[connection signal="body_entered" from="leaderboard" to="." method="_on_leaderboard_body_entered"]

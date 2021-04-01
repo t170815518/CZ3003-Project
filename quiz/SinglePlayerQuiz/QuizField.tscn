@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=1]
 [ext_resource path="res://quiz/SinglePlayerQuiz/AnswerField.tscn" type="PackedScene" id=2]
 [ext_resource path="res://quiz/SinglePlayerQuiz/QuizField.gd" type="Script" id=3]
 [ext_resource path="res://quiz/summary/Summary.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/background/background_4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/widgets/button_pressed (52).png" type="Texture" id=6]
+[ext_resource path="res://assets/widgets/button_normal (54).png" type="Texture" id=7]
+[ext_resource path="res://assets/widgets/button_pressed (53).png" type="Texture" id=8]
+[ext_resource path="res://assets/widgets/button_normal (55).png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
 
 [node name="QuizField" type="Control"]
 anchor_right = 1.0
@@ -13,18 +20,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchor_left = 0.262
-anchor_top = 0.11
-anchor_right = 0.691
-anchor_bottom = 0.74
-margin_left = 0.316162
-margin_top = -0.110123
-margin_right = 0.0201416
-margin_bottom = -0.110168
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Background" parent="." instance=ExtResource( 5 )]
 
 [node name="HTTPRequestQuiz" type="HTTPRequest" parent="."]
 
@@ -62,6 +58,7 @@ margin_bottom = -21.8964
 rect_scale = Vector2( 2, 2 )
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 0
 text = "HP"
 __meta__ = {
@@ -73,13 +70,14 @@ anchor_left = 0.184
 anchor_top = 0.285
 anchor_right = 0.254
 anchor_bottom = 0.345
-margin_left = -0.353546
-margin_top = 0.193436
-margin_right = -36.0335
-margin_bottom = -17.8066
+margin_left = -1.41302
+margin_top = 0.72319
+margin_right = -37.093
+margin_bottom = -17.2768
 rect_scale = Vector2( 2, 2 )
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 0
 text = "0"
 __meta__ = {
@@ -91,13 +89,14 @@ anchor_left = 0.797
 anchor_top = 0.299
 anchor_right = 0.867
 anchor_bottom = 0.359
-margin_left = 0.00463867
-margin_top = -0.0170746
-margin_right = -35.6754
-margin_bottom = -18.0171
+margin_left = -2.64404
+margin_top = -3.72517
+margin_right = -38.3241
+margin_bottom = -21.7252
 rect_scale = Vector2( 2, 2 )
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 0
 text = "0"
 __meta__ = {
@@ -109,13 +108,14 @@ anchor_left = 0.701
 anchor_top = 0.293
 anchor_right = 0.771
 anchor_bottom = 0.353
-margin_left = 0.0349121
-margin_top = -0.196793
-margin_right = -35.6451
-margin_bottom = -18.1968
+margin_left = -0.823975
+margin_top = -2.8
+margin_right = -34.504
+margin_bottom = -20.8
 rect_scale = Vector2( 2, 2 )
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_constants/line_spacing = 0
 text = "HP"
 __meta__ = {
@@ -131,15 +131,6 @@ position = Vector2( 688.546, 236.235 )
 playing = true
 flip_h = true
 
-[node name="AnswerField" parent="." instance=ExtResource( 2 )]
-anchor_left = 0.001
-anchor_top = 0.68
-anchor_bottom = 1.002
-margin_left = 0.976
-margin_top = -144.0
-margin_right = -4.0
-margin_bottom = 6.79999
-
 [node name="Summary" parent="." instance=ExtResource( 4 )]
 anchor_left = 0.176
 anchor_top = 0.178
@@ -149,3 +140,56 @@ margin_left = -8.09602
 margin_top = -0.161148
 margin_right = -0.0400391
 margin_bottom = 0.238831
+
+[node name="AnswerField" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.001
+anchor_top = 0.652
+anchor_bottom = 1.005
+margin_left = 0.0240346
+margin_top = 0.0188599
+margin_right = -1.95197
+margin_bottom = 0.218872
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.3
+anchor_top = 0.122
+anchor_right = 0.637
+anchor_bottom = 0.601
+margin_left = 0.324341
+margin_top = 0.264809
+margin_right = 0.236328
+margin_bottom = -0.135193
+custom_fonts/mono_font = SubResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Question Area"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="."]
+anchor_left = 0.823
+anchor_top = 0.855
+anchor_right = 0.931
+anchor_bottom = 0.952
+margin_left = 0.0930786
+margin_top = 0.0537109
+margin_right = -0.498962
+margin_bottom = -0.146301
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingButton" type="TextureButton" parent="."]
+anchor_left = 0.824
+anchor_top = 0.722
+anchor_right = 0.932
+anchor_bottom = 0.825
+margin_left = -0.115417
+margin_top = 0.0995789
+margin_right = 0.292603
+margin_bottom = 0.299591
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )

@@ -14,7 +14,7 @@ export var player_hp = 5
 var enemy_hp
 
 # assest
-var background_path = "res://assets/background/background_2.tscn"
+var background_path = "res://assets/background/background_4.tscn"
 var player_sprite_id = 1
 var enemy_sprite_id = 2
 
@@ -34,12 +34,6 @@ signal lose
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# add background 
-	print("Loading " + background_path)
-	var background_node = load(background_path).instance()
-	self.add_child(background_node)
-	self.move_child(background_node, 0) # re-order the scene to the end 
-	
 	# load sprites 
 	var player_frames = load("res://avatars/Avatar_%s.tres" % str(player_sprite_id))
 	var enemy_frames = load("res://avatars/Avatar_%s.tres" % str(enemy_sprite_id))
@@ -49,13 +43,14 @@ func _ready():
 	# OS.delay_msec(50)  # for user response  
 	$PlayerSprite.set_animation("idle")
 	$EnemySprite.set_animation("idle")
-	# link signals 
-	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
-	get_node("AnswerField").connect("wrong_answer", self, "_on_wrong_answer")	
 	self.connect("question_runs_out", self, "_on_question_runs_out")
 	$HTTPRequestQuiz.connect("request_completed", self, "_on_request_completed")
 	$HTTPRequestQuestion.connect("request_completed", self, "_on_question_request_completed")
 	$Summary.get_node("OKButton").connect("pressed", self, "_on_finish_quiz")
+	
+	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
+	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
+	get_node("AnswerField").connect("wrong_answer", self, "_on_wrong_answer")	
 	
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
@@ -64,7 +59,7 @@ func _ready():
 
 
 # when the user gives the correct answer 
-func _on_correct_answer(option_id):
+func _on_correct_answer():
 	correct_answer += 1
 	enemy_hp -= 1
 	if enemy_hp > 0: 
@@ -83,7 +78,7 @@ func _on_correct_answer(option_id):
 		$Summary.popup_centered()
 
 
-func _on_wrong_answer(option_id):
+func _on_wrong_answer():
 	# Assume not to update the question 
 	player_hp -= 1
 	if player_hp > 0: 
@@ -160,7 +155,6 @@ func update_question():
 	# display the question description and options 
 	# TODO: support multiple types of questions 
 	$RichTextLabel.text = ""
-	delete_children($AnswerField)
 	
 	# OS.delay_msec(50)  # for user response  
 	# $PlayerSprite.set_animation("idle")
@@ -173,15 +167,12 @@ func update_question():
 		var question = questions[current_ques_id]
 		var options = question["option"]
 		$RichTextLabel.add_text(question["question_desc"])
-		# display buttons for mcq 
-		var buttons = $AnswerField.update_questions(options.size())
 		for i in range(options.size()):
-			buttons[i].set_text(options[i]["answer_desc"])
+			$AnswerField.update_question(options[i]["answer_desc"])
 			if options[i]["is_correct"] == true:
-				buttons[i].connect("pressed", self, "_on_correct_answer", [options[i]["_id"]])
-			else:
-				buttons[i].connect("pressed", self, "_on_wrong_answer", [options[i]["_id"]])
+				$AnswerField.correct_answer_id = i
 	start_time = OS.get_unix_time()
+
 
 
 func _on_finish_quiz():
