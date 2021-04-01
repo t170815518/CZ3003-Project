@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/world map.png-ffb7f1fd7c225101313858295f87c9ca.stex"
+path="res://.import/world map.png-4f282487a4a099f7e5f6479ecbbff2d0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/theme/world map.png"
-dest_files=[ "res://.import/world map.png-ffb7f1fd7c225101313858295f87c9ca.stex" ]
+source_file="res://assets/widgets/world map.png"
+dest_files=[ "res://.import/world map.png-4f282487a4a099f7e5f6479ecbbff2d0.stex" ]
 
 [params]
 

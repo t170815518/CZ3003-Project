@@ -1,6 +1,6 @@
 extends Button
 
-export var reference_path = ""
+export var reference_path = "res://quiz/SinglePlayerQuiz/QuizField.gd"
 export(bool) var start_focused = false
 
 func _ready():

@@ -194,3 +194,11 @@ func _on_finish_quiz():
 
 func _on_time_out():
 	$AnswerField.emit_signal("wrong_answer")
+
+
+func _on_SettingButton_button_down():
+	var root = get_tree().get_root()
+	var next_scnene = preload("res://SettingPage/SettingPage.tscn").instance()
+	root.remove_child(self)
+	OS.delay_msec(50)  # for user response  
+	root.add_child(next_scnene)

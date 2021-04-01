@@ -31,14 +31,7 @@ func _on_Achivement_body_entered(body):
 			root.add_child(next_scnene)
 
 
-func _on_outdoor_body_entered(body):
-	print(body.get_name())
-	if body.get_name()=='KinematicBody2D':
-			var root = get_tree().get_root()
-			var next_scnene = preload("res://world/world.tscn").instance()
-			root.remove_child(self)
-			OS.delay_msec(50)  # for user response  
-			root.add_child(next_scnene)
+	
 
 
 func _on_leaderboard_body_entered(body):
@@ -49,3 +42,14 @@ func _on_leaderboard_body_entered(body):
 			root.remove_child(self)
 			OS.delay_msec(50)  # for user response  
 			root.add_child(next_scnene)
+
+
+func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
+	print(body.get_name())
+	if body.get_name()=='KinematicBody2D':
+			var root = get_tree().get_root()
+			var next_scnene = preload("res://world/world.tscn").instance()
+			root.remove_child(self)
+			OS.delay_msec(50)  # for user response  
+			root.add_child(next_scnene)
+

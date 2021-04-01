@@ -215,3 +215,4 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="button_down" from="AnswerField/SettingButton" to="." method="_on_SettingButton_button_down"]
