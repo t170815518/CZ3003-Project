@@ -34,3 +34,8 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite.set_animation("idle")
 	move_and_collide(velocity)
+
+
+
+
+

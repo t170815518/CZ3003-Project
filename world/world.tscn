@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://objects/WelcomePage_button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/background/3.png" type="Texture" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -9,12 +9,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" parent="." instance=ExtResource( 1 )]
-margin_left = 365.76
-margin_top = 37.7167
-margin_right = 659.76
-margin_bottom = 91.7167
-text = "world Selection Portal"
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 25.8319, 14.9723 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="."]
 margin_left = 160.512
