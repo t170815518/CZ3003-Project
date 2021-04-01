@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/room.tres" type="TileSet" id=1]
 [ext_resource path="res://room/Room.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://assets/widgets/SettingButton.gd" type="Script" id=5]
 [ext_resource path="res://assets/widgets/loot01goblet.png" type="Texture" id=6]
 [ext_resource path="res://assets/widgets/door.png" type="Texture" id=7]
+[ext_resource path="res://assets/widgets/world map.png" type="Texture" id=8]
+[ext_resource path="res://assets/widgets/leaderboard.tres.png" type="Texture" id=9]
 
 [sub_resource type="LineShape2D" id=1]
 normal = Vector2( 0.999999, -0.00107941 )
@@ -24,6 +26,12 @@ radius = 22.1224
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 93.6437, 49.6467 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 81.349, 39.486 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 43.252, 55.4929 )
 
 [node name="Room" type="Node2D"]
 script = ExtResource( 2 )
@@ -94,3 +102,26 @@ texture = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( 242.856, 468.019 )
 shape = SubResource( 5 )
+
+[node name="leaderboard" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="leaderboard"]
+position = Vector2( 643.229, 525.63 )
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leaderboard"]
+position = Vector2( 638.287, 518.132 )
+shape = SubResource( 6 )
+
+[node name="world" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="world"]
+position = Vector2( 945.168, 284.223 )
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world"]
+position = Vector2( 941.335, 292.189 )
+shape = SubResource( 7 )
+[connection signal="body_entered" from="Achivement" to="." method="_on_Achivement_body_entered"]
+[connection signal="body_entered" from="leaderboard" to="." method="_on_leaderboard_body_entered"]
+[connection signal="body_entered" from="world" to="." method="_on_world_body_entered"]
