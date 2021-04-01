@@ -2,38 +2,34 @@ extends Control
 
 # support question types 
 const MCQ_TYPE = "mcq"
+var correct_answer_id = -1
 
-# Declare member variables here. Examples:
-
-signal correct_answer 
-signal wrong_answer 
+signal correct_answer
+signal wrong_answer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass 
+	$TextureButton.connect("pressed", self, "check_if_correct") 
 
 
-func update_questions(option_num, type="mcq"):
-	if type == MCQ_TYPE:
-		var h = 15 + self.get_position()[0]
-		var offset = self.get_size()[0] / option_num
-		var v = self.get_size()[1] + self.get_position()[1]
-		var options = []
-		for i in range(option_num):
-			var option = Button.new()
-			option.set_position(Vector2(h + offset * i, v / 2))
-			add_child(option)
-			options.append(option)
-		return options
-	else:
-		pass 
+func update_question(description):
+	$ItemList.add_item(description)
 
 
-# check if the answer is correct for MCQ question 
-func _on_Player_press_button(index):	
-	print("User clicks button", index)
-	if index == 4:  # assume the correct answer is 4 
-		emit_signal("correct_answer")
-	else:
+func clear_options():
+	$ItemList.clear()
+
+
+func check_if_correct():
+	var selected_id = $ItemList.get_selected_items()
+	if len(selected_id) == 0:  # no answer 
+		print("Emit wrong answer")
 		emit_signal("wrong_answer")
+	else:
+		if selected_id[0] == correct_answer_id:
+			print("Emit correct answer")
+			emit_signal("correct_answer")
+		else:
+			print("Emit wrong answer")
+			emit_signal("wrong_answer")
