@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://room/Acheivement list.gd" type="Script" id=1]
 [ext_resource path="res://assets/background/3.png" type="Texture" id=2]
+[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -38,4 +39,14 @@ __meta__ = {
 }
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Button" type="Button" parent="."]
+margin_left = 22.2487
+margin_top = 30.7244
+margin_right = 73.2487
+margin_bottom = 50.7244
+rect_scale = Vector2( 2.67188, 2.48824 )
+custom_fonts/font = ExtResource( 3 )
+text = "return"
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]

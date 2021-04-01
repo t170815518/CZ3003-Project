@@ -20,9 +20,18 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	print(json.result.users[0])
 	#json.result.users.size()
 	for n in json.result.users.size():
-		$ItemList.add_item(str(json.result.users[n].username))
+		if json.result.users[n].username !='admin (Do not edit/delete this account)':
+			$ItemList.add_item(str(json.result.users[n].username))
 	
 
 
 func _on_invite_btn_pressed():
-	get_tree().change_scene("res://room/accept_challenege_scene.tscn")
+	get_tree().change_scene("res://room/Room.tscn")
+
+
+func _on_cancel_btn_button_down():
+	get_tree().change_scene("res://world/world.tscn")
+
+
+func _on_skip_btn_button_down():
+	get_tree().change_scene("res://room/Room.tscn")

@@ -12,8 +12,18 @@ func _ready():
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	$ItemList.remove_item(0)
+	$ItemList.add_item("Dave - 10")
+	$ItemList.add_item("James - 5")
+	$ItemList.add_item("Cherry - 2")
+	$ItemList.add_item("User3 - 2")
 	var json =JSON.parse(body.get_string_from_utf8())
 	for k in json.result.users.size():
 			print(json.result.users[k])
 			if json.result.users[k].username!='admin (Do not edit/delete this account)':
-				$ItemList.add_item(str(json.result.users[k].username)+"-"+str(json.result.users[k].score))
+				$ItemList.add_item(str(json.result.users[k].username)+" - "+str(json.result.users[k].score))
+	
+
+
+func _on_Button_button_down():
+	get_tree().change_scene("res://room/Room.tscn")
+

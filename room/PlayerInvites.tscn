@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://room/PlayerInvites.gd" type="Script" id=1]
-[ext_resource path="res://assets/background/0.png" type="Texture" id=2]
+[ext_resource path="res://assets/background/2.png" type="Texture" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -12,8 +12,9 @@ __meta__ = {
 }
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_left = -2.66968
 margin_top = 3.8147e-06
-margin_right = 40.0
+margin_right = 37.3303
 margin_bottom = 40.0
 rect_scale = Vector2( 25.4831, 14.9646 )
 texture = ExtResource( 2 )
@@ -26,7 +27,7 @@ margin_left = 279.702
 margin_top = 30.2381
 margin_right = 511.702
 margin_bottom = 44.2381
-rect_scale = Vector2( 2.03536, 3.04009 )
+rect_scale = Vector2( 2.08714, 3.79359 )
 text = "Available Friends Lists for Invitation:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -60,6 +61,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="skip_btn" type="Button" parent="."]
+margin_left = 379.654
+margin_top = 490.18
+margin_right = 472.654
+margin_bottom = 510.18
+rect_scale = Vector2( 3.10398, 2.79513 )
+text = "single Player"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="pressed" from="invite_btn" to="." method="_on_invite_btn_pressed"]
+[connection signal="button_down" from="cancel_btn" to="." method="_on_cancel_btn_button_down"]
+[connection signal="button_down" from="skip_btn" to="." method="_on_skip_btn_button_down"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

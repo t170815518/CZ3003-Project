@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/background/3.png" type="Texture" id=2]
+[ext_resource path="res://world/world.gd" type="Script" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,11 +22,12 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 160.512
-margin_top = 131.328
-margin_right = 413.512
-margin_bottom = 145.328
-rect_scale = Vector2( 2.92553, 5.7324 )
+margin_left = 147.149
+margin_top = 22.6384
+margin_right = 404.149
+margin_bottom = 40.6384
+rect_scale = Vector2( 2.90421, 5.21974 )
+custom_fonts/font = ExtResource( 1 )
 text = "Please select one world before proceed"
 
 [node name="world 1" type="Button" parent="."]
@@ -100,3 +104,12 @@ margin_right = 762.072
 margin_bottom = 509.718
 rect_scale = Vector2( 3.57457, 3.64426 )
 text = "world 9"
+[connection signal="button_down" from="world 1" to="." method="_on_world_1_button_down"]
+[connection signal="button_down" from="world 2" to="." method="_on_world_2_button_down"]
+[connection signal="button_down" from="world 3" to="." method="_on_world_3_button_down"]
+[connection signal="button_down" from="world 4" to="." method="_on_world_4_button_down"]
+[connection signal="button_down" from="world 5" to="." method="_on_world_5_button_down"]
+[connection signal="button_down" from="world 6" to="." method="_on_world_6_button_down"]
+[connection signal="button_down" from="world 7" to="." method="_on_world_7_button_down"]
+[connection signal="button_down" from="world 8" to="." method="_on_world_8_button_down"]
+[connection signal="button_down" from="world 9" to="." method="_on_world_9_button_down"]
