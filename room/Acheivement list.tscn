@@ -27,7 +27,11 @@ margin_top = 41.6572
 margin_right = 455.327
 margin_bottom = 55.6572
 rect_scale = Vector2( 3.01108, 4.45245 )
+custom_fonts/font = ExtResource( 3 )
 text = "Achievement List "
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ItemList" type="ItemList" parent="."]
 margin_left = 175.129

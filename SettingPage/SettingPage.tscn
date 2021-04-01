@@ -1,8 +1,7 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/font/ARCADECLASSIC.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/theme/Cloudbackground.tres" type="Texture" id=2]
-[ext_resource path="res://assets/font/WelcomePageFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=4]
 [ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=5]
 [ext_resource path="res://SettingPage/SettingPage.gd" type="Script" id=6]
@@ -227,7 +226,6 @@ margin_left = 125.439
 margin_top = 196.376
 margin_right = 264.439
 margin_bottom = 258.376
-custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BGM"
 __meta__ = {
@@ -374,7 +372,8 @@ custom_styles/focus = ExtResource( 5 )
 custom_styles/normal = ExtResource( 4 )
 script = ExtResource( 7 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="NinePatchRect/ReturnButton"]

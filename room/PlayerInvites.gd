@@ -26,12 +26,27 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 
 func _on_invite_btn_pressed():
-	get_tree().change_scene("res://room/Room.tscn")
+	#get_tree().change_scene("res://room/Room.tscn")
+	var root = get_tree().get_root()
+	var next_scnene = load("res://room/Room.tscn").instance()
+	root.remove_child(self)
+	OS.delay_msec(50)  # for user response  
+	root.add_child(next_scnene)
 
 
 func _on_cancel_btn_button_down():
-	get_tree().change_scene("res://world/world.tscn")
+	#get_tree().change_scene("res://world/world.tscn")
+	var root = get_tree().get_root()
+	var next_scnene = load("res://world/world.tscn").instance()
+	root.remove_child(self)
+	OS.delay_msec(50)  # for user response  
+	root.add_child(next_scnene)
 
 
 func _on_skip_btn_button_down():
-	get_tree().change_scene("res://room/Room.tscn")
+	#get_tree().change_scene("res://room/Room.tscn")
+	var root = get_tree().get_root()
+	var next_scnene = load("res://room/Room.tscn").instance()
+	root.remove_child(self)
+	OS.delay_msec(50)  # for user response  
+	root.add_child(next_scnene)

@@ -103,25 +103,25 @@ texture = ExtResource( 7 )
 position = Vector2( 242.856, 468.019 )
 shape = SubResource( 5 )
 
-[node name="leaderboard" type="Area2D" parent="."]
-
-[node name="Sprite" type="Sprite" parent="leaderboard"]
-position = Vector2( 643.229, 525.63 )
-texture = ExtResource( 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="leaderboard"]
-position = Vector2( 638.287, 518.132 )
-shape = SubResource( 6 )
-
 [node name="world" type="Area2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="world"]
+position = Vector2( 643.229, 525.63 )
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="world"]
+position = Vector2( 638.287, 518.132 )
+shape = SubResource( 6 )
+
+[node name="leaderboard" type="Area2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="leaderboard"]
 position = Vector2( 945.168, 284.223 )
 texture = ExtResource( 9 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="world"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="leaderboard"]
 position = Vector2( 941.335, 292.189 )
 shape = SubResource( 7 )
 [connection signal="body_entered" from="Achivement" to="." method="_on_Achivement_body_entered"]
+[connection signal="body_shape_entered" from="world" to="." method="_on_world_body_shape_entered"]
 [connection signal="body_entered" from="leaderboard" to="." method="_on_leaderboard_body_entered"]
-[connection signal="body_entered" from="world" to="." method="_on_world_body_entered"]

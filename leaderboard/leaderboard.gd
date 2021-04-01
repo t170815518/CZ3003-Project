@@ -25,5 +25,13 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 
 
 func _on_Button_button_down():
-	get_tree().change_scene("res://room/Room.tscn")
+	#get_tree().change_scene("res://room/Room.tscn")
+	var root = get_tree().get_root()
+	var next_scnene = load("res://room/Room.tscn").instance()
+	root.remove_child(self)
+	OS.delay_msec(50)  # for user response  
+	root.add_child(next_scnene)
+
+	
+
 

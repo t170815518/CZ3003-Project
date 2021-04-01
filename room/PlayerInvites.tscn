@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://room/PlayerInvites.gd" type="Script" id=1]
 [ext_resource path="res://assets/background/2.png" type="Texture" id=2]
+[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -28,6 +29,7 @@ margin_top = 30.2381
 margin_right = 511.702
 margin_bottom = 44.2381
 rect_scale = Vector2( 2.08714, 3.79359 )
+custom_fonts/font = ExtResource( 3 )
 text = "Available Friends Lists for Invitation:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -45,6 +47,7 @@ margin_top = 376.716
 margin_right = 347.861
 margin_bottom = 396.716
 rect_scale = Vector2( 3.10398, 2.79513 )
+custom_fonts/font = ExtResource( 3 )
 text = "invite"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -56,6 +59,7 @@ margin_top = 376.719
 margin_right = 674.599
 margin_bottom = 396.719
 rect_scale = Vector2( 3.10398, 2.79513 )
+custom_fonts/font = ExtResource( 3 )
 text = "cancel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -67,6 +71,7 @@ margin_top = 490.18
 margin_right = 472.654
 margin_bottom = 510.18
 rect_scale = Vector2( 3.10398, 2.79513 )
+custom_fonts/font = ExtResource( 3 )
 text = "single Player"
 __meta__ = {
 "_edit_use_anchors_": false
