@@ -47,7 +47,8 @@ func register_user_in_database(username, password, email):
 	var userInfoField = {
 		"username": username,
 		"password": password,
-		"email": email
+		"email": email,
+		"role": "Student"
 		}
 	var userString = JSON.print(userInfoField)
 	var headers = ["Content-Type: application/json"]
