@@ -47,6 +47,7 @@ func _ready():
 	$HTTPRequestQuiz.connect("request_completed", self, "_on_request_completed")
 	$HTTPRequestQuestion.connect("request_completed", self, "_on_question_request_completed")
 	$Summary.get_node("OKButton").connect("pressed", self, "_on_finish_quiz")
+	$Timer.connect("timeout", self, "_on_time_out")
 	
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
@@ -58,8 +59,13 @@ func _ready():
 	$HTTPRequestQuiz.request(QUIZ_GET_BASE_URL, [])
 
 
+func _process(delta):
+	$TimeLabel.set_text("Time:%s" % str(int($Timer.get_time_left())))
+
+
 # when the user gives the correct answer 
 func _on_correct_answer():
+	$Timer.stop()
 	correct_answer += 1
 	enemy_hp -= 1
 	if enemy_hp > 0: 
@@ -80,6 +86,7 @@ func _on_correct_answer():
 
 func _on_wrong_answer():
 	# Assume not to update the question 
+	$Timer.stop()
 	player_hp -= 1
 	if player_hp > 0: 
 		$EnemySprite.play("attack")
@@ -172,7 +179,7 @@ func update_question():
 			if options[i]["is_correct"] == true:
 				$AnswerField.correct_answer_id = i
 	start_time = OS.get_unix_time()
-
+	$Timer.start()
 
 
 func _on_finish_quiz():
@@ -181,3 +188,7 @@ func _on_finish_quiz():
 	var root = get_tree().get_root()
 	root.remove_child(self)
 	root.add_child(main_node)
+
+
+func _on_time_out():
+	$AnswerField.emit_signal("wrong_answer")

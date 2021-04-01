@@ -150,6 +150,36 @@ margin_top = 0.0188599
 margin_right = -1.95197
 margin_bottom = 0.218872
 
+[node name="SettingButton" type="TextureButton" parent="AnswerField"]
+anchor_left = 0.824
+anchor_top = 0.722
+anchor_right = 0.932
+anchor_bottom = 0.825
+margin_left = 1.30853
+margin_top = -114.729
+margin_right = 1.71655
+margin_bottom = -78.565
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="AnswerField"]
+anchor_left = 0.824
+anchor_top = 0.575
+anchor_right = 0.932
+anchor_bottom = 0.848
+margin_left = 0.492981
+margin_top = -0.0651703
+margin_right = 0.225037
+margin_bottom = 0.0588226
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.3
 anchor_top = 0.122
@@ -167,29 +197,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExitButton" type="TextureButton" parent="."]
-anchor_left = 0.823
-anchor_top = 0.855
-anchor_right = 0.931
-anchor_bottom = 0.952
-margin_left = 0.0930786
-margin_top = 0.0537109
-margin_right = -0.498962
-margin_bottom = -0.146301
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 6 )
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="TimeLabel" type="Label" parent="."]
+anchor_right = 0.151
+anchor_bottom = 0.202
+margin_left = -1.0
+margin_top = 1.0
+margin_right = -103.624
+margin_bottom = -80.2
+rect_scale = Vector2( 3, 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Time:10"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="SettingButton" type="TextureButton" parent="."]
-anchor_left = 0.824
-anchor_top = 0.722
-anchor_right = 0.932
-anchor_bottom = 0.825
-margin_left = -0.115417
-margin_top = 0.0995789
-margin_right = 0.292603
-margin_bottom = 0.299591
-texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 8 )
