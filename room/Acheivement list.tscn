@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://room/Acheivement list.gd" type="Script" id=1]
 [ext_resource path="res://assets/background/3.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://assets/font/AchievementButtonFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=5]
 [ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=6]
+[ext_resource path="res://assets/img/FacebookShareIcon.png" type="Texture" id=7]
+[ext_resource path="res://assets/img/selected_FacebookShareIcon.png" type="Texture" id=8]
+[ext_resource path="res://assets/img/selected_TwitterShareIcon.png" type="Texture" id=9]
+[ext_resource path="res://assets/img/TwitterShareIcon.png" type="Texture" id=10]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -21,14 +25,15 @@ margin_bottom = 40.0
 rect_scale = Vector2( 25.4926, 15.045 )
 texture = ExtResource( 2 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="."]
-margin_left = 336.0
-margin_top = 80.0
-margin_right = 694.0
-margin_bottom = 131.0
+margin_left = 328.0
+margin_top = 40.0
+margin_right = 686.0
+margin_bottom = 91.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Achievement List "
@@ -37,10 +42,10 @@ __meta__ = {
 }
 
 [node name="ItemList" type="ItemList" parent="."]
-margin_left = 168.0
-margin_top = 208.0
-margin_right = 832.0
-margin_bottom = 520.0
+margin_left = 248.0
+margin_top = 128.0
+margin_right = 768.0
+margin_bottom = 392.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -48,10 +53,10 @@ __meta__ = {
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Button" type="Button" parent="."]
-margin_left = 64.0
-margin_top = 64.0
-margin_right = 232.0
-margin_bottom = 136.0
+margin_left = 40.0
+margin_top = 32.0
+margin_right = 190.0
+margin_bottom = 97.0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 5 )
 custom_styles/focus = ExtResource( 5 )
@@ -72,5 +77,37 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FBshare" type="TextureButton" parent="."]
+margin_left = 320.0
+margin_top = 448.0
+margin_right = 722.0
+margin_bottom = 573.0
+rect_scale = Vector2( 0.4, 0.4 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+texture_focused = ExtResource( 8 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TWshare" type="TextureButton" parent="."]
+margin_left = 544.0
+margin_top = 448.0
+margin_right = 1077.0
+margin_bottom = 635.0
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 9 )
+texture_focused = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
+[connection signal="button_down" from="FBshare" to="." method="_on_FBshare_button_down"]
+[connection signal="button_down" from="TWshare" to="." method="_on_TWshare_button_down"]
