@@ -17,7 +17,7 @@ func _ready():
 
 
 func _open_setting():
-	global.previous_scene = "res://room/Room.tscn"
+	global.previous_scene = "res://quiz/SinglePlayerQuiz/QuizField.tscn"
 	var root = get_tree().get_root()
 	var next_scnene = preload("res://SettingPage/SettingPage.tscn").instance()
 	root.remove_child(self)

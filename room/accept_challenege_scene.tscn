@@ -1,4 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/font/AvatarSelectionBigTitle.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/font/PlayerInvitesPageButtonFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/font/AcceptChallengePlayerFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/background/4.jpg" type="Texture" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -7,65 +14,106 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 345.718
-margin_top = 29.184
-margin_right = 455.718
-margin_bottom = 43.184
-rect_scale = Vector2( 3.08, 4.0607 )
-text = "Accept Challenge"
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="player1" type="Label" parent="."]
-margin_left = 134.695
-margin_top = 257.044
-margin_right = 185.695
-margin_bottom = 271.044
-rect_scale = Vector2( 4.82497, 6.3473 )
+[node name="Title" type="Label" parent="."]
+margin_left = 328.0
+margin_top = 64.0
+margin_right = 683.0
+margin_bottom = 115.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Accept Challenge"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1" type="Label" parent="."]
+margin_left = 136.0
+margin_top = 224.0
+margin_right = 393.0
+margin_bottom = 303.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Player 1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="player2" type="Label" parent="."]
-margin_left = 644.293
-margin_top = 245.819
-margin_right = 695.293
-margin_bottom = 259.819
-rect_scale = Vector2( 4.82497, 6.3473 )
+[node name="Player2" type="Label" parent="."]
+margin_left = 648.0
+margin_top = 224.0
+margin_right = 905.0
+margin_bottom = 303.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Player 2"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Vs_lbl" type="Label" parent="."]
-margin_left = 472.557
-margin_top = 250.309
-margin_right = 523.557
-margin_bottom = 264.309
-rect_scale = Vector2( 4.82497, 6.3473 )
+[node name="VS label" type="Label" parent="."]
+margin_left = 392.0
+margin_top = 224.0
+margin_right = 649.0
+margin_bottom = 303.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "VS"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="accept_btn" type="Button" parent="."]
-margin_left = 141.43
-margin_top = 409.699
-margin_right = 197.43
-margin_bottom = 429.699
-rect_scale = Vector2( 4.02378, 4.38779 )
+[node name="acceptButton" type="Button" parent="."]
+margin_left = 144.0
+margin_top = 384.0
+margin_right = 384.0
+margin_bottom = 504.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="acceptButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
 text = "Accept"
+align = 1
+valign = 1
+
+[node name="cancelButton" type="Button" parent="."]
+margin_left = 648.0
+margin_top = 384.0
+margin_right = 888.0
+margin_bottom = 504.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="cancel_btn" type="Button" parent="."]
-margin_left = 635.314
-margin_top = 411.944
-margin_right = 691.314
-margin_bottom = 431.944
-rect_scale = Vector2( 4.02378, 4.38779 )
+[node name="Label" type="Label" parent="cancelButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
 text = "Cancel"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1

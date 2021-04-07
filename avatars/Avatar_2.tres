@@ -23,13 +23,13 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 1 ) ],
-"loop": false,
-"name": "attack",
-"speed": 2.0
-}, {
 "frames": [ ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ), ExtResource( 9 ) ],
 "loop": false,
 "name": "hit",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 1 ) ],
+"loop": false,
+"name": "attack",
 "speed": 2.0
 } ]

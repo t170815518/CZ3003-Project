@@ -1,46 +1,28 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/font/ARCADECLASSIC.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/font/ArialCE.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/theme/leaderboardBackground.tres" type="Texture" id=2]
 [ext_resource path="res://avatars/avatar_1/idle/1.png" type="Texture" id=3]
-[ext_resource path="res://avatars/avatar_1/hit/1.png" type="Texture" id=4]
+[ext_resource path="res://avatars/avatar_2/down/C1 F1.png" type="Texture" id=4]
 [ext_resource path="res://AvatarSelectionPage/AvatarSelection.gd" type="Script" id=5]
 [ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=6]
 [ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=7]
 [ext_resource path="res://AvatarSelectionPage/Avatar1.gd" type="Script" id=8]
-[ext_resource path="res://avatars/avatar_3_4/C2 F3.png" type="Texture" id=9]
-[ext_resource path="res://avatars/avatar_2/attack/C1 A2.png" type="Texture" id=10]
-[ext_resource path="res://avatars/avatar_2/attack/C1 A1.png" type="Texture" id=11]
+[ext_resource path="res://assets/font/AvatarSelectionBigTitle.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/font/RegisterPageErrorPopup.tres" type="DynamicFont" id=10]
 [ext_resource path="res://AvatarSelectionPage/Avatar4.gd" type="Script" id=12]
 [ext_resource path="res://AvatarSelectionPage/Avatar2.gd" type="Script" id=13]
 [ext_resource path="res://AvatarSelectionPage/Avatar5.gd" type="Script" id=14]
 [ext_resource path="res://AvatarSelectionPage/Avatar3.gd" type="Script" id=15]
-[ext_resource path="res://avatars/avatar_3_4/C4 A1.png" type="Texture" id=16]
-[ext_resource path="res://avatars/avatar_3_4/C3 A1.png" type="Texture" id=17]
 [ext_resource path="res://avatars/avatar_3_4/C3 F4.png" type="Texture" id=18]
 [ext_resource path="res://avatars/avatar_3_4/C4 F1.png" type="Texture" id=19]
 [ext_resource path="res://avatars/avatar_3_4/C2 F1.png" type="Texture" id=20]
 
 [sub_resource type="DynamicFont" id=1]
-size = 43
+size = 32
 outline_size = 1
-outline_color = Color( 0.607843, 0.607843, 0.607843, 1 )
+outline_color = Color( 0.0627451, 0.00392157, 0.00392157, 1 )
 use_filter = true
-extra_spacing_top = 2
-extra_spacing_bottom = 2
-extra_spacing_char = 2
-extra_spacing_space = 2
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=2]
-size = 37
-outline_size = 1
-outline_color = Color( 0.713726, 0.835294, 0.8, 1 )
-use_filter = true
-extra_spacing_top = 2
-extra_spacing_bottom = 2
-extra_spacing_char = 8
-extra_spacing_space = 2
 font_data = ExtResource( 1 )
 
 [node name="AvatarSelection" type="Control"]
@@ -61,30 +43,29 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="NinePatchRect"]
-margin_left = 296.0
-margin_top = 32.0
-margin_right = 702.0
-margin_bottom = 112.0
-custom_fonts/font = SubResource( 1 )
+margin_left = 324.621
+margin_top = 128.532
+margin_right = 730.621
+margin_bottom = 208.532
+custom_fonts/font = ExtResource( 9 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Select an avatar"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Avatar1" type="TextureButton" parent="NinePatchRect"]
-margin_left = 38.2722
-margin_top = 196.409
-margin_right = 260.272
-margin_bottom = 470.409
+margin_left = 80.0
+margin_top = 192.0
+margin_right = 302.0
+margin_bottom = 466.0
 texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
-texture_disabled = ExtResource( 4 )
-texture_focused = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
 expand = true
 script = ExtResource( 8 )
 __meta__ = {
@@ -92,16 +73,16 @@ __meta__ = {
 }
 
 [node name="Avatar2" type="TextureButton" parent="NinePatchRect"]
-margin_left = 232.091
-margin_top = 258.682
-margin_right = 390.091
-margin_bottom = 414.682
+margin_left = 288.0
+margin_top = 256.0
+margin_right = 446.0
+margin_bottom = 412.0
 toggle_mode = true
-texture_normal = ExtResource( 11 )
-texture_pressed = ExtResource( 10 )
-texture_hover = ExtResource( 10 )
-texture_disabled = ExtResource( 10 )
-texture_focused = ExtResource( 10 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
 expand = true
 script = ExtResource( 13 )
 __meta__ = {
@@ -109,49 +90,49 @@ __meta__ = {
 }
 
 [node name="Avatar3" type="TextureButton" parent="NinePatchRect"]
-margin_left = 427.0
-margin_top = 254.0
-margin_right = 595.0
-margin_bottom = 426.0
-texture_normal = ExtResource( 20 )
-texture_pressed = ExtResource( 9 )
-texture_hover = ExtResource( 9 )
-texture_disabled = ExtResource( 9 )
-texture_focused = ExtResource( 9 )
-expand = true
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Avatar4" type="TextureButton" parent="NinePatchRect"]
-margin_left = 600.0
-margin_top = 262.273
-margin_right = 752.0
-margin_bottom = 418.273
+margin_left = 448.0
+margin_top = 256.0
+margin_right = 600.0
+margin_bottom = 412.0
 texture_normal = ExtResource( 18 )
-texture_pressed = ExtResource( 17 )
-texture_hover = ExtResource( 17 )
-texture_disabled = ExtResource( 17 )
-texture_focused = ExtResource( 17 )
+texture_pressed = ExtResource( 18 )
+texture_hover = ExtResource( 18 )
+texture_disabled = ExtResource( 18 )
+texture_focused = ExtResource( 18 )
 expand = true
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Avatar5" type="TextureButton" parent="NinePatchRect"]
-margin_left = 749.0
-margin_top = 260.0
-margin_right = 890.0
-margin_bottom = 420.0
+[node name="Avatar4" type="TextureButton" parent="NinePatchRect"]
+margin_left = 608.0
+margin_top = 256.0
+margin_right = 749.0
+margin_bottom = 416.0
 texture_normal = ExtResource( 19 )
-texture_pressed = ExtResource( 16 )
-texture_hover = ExtResource( 16 )
-texture_disabled = ExtResource( 16 )
-texture_focused = ExtResource( 16 )
+texture_pressed = ExtResource( 19 )
+texture_hover = ExtResource( 19 )
+texture_disabled = ExtResource( 19 )
+texture_focused = ExtResource( 19 )
 expand = true
 script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar5" type="TextureButton" parent="NinePatchRect"]
+margin_left = 752.0
+margin_top = 248.0
+margin_right = 920.0
+margin_bottom = 420.0
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 20 )
+texture_disabled = ExtResource( 20 )
+texture_focused = ExtResource( 20 )
+expand = true
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -171,9 +152,120 @@ __meta__ = {
 [node name="Label" type="Label" parent="NinePatchRect/NextButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.639216, 0.741176, 0.733333, 1 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Next"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar1Selected" type="Popup" parent="."]
+visible = true
+margin_left = 136.0
+margin_top = 408.0
+margin_right = 266.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Avatar1Selected"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Selected"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar2Selected" type="Popup" parent="."]
+visible = true
+margin_left = 304.0
+margin_top = 408.0
+margin_right = 434.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Avatar2Selected"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Selected"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar3Selected" type="Popup" parent="."]
+visible = true
+margin_left = 456.0
+margin_top = 408.0
+margin_right = 586.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Avatar3Selected"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Selected"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar4Selected" type="Popup" parent="."]
+visible = true
+margin_left = 616.0
+margin_top = 408.0
+margin_right = 746.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Avatar4Selected"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Selected"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Avatar5Selected" type="Popup" parent="."]
+visible = true
+margin_left = 776.0
+margin_top = 408.0
+margin_right = 906.0
+margin_bottom = 448.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Avatar5Selected"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Selected"
 align = 1
 valign = 1
 __meta__ = {

@@ -5,15 +5,12 @@ func _ready():
 
 
 func _on_LowBGM_pressed():
-	pass
-#	BackgroundMusic.set_volume_db(-5)
+	BackgroundMusic.set_volume_db(-15)
 
 
 func _on_MediumBGM_pressed():
-	pass
-	#BackgroundMusic.set_volume_db(0)
+	BackgroundMusic.set_volume_db(-5)
 
 
 func _on_HighBGM_pressed():
-	pass
-#	BackgroundMusic.set_volume_db(10)
+	BackgroundMusic.set_volume_db(5)

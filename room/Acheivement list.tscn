@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://room/Acheivement list.gd" type="Script" id=1]
 [ext_resource path="res://assets/background/3.png" type="Texture" id=2]
-[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/font/AvatarSelectionBigTitle.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/font/AchievementButtonFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -21,23 +24,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 339.327
-margin_top = 41.6572
-margin_right = 455.327
-margin_bottom = 55.6572
-rect_scale = Vector2( 3.01108, 4.45245 )
+[node name="Title" type="Label" parent="."]
+margin_left = 336.0
+margin_top = 80.0
+margin_right = 694.0
+margin_bottom = 131.0
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Achievement List "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ItemList" type="ItemList" parent="."]
-margin_left = 175.129
-margin_top = 119.693
-margin_right = 838.73
-margin_bottom = 306.3
+margin_left = 168.0
+margin_top = 208.0
+margin_right = 832.0
+margin_bottom = 520.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,12 +48,29 @@ __meta__ = {
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [node name="Button" type="Button" parent="."]
-margin_left = 22.2487
-margin_top = 30.7244
-margin_right = 73.2487
-margin_bottom = 50.7244
-rect_scale = Vector2( 2.67188, 2.48824 )
-custom_fonts/font = ExtResource( 3 )
-text = "return"
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 232.0
+margin_bottom = 136.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Return"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]

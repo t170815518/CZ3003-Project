@@ -4,19 +4,33 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 export var speed = 6
 var velocity = Vector2(0, 0)
-export var avatar_id = 1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var frames
-	if avatar_id == 1:
-		frames = preload("res://avatars/Avatar_1.tres")  # default frame
-	$AnimatedSprite.set_sprite_frames(frames)
-	$AnimatedSprite.set_animation("idle")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	if global.avatar_id == 1:
+		var frames = preload("res://avatars/Avatar_1.tres")  # default frame
+		$AnimatedSprite.set_sprite_frames(frames)
+		$AnimatedSprite.set_animation("idle")
+		# Called every frame. 'delta' is the elapsed time since the previous frame.
+		#func _process(delta):
+		#	pass
+	elif global.avatar_id == 2:
+		var frames = preload("res://avatars/Avatar_2.tres")  # default frame
+		$AnimatedSprite.set_sprite_frames(frames)
+		$AnimatedSprite.set_animation("idle")
+	elif global.avatar_id ==3:
+		var frames = preload("res://avatars/Avatar_3.tres")  # default frame
+		$AnimatedSprite.set_sprite_frames(frames)
+		$AnimatedSprite.set_animation("idle")
+	elif global.avatar_id ==4:
+		var frames = preload("res://avatars/Avatar_4.tres")  # default frame
+		$AnimatedSprite.set_sprite_frames(frames)
+		$AnimatedSprite.set_animation("idle")
+	elif global.avatar_id ==5:
+		var frames = preload("res://avatars/Avatar_5.tres")  # default frame
+		$AnimatedSprite.set_sprite_frames(frames)
+		$AnimatedSprite.set_animation("idle")
 
 
 func _physics_process(delta):
@@ -34,8 +48,6 @@ func _physics_process(delta):
 	else:
 		$AnimatedSprite.set_animation("idle")
 	move_and_collide(velocity)
-
-
 
 
 

@@ -1,17 +1,30 @@
 extends TextureButton
 
 export(bool) var start_focused = false
-onready var avatar3 = get_node(".")
+onready var avatar1_selectedPopup = get_node("/root/AvatarSelection/Avatar1Selected")
+onready var avatar2_selectedPopup = get_node("/root/AvatarSelection/Avatar2Selected")
+onready var avatar3_selectedPopup = get_node("/root/AvatarSelection/Avatar3Selected")
+onready var avatar4_selectedPopup = get_node("/root/AvatarSelection/Avatar4Selected")
+onready var avatar5_selectedPopup = get_node("/root/AvatarSelection/Avatar5Selected")
 
 func _ready():
 	if(start_focused):
 		grab_focus()
 		
-	connect("mouse_entered",self,"_on_avatar3_mouse_entered")
-	connect("pressed",self,"_on_avatar3_Pressed")
+	connect("mouse_entered",self,"_on_avatar5_mouse_entered")
+	connect("pressed",self,"_on_avatar5_Pressed")
 
-func _on_avatar3_mouse_entered():
+func _on_avatar5_mouse_entered():
 	grab_focus()
 	
-func _on_avatar3_Pressed():
-	global.head_color = 3
+func _on_avatar5_Pressed():
+	if avatar1_selectedPopup.is_visible() == true:
+		avatar1_selectedPopup.hide()
+	if avatar2_selectedPopup.is_visible() == true:
+		avatar2_selectedPopup.hide()
+	if avatar3_selectedPopup.is_visible() == true:
+		avatar3_selectedPopup.hide()
+	if avatar4_selectedPopup.is_visible() == true:
+		avatar4_selectedPopup.hide()
+	avatar5_selectedPopup.popup()
+	global.avatar_id = 5

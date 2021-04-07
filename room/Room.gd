@@ -1,10 +1,6 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,10 +26,6 @@ func _on_Achivement_body_entered(body):
 			OS.delay_msec(50)  # for user response  
 			root.add_child(next_scnene)
 
-
-	
-
-
 func _on_leaderboard_body_entered(body):
 	print(body.get_name())
 	if body.get_name()=='KinematicBody2D':
@@ -52,4 +44,8 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 			root.remove_child(self)
 			OS.delay_msec(50)  # for user response  
 			root.add_child(next_scnene)
+
+
+
+
 

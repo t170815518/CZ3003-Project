@@ -6,7 +6,7 @@ func _ready():
 	pass
 
 func _on_NextButton_pressed():
-	var sentData = {"head_color": global.head_color}
+	var sentData = {"head_color": global.avatar_id}
 	var sentString = JSON.print(sentData)
 	var headers = ["Content-Type: application/json"]
 	print(sentData)
@@ -16,7 +16,10 @@ func _on_NextButton_pressed():
 func _on_HTTPAvatar_request_completed(result, response_code, headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:
 		if response_code == 200:
-			get_tree().change_scene("res://WelcomePage/WelcomePage.tscn")
+			if global.previous_scene == "res://SettingPage/SettingPage.tscn":
+				get_tree().change_scene("res://SettingPage/SettingPage.tscn")
+			else:
+				get_tree().change_scene("res://WelcomePage/WelcomePage.tscn")
 		else:
 			print("HTTPrequest update user fails")
 

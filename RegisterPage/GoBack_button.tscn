@@ -6,7 +6,7 @@
 [ext_resource path="res://WelcomePage/WelcomePage_button.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
-size = 15
+size = 24
 extra_spacing_top = 2
 extra_spacing_bottom = 2
 extra_spacing_char = 2

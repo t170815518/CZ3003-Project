@@ -1,6 +1,5 @@
 extends Button
 
-export var reference_path = ""
 export(bool) var start_focused = false
 
 func _ready():
@@ -14,8 +13,7 @@ func _on_Button_mouse_entered():
 	grab_focus()
 	
 func _on_Button_Pressed():
-	if (reference_path != ""):
-		global.previous_scene = "res://SettingPage/SettingPage.tscn"
-		get_tree().change_scene(reference_path)
+	if (global.previous_scene != ""):
+		get_tree().change_scene(global.previous_scene)
 	else:
 		get_tree().quit()

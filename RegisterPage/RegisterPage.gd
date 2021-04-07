@@ -98,7 +98,7 @@ func _on_HTTPAllUser_request_completed(result, response_code, _headers, body):
 					print (global.username)
 					print (global.userID)
 					print (global.email)
-					get_tree().change_scene("res://WelcomePage/WelcomePage.tscn")
+					get_tree().change_scene("res://AvatarSelectionPage/AvatarSelection.tscn")
 		else:
 			print("http get all user fails")
 

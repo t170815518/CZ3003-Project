@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://room/PlayerInvites.gd" type="Script" id=1]
 [ext_resource path="res://assets/background/2.png" type="Texture" id=2]
-[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/font/PlayerInvitesPageButtonFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/font/AvatarSelectionBigTitle.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=6]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -23,62 +26,104 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 279.702
-margin_top = 30.2381
-margin_right = 511.702
-margin_bottom = 44.2381
-rect_scale = Vector2( 2.08714, 3.79359 )
-custom_fonts/font = ExtResource( 3 )
-text = "Available Friends Lists for Invitation:"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ItemList" type="ItemList" parent="."]
-margin_left = 258.284
-margin_top = 114.653
-margin_right = 838.0
-margin_bottom = 306.0
-
-[node name="invite_btn" type="Button" parent="."]
-margin_left = 299.861
-margin_top = 376.716
-margin_right = 347.861
-margin_bottom = 396.716
-rect_scale = Vector2( 3.10398, 2.79513 )
-custom_fonts/font = ExtResource( 3 )
-text = "invite"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="cancel_btn" type="Button" parent="."]
-margin_left = 626.599
-margin_top = 376.719
-margin_right = 674.599
-margin_bottom = 396.719
-rect_scale = Vector2( 3.10398, 2.79513 )
-custom_fonts/font = ExtResource( 3 )
-text = "cancel"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="skip_btn" type="Button" parent="."]
-margin_left = 379.654
-margin_top = 490.18
-margin_right = 472.654
-margin_bottom = 510.18
-rect_scale = Vector2( 3.10398, 2.79513 )
-custom_fonts/font = ExtResource( 3 )
-text = "single Player"
+margin_left = 144.0
+margin_top = 120.0
+margin_right = 904.0
+margin_bottom = 352.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Title" type="Label" parent="."]
+margin_left = 152.0
+margin_top = 48.0
+margin_right = 879.0
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Available Friends Lists for Invitation:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="invite_btn" type="Button" parent="."]
+margin_left = 256.0
+margin_top = 376.0
+margin_right = 496.0
+margin_bottom = 456.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="invite_btn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Invite"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cancel_btn" type="Button" parent="."]
+margin_left = 528.0
+margin_top = 376.0
+margin_right = 768.0
+margin_bottom = 456.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="cancel_btn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Cancel"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="skip_btn" type="Button" parent="."]
+margin_left = 256.0
+margin_top = 472.0
+margin_right = 768.0
+margin_bottom = 552.0
+custom_styles/hover = ExtResource( 5 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="skip_btn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Single Player Game"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="pressed" from="invite_btn" to="." method="_on_invite_btn_pressed"]
 [connection signal="button_down" from="cancel_btn" to="." method="_on_cancel_btn_button_down"]
 [connection signal="button_down" from="skip_btn" to="." method="_on_skip_btn_button_down"]
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]

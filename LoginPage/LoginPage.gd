@@ -17,15 +17,20 @@ func _ready():
 	$HTTPAllUser.connect("request_completed", self, "_on_HTTPAllUser_request_completed")
 
 func _on_NextButton_pressed():
-	global.email = login_email_input.get_text()
-	global.password = login_password_input.get_text()
-	var loginField = {
-			"email": global.email,
-			"password": global.password,
-			}
-	var loginString = JSON.print(loginField)
-	var headers = ["Content-Type: application/json"]
-	$HTTPlogin.request(USER_LOGIN_POST_BASE_URL, headers, true, HTTPClient.METHOD_POST, loginString)
+	if login_email_input.get_text() == "":
+		Invalid_popup.popup()
+	elif login_password_input.get_text() == "":
+		Invalid_popup.popup()
+	else:
+		global.email = login_email_input.get_text()
+		global.password = login_password_input.get_text()
+		var loginField = {
+				"email": global.email,
+				"password": global.password,
+				}
+		var loginString = JSON.print(loginField)
+		var headers = ["Content-Type: application/json"]
+		$HTTPlogin.request(USER_LOGIN_POST_BASE_URL, headers, true, HTTPClient.METHOD_POST, loginString)
 
 
 func _on_HTTPlogin_request_completed(result, response_code, _headers, body):
@@ -33,7 +38,6 @@ func _on_HTTPlogin_request_completed(result, response_code, _headers, body):
 		#TODO: more if case for response code
 		if response_code == 200:
 			#alluser is an array of dictionary consisting of all users information
-			print (global.userID)
 			print (global.email)
 			yield(get_tree().create_timer(2.0), "timeout")
 			$HTTPAllUser.request(ALLUSER_GET_BASE_URL)
@@ -56,9 +60,11 @@ func _on_HTTPAllUser_request_completed(result, response_code, _headers, body):
 				if item["email"] == global.email:
 					var userInfo = item
 					global.userID = userInfo["_id"]
+					global.username = userInfo["username"]
+					global.avatar_id = int(userInfo["head_color"])
 					print (global.userID)
 					print (global.email)
-					get_tree().change_scene("res://AchievementPage/AchievementPage.tscn")
+					get_tree().change_scene("res://room/Room.tscn")
 		else:
 			print("http get all user fails")
 

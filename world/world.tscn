@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/background/3.png" type="Texture" id=2]
 [ext_resource path="res://world/world.gd" type="Script" id=3]
+[ext_resource path="res://assets/font/AvatarSelectionBigTitle.tres" type="DynamicFont" id=4]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -21,104 +22,137 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
-margin_left = 147.149
-margin_top = 22.6384
-margin_right = 404.149
-margin_bottom = 40.6384
-rect_scale = Vector2( 2.90421, 5.21974 )
-custom_fonts/font = ExtResource( 1 )
+[node name="Title" type="Label" parent="."]
+margin_left = 128.0
+margin_top = 96.0
+margin_right = 924.0
+margin_bottom = 147.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Please select one world before proceed"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="world 1" type="Button" parent="."]
-margin_left = 62.9961
-margin_top = 237.324
-margin_right = 121.996
-margin_bottom = 257.324
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="FirstThreeWorld" type="HBoxContainer" parent="."]
+margin_left = 200.0
+margin_top = 192.0
+margin_right = 820.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 0, 80 )
+custom_constants/separation = 40
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="world 1" type="Button" parent="FirstThreeWorld"]
+margin_right = 180.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 80 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="world 2" type="Button" parent="."]
-margin_left = 389.316
-margin_top = 236.064
-margin_right = 448.316
-margin_bottom = 256.064
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="world 2" type="Button" parent="FirstThreeWorld"]
+margin_left = 220.0
+margin_right = 400.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 2"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="world 3" type="Button" parent="."]
-margin_left = 706.816
-margin_top = 238.583
-margin_right = 765.816
-margin_bottom = 258.583
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="world 3" type="Button" parent="FirstThreeWorld"]
+margin_left = 440.0
+margin_right = 620.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 3"
 
-[node name="world 4" type="Button" parent="."]
-margin_left = 62.9961
-margin_top = 364.575
-margin_right = 121.996
-margin_bottom = 384.575
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="NextThreeWorld" type="HBoxContainer" parent="."]
+margin_left = 200.0
+margin_top = 312.0
+margin_right = 820.0
+margin_bottom = 392.0
+rect_min_size = Vector2( 0, 80 )
+custom_constants/separation = 40
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="world 4" type="Button" parent="NextThreeWorld"]
+margin_right = 180.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="world 5" type="Button" parent="."]
-margin_left = 386.796
-margin_top = 365.835
-margin_right = 445.796
-margin_bottom = 385.835
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="world 5" type="Button" parent="NextThreeWorld"]
+margin_left = 220.0
+margin_right = 400.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 5"
 
-[node name="world 6" type="Button" parent="."]
-margin_left = 706.816
-margin_top = 368.355
-margin_right = 765.816
-margin_bottom = 388.355
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="world 6" type="Button" parent="NextThreeWorld"]
+margin_left = 440.0
+margin_right = 620.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 6"
 
-[node name="world 7" type="Button" parent="."]
-margin_left = 60.751
-margin_top = 486.788
-margin_right = 119.751
-margin_bottom = 506.788
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="LastThreeWorld" type="HBoxContainer" parent="."]
+margin_left = 200.0
+margin_top = 432.0
+margin_right = 820.0
+margin_bottom = 512.0
+rect_min_size = Vector2( 0, 80 )
+custom_constants/separation = 40
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="world 7" type="Button" parent="LastThreeWorld"]
+margin_right = 180.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 7"
 
-[node name="world 8" type="Button" parent="."]
-margin_left = 385.842
-margin_top = 491.555
-margin_right = 444.842
-margin_bottom = 511.555
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="world 8" type="Button" parent="LastThreeWorld"]
+margin_left = 220.0
+margin_right = 400.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 8"
 
-[node name="world 9" type="Button" parent="."]
-margin_left = 703.072
-margin_top = 489.718
-margin_right = 762.072
-margin_bottom = 509.718
-rect_scale = Vector2( 3.57457, 3.64426 )
+[node name="world 9" type="Button" parent="LastThreeWorld"]
+margin_left = 440.0
+margin_right = 620.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 0 )
 custom_fonts/font = ExtResource( 1 )
 text = "world 9"
-[connection signal="button_down" from="world 1" to="." method="_on_world_1_button_down"]
-[connection signal="button_down" from="world 2" to="." method="_on_world_2_button_down"]
-[connection signal="button_down" from="world 3" to="." method="_on_world_3_button_down"]
-[connection signal="button_down" from="world 4" to="." method="_on_world_4_button_down"]
-[connection signal="button_down" from="world 5" to="." method="_on_world_5_button_down"]
-[connection signal="button_down" from="world 6" to="." method="_on_world_6_button_down"]
-[connection signal="button_down" from="world 7" to="." method="_on_world_7_button_down"]
-[connection signal="button_down" from="world 8" to="." method="_on_world_8_button_down"]
-[connection signal="button_down" from="world 9" to="." method="_on_world_9_button_down"]
+[connection signal="button_down" from="FirstThreeWorld/world 1" to="." method="_on_world_1_button_down"]
+[connection signal="button_down" from="FirstThreeWorld/world 2" to="." method="_on_world_2_button_down"]
+[connection signal="button_down" from="FirstThreeWorld/world 3" to="." method="_on_world_3_button_down"]
+[connection signal="button_down" from="NextThreeWorld/world 4" to="." method="_on_world_4_button_down"]
+[connection signal="button_down" from="NextThreeWorld/world 5" to="." method="_on_world_5_button_down"]
+[connection signal="button_down" from="NextThreeWorld/world 6" to="." method="_on_world_6_button_down"]
+[connection signal="button_down" from="LastThreeWorld/world 7" to="." method="_on_world_7_button_down"]
+[connection signal="button_down" from="LastThreeWorld/world 8" to="." method="_on_world_8_button_down"]
+[connection signal="button_down" from="LastThreeWorld/world 9" to="." method="_on_world_9_button_down"]

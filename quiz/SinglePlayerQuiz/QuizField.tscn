@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=1]
 [ext_resource path="res://quiz/SinglePlayerQuiz/AnswerField.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/widgets/button_normal (54).png" type="Texture" id=7]
 [ext_resource path="res://assets/widgets/button_pressed (53).png" type="Texture" id=8]
 [ext_resource path="res://assets/widgets/button_normal (55).png" type="Texture" id=9]
+[ext_resource path="res://quiz/SinglePlayerQuiz/SettingButton.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -161,6 +162,7 @@ margin_right = 1.71655
 margin_bottom = -78.565
 texture_normal = ExtResource( 9 )
 texture_pressed = ExtResource( 8 )
+script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
