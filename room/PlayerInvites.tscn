@@ -50,7 +50,7 @@ __meta__ = {
 }
 
 [node name="invite_btn" type="Button" parent="."]
-margin_left = 256.0
+margin_left = 312.0
 margin_top = 376.0
 margin_right = 496.0
 margin_bottom = 456.0
@@ -75,9 +75,9 @@ __meta__ = {
 }
 
 [node name="cancel_btn" type="Button" parent="."]
-margin_left = 528.0
+margin_left = 512.0
 margin_top = 376.0
-margin_right = 768.0
+margin_right = 698.0
 margin_bottom = 456.0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 5 )
@@ -100,9 +100,9 @@ __meta__ = {
 }
 
 [node name="skip_btn" type="Button" parent="."]
-margin_left = 256.0
+margin_left = 312.0
 margin_top = 472.0
-margin_right = 768.0
+margin_right = 696.0
 margin_bottom = 552.0
 custom_styles/hover = ExtResource( 5 )
 custom_styles/pressed = ExtResource( 5 )

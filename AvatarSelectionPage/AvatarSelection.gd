@@ -16,7 +16,7 @@ func _on_NextButton_pressed():
 func _on_HTTPAvatar_request_completed(result, response_code, headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:
 		if response_code == 200:
-			if global.previous_scene == "res://SettingPage/SettingPage.tscn":
+			if global.previous_scene == "res://room/Room.tscn":
 				get_tree().change_scene("res://SettingPage/SettingPage.tscn")
 			else:
 				get_tree().change_scene("res://WelcomePage/WelcomePage.tscn")

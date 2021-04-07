@@ -42,7 +42,7 @@ func _on_cancel_btn_button_down():
 func _on_skip_btn_button_down():
 	#get_tree().change_scene("res://room/Room.tscn")
 	var root = get_tree().get_root()
-	var next_scnene = load("res://room/Room.tscn").instance()
+	var next_scnene = load("res://quiz/CourseSelection/CourseSelection.tscn").instance()
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)

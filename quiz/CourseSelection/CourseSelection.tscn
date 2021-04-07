@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/font/Course & Topic Selection.png" type="Texture" id=1]
 [ext_resource path="res://assets/widgets/triangle.png" type="Texture" id=2]
 [ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/widgets/play_button.png" type="Texture" id=4]
 [ext_resource path="res://quiz/CourseSelection/CourseSelection.gd" type="Script" id=5]
+[ext_resource path="res://assets/font/RegisterPageEmailPopup.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=7]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=8]
 
 [node name="CourseSelection" type="Control"]
 anchor_right = 1.0
@@ -42,7 +45,6 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PopupDialog"]
-visible = false
 anchor_right = 0.992
 anchor_bottom = 0.991
 margin_left = 1.25995
@@ -115,20 +117,17 @@ __meta__ = {
 }
 
 [node name="CourseTitle" type="Label" parent="."]
-anchor_left = 0.358
-anchor_top = 0.177
-anchor_right = 0.609
-anchor_bottom = 0.272
-margin_left = 6.69864
-margin_top = 0.0817413
-margin_right = -0.325378
-margin_bottom = 0.0817261
+anchor_left = 0.235402
+anchor_top = -0.256184
+anchor_right = 0.405324
+anchor_bottom = 0.743816
 custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Course Title"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="SubmitSelection" type="TextureButton" parent="."]
@@ -160,3 +159,26 @@ __meta__ = {
 }
 
 [node name="CourseHTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="ReturnButton" type="Button" parent="."]
+margin_left = 70.6353
+margin_top = 112.68
+margin_right = 190.635
+margin_bottom = 167.68
+custom_styles/hover = ExtResource( 7 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/focus = ExtResource( 7 )
+custom_styles/normal = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ReturnButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 6 )
+text = "Return"
+align = 1
+valign = 1
+[connection signal="button_down" from="ReturnButton" to="." method="_on_ReturnButton_button_down"]

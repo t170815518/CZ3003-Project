@@ -15,7 +15,6 @@ func _on_Button_mouse_entered():
 	
 func _on_Button_Pressed():
 	if (reference_path != ""):
-		global.previous_scene = "res://SettingPage/SettingPage.tscn"
 		get_tree().change_scene(reference_path)
 	else:
 		get_tree().quit()
