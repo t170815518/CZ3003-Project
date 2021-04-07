@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/font/RegisterPageTitleSmall.tres" type="DynamicFont" id=1]
 [ext_resource path="res://RegisterPage/NextButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://RegisterPage/GoBack_button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/font/loginBigTitle.tres" type="DynamicFont" id=4]
 [ext_resource path="res://LoginPage/LoginPage.gd" type="Script" id=5]
-[ext_resource path="res://assets/theme/BackgroundTexture.tres" type="Texture" id=7]
+[ext_resource path="res://assets/background/4.jpg" type="Texture" id=6]
 [ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=8]
 
 [node name="LoginPage" type="Control"]
@@ -19,7 +20,7 @@ margin_top = -5.0
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 640, 360 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -37,12 +38,12 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="background/VBoxContainer"]
-margin_left = 85.0
-margin_right = 275.0
-margin_bottom = 36.0
+margin_left = 32.0
+margin_right = 328.0
+margin_bottom = 57.0
 size_flags_horizontal = 4
 size_flags_vertical = 2
-custom_fonts/font = ExtResource( 8 )
+custom_fonts/font = ExtResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Login Screen"
 align = 1
@@ -99,10 +100,10 @@ __meta__ = {
 
 [node name="Invalid" type="Popup" parent="background"]
 visible = true
-margin_left = 372.917
-margin_top = 420.0
-margin_right = 881.917
-margin_bottom = 524.0
+margin_left = 599.161
+margin_top = 491.919
+margin_right = 1108.16
+margin_bottom = 595.919
 rect_scale = Vector2( 0.628959, 0.764356 )
 __meta__ = {
 "_edit_group_": true,
@@ -119,10 +120,10 @@ align = 1
 valign = 1
 
 [node name="backButton" parent="." instance=ExtResource( 3 )]
-margin_left = 32.0
-margin_top = 24.0
-margin_right = 196.0
-margin_bottom = 80.0
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 228.0
+margin_bottom = 120.0
 
 [node name="HTTPlogin" type="HTTPRequest" parent="."]
 
