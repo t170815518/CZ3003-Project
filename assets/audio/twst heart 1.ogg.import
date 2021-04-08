@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/twst heart 1.ogg-3d14e952c56759bc847a2dca4e056245.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/twst heart 1.ogg"
+dest_files=[ "res://.import/twst heart 1.ogg-3d14e952c56759bc847a2dca4e056245.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
