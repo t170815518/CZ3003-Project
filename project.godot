@@ -19,11 +19,6 @@ config/name="Game"
 run/main_scene="res://room/Room.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-BackgroundMusic="*res://singleton/Background_Music.tscn"
-global="*res://singleton/global.gd"
-
 [rendering]
 
 quality/driver/driver_name="GLES2"

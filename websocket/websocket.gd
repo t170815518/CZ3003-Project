@@ -33,17 +33,23 @@ func _connected(proto = ""):
 	print("Connected with protocol: ", proto)
 	# You MUST always use get_peer(1).put_packet to send data to server,
 	# and not put_packet directly when not using the MultiplayerAPI.
-	_client.get_peer(1).put_packet("Test packet".to_utf8())
+	_client.get_peer(1).put_packet(JSON.print({"method":"test_pack"}).to_utf8())
 
 func _on_data():
 	# Print the received packet, you MUST always use get_peer(1).get_packet
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
 	print("Got data from server: ", _client.get_peer(1).get_packet().get_string_from_utf8())
+	
 
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals
 	# emission will only happen when calling this function.
 	_client.poll()
 		
-				
+func _send():
+	_client.get_peer(1).put_packet(JSON.print({"method":"test"}).to_utf8())				
+
+
+func _on_Button_button_down():
+	_send()
