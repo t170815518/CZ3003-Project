@@ -1,26 +1,32 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://quiz/summary/Summary.gd" type="Script" id=1]
 [ext_resource path="res://assets/font/RegisterPageEmailPopup.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/font/SettingPageButtonFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=4]
 [ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=5]
+[ext_resource path="res://assets/img/FacebookShareIcon.png" type="Texture" id=6]
+[ext_resource path="res://assets/img/selected_FacebookShareIcon.png" type="Texture" id=7]
+[ext_resource path="res://assets/img/selected_TwitterShareIcon.png" type="Texture" id=8]
+[ext_resource path="res://assets/img/TwitterShareIcon.png" type="Texture" id=9]
 
 [node name="Summary" type="PopupDialog"]
 visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="."]
-anchor_left = 0.323
-anchor_top = 0.08
-anchor_right = 0.688
-anchor_bottom = 0.217
-margin_left = -2.75201
-margin_top = 24.0
-margin_right = -7.51202
-margin_bottom = 23.8
+anchor_left = 0.312
+anchor_top = 0.12
+anchor_right = 0.687
+anchor_bottom = 0.253
+margin_left = 8.51199
+margin_right = -6.48804
+margin_bottom = 2.19998
 custom_fonts/font = ExtResource( 2 )
 text = "Title"
 align = 1
@@ -30,14 +36,13 @@ __meta__ = {
 }
 
 [node name="TotalTimeUsedLabel" type="Label" parent="."]
-anchor_left = 0.189
-anchor_top = 0.238
-anchor_right = 0.437
-anchor_bottom = 0.322
-margin_left = 64.464
-margin_top = 65.2
-margin_right = 65.512
-margin_bottom = 79.8
+anchor_left = 0.25
+anchor_top = 0.347
+anchor_right = 0.508
+anchor_bottom = 0.455
+margin_left = 2.0
+margin_top = -0.199997
+margin_right = -7.19202
 custom_fonts/font = ExtResource( 2 )
 text = "Total Time Used"
 __meta__ = {
@@ -45,14 +50,12 @@ __meta__ = {
 }
 
 [node name="CorrectAnswerLabel" type="Label" parent="."]
-anchor_left = 0.197
-anchor_top = 0.432
-anchor_right = 0.44
-anchor_bottom = 0.538
-margin_left = 54.272
-margin_top = 76.8
-margin_right = 110.074
-margin_bottom = 84.44
+anchor_left = 0.25
+anchor_top = 0.56
+anchor_right = 0.547
+anchor_bottom = 0.667
+margin_right = 0.50592
+margin_bottom = 7.03995
 custom_fonts/font = ExtResource( 2 )
 text = "Correct Answer "
 __meta__ = {
@@ -60,14 +63,13 @@ __meta__ = {
 }
 
 [node name="CorrectAnswer" type="Label" parent="."]
-anchor_left = 0.566
-anchor_top = 0.423
-anchor_right = 0.747
-anchor_bottom = 0.533
-margin_left = 62.416
-margin_top = 82.2
-margin_right = 63.072
-margin_bottom = 76.2
+anchor_left = 0.627
+anchor_top = 0.56
+anchor_right = 0.809
+anchor_bottom = 0.66
+margin_left = -0.0480347
+margin_right = -0.416016
+margin_bottom = -3.05176e-05
 custom_fonts/font = ExtResource( 2 )
 text = "10"
 __meta__ = {
@@ -75,14 +77,14 @@ __meta__ = {
 }
 
 [node name="TotalAnswerLabel" type="Label" parent="."]
-anchor_left = 0.194
-anchor_top = 0.33
-anchor_right = 0.437
-anchor_bottom = 0.43
-margin_left = 59.344
-margin_top = 74.0
-margin_right = 91.837
-margin_bottom = 82.4
+anchor_left = 0.242
+anchor_top = 0.44
+anchor_right = 0.523
+anchor_bottom = 0.573
+margin_left = 10.192
+margin_top = 7.99997
+margin_right = 3.77301
+margin_bottom = -3.40002
 custom_fonts/font = ExtResource( 2 )
 text = "Total Anwsers "
 __meta__ = {
@@ -90,44 +92,46 @@ __meta__ = {
 }
 
 [node name="TotalAnswer" type="Label" parent="."]
-anchor_left = 0.563
-anchor_top = 0.32
-anchor_right = 0.753
-anchor_bottom = 0.438
-margin_left = 66.488
-margin_top = 80.0
-margin_right = 65.928
-margin_bottom = 80.2
+anchor_left = 0.625
+anchor_top = 0.453
+anchor_right = 0.82
+anchor_bottom = 0.573
+margin_left = 3.0
+margin_top = 0.199982
+margin_right = -2.68005
+margin_bottom = -0.800018
 custom_fonts/font = ExtResource( 2 )
 text = "10"
 
 [node name="TotalTime" type="Label" parent="."]
-anchor_left = 0.563
-anchor_top = 0.217
-anchor_right = 0.752
-anchor_bottom = 0.317
-margin_left = 65.488
-margin_top = 77.8
-margin_right = 64.952
-margin_bottom = 77.8
+anchor_left = 0.627
+anchor_top = 0.333
+anchor_right = 0.82
+anchor_bottom = 0.453
+margin_left = -0.0480347
+margin_top = 8.2
+margin_right = -4.68005
+margin_bottom = -3.80002
 custom_fonts/font = ExtResource( 2 )
 text = "0:00"
 
 [node name="OKButton" type="Button" parent="."]
-anchor_left = 0.377
-anchor_top = 0.643
-anchor_right = 0.624
-anchor_bottom = 0.74
-margin_left = 5.952
-margin_top = 54.2
-margin_right = 6.02399
-margin_bottom = 54.0
+anchor_left = 0.437
+anchor_top = 0.747
+anchor_right = 0.562
+anchor_bottom = 0.813
+margin_left = 0.511993
+margin_top = -0.200012
+margin_right = 85.512
+margin_bottom = 24.2
+rect_scale = Vector2( 0.6, 0.6 )
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = ExtResource( 4 )
 custom_styles/normal = ExtResource( 5 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="OKButton"]
@@ -140,3 +144,44 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FBshare" type="TextureButton" parent="."]
+anchor_left = 0.359
+anchor_top = 0.64
+anchor_right = 0.453
+anchor_bottom = 0.693
+margin_left = 0.383972
+margin_right = 384.128
+margin_bottom = 128.2
+rect_scale = Vector2( 0.2, 0.2 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TWshare" type="TextureButton" parent="."]
+anchor_left = 0.547
+anchor_top = 0.64
+anchor_right = 0.641
+anchor_bottom = 0.693
+margin_left = -0.128052
+margin_top = -3.05176e-05
+margin_right = 436.616
+margin_bottom = 155.2
+rect_scale = Vector2( 0.18, 0.18 )
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+texture_hover = ExtResource( 8 )
+texture_disabled = ExtResource( 8 )
+texture_focused = ExtResource( 8 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="FBshare" to="." method="_on_FBshare_button_down"]
+[connection signal="button_down" from="TWshare" to="." method="_on_TWshare_button_down"]

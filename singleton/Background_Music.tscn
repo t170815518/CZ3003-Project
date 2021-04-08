@@ -4,7 +4,7 @@
 
 [node name="Background_music" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
-volume_db = -5.0
+volume_db = -10.0
 autoplay = true
 __meta__ = {
 "_editor_description_": ""
