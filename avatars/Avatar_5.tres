@@ -1,39 +1,35 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=2]
+[gd_resource type="SpriteFrames" load_steps=11 format=2]
 
-[ext_resource path="res://avatars/avatar_3_4/C1 A3.png" type="Texture" id=1]
-[ext_resource path="res://avatars/avatar_3_4/C1 F3.png" type="Texture" id=2]
-[ext_resource path="res://avatars/avatar_3_4/C1 A2.png" type="Texture" id=3]
-[ext_resource path="res://avatars/avatar_3_4/C1 R1.png" type="Texture" id=4]
-[ext_resource path="res://avatars/avatar_3_4/C1 A1.png" type="Texture" id=5]
-[ext_resource path="res://avatars/avatar_3_4/C1 F4.png" type="Texture" id=6]
-[ext_resource path="res://avatars/avatar_3_4/C1 R2.png" type="Texture" id=7]
-[ext_resource path="res://avatars/avatar_3_4/C1 HIT.png" type="Texture" id=8]
-[ext_resource path="res://avatars/avatar_3_4/C1 F2.png" type="Texture" id=9]
-[ext_resource path="res://avatars/avatar_3_4/C1 F1.png" type="Texture" id=10]
-[ext_resource path="res://avatars/avatar_3_4/C1 R3.png" type="Texture" id=11]
-[ext_resource path="res://avatars/avatar_3_4/C1 R4.png" type="Texture" id=12]
-[ext_resource path="res://avatars/avatar_3_4/C1 A4.png" type="Texture" id=13]
-[ext_resource path="res://avatars/avatar_2/C1 HIT.png" type="Texture" id=14]
+[ext_resource path="res://avatars/avatar_3_4/C2 A2.png" type="Texture" id=1]
+[ext_resource path="res://avatars/avatar_3_4/C2 A1.png" type="Texture" id=2]
+[ext_resource path="res://avatars/avatar_3_4/C2 R2.png" type="Texture" id=3]
+[ext_resource path="res://avatars/avatar_3_4/C2 R1.png" type="Texture" id=4]
+[ext_resource path="res://avatars/avatar_3_4/C2 F1.png" type="Texture" id=5]
+[ext_resource path="res://avatars/avatar_3_4/C2 HIT.png" type="Texture" id=6]
+[ext_resource path="res://avatars/avatar_3_4/C2 R4.png" type="Texture" id=7]
+[ext_resource path="res://avatars/avatar_3_4/C2 A4.png" type="Texture" id=8]
+[ext_resource path="res://avatars/avatar_3_4/C2 R3.png" type="Texture" id=9]
+[ext_resource path="res://avatars/avatar_3_4/C2 A3.png" type="Texture" id=10]
 
 [resource]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "run",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 13 ) ],
-"loop": false,
-"name": "attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 8 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "attack",
 "speed": 5.0
 } ]
