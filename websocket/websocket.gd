@@ -33,7 +33,8 @@ func _connected(proto = ""):
 	print("Connected with protocol: ", proto)
 	# You MUST always use get_peer(1).put_packet to send data to server,
 	# and not put_packet directly when not using the MultiplayerAPI.
-	_client.get_peer(1).put_packet(JSON.print({"method":"test_pack"}).to_utf8())
+	_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":global.username}).to_utf8())
+	#_client.get_peer(1).put_packet(JSON.print({"method":"test_pack"}).to_utf8())
 
 func _on_data():
 	# Print the received packet, you MUST always use get_peer(1).get_packet
@@ -48,7 +49,7 @@ func _process(delta):
 	_client.poll()
 		
 func _send():
-	_client.get_peer(1).put_packet(JSON.print({"method":"test"}).to_utf8())				
+	_client.get_peer(1).put_packet(JSON.print({"method":"test","username":"jeff Wong"}).to_utf8())				
 
 
 func _on_Button_button_down():

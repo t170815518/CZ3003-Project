@@ -3,5 +3,5 @@ OpenGL ES 3.0 Renderer: GeForce MX150/PCIe/SSE2
  
 Connected with protocol: 
 Got data from server: Welcome New Client!
-Got data from server: Message: welcome {"ClientID":1,"ClientUserName":"jeff Wong"}
+Got data from server: Message: welcome {"ClientID":0}
 Got data from server: Message:test

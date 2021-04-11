@@ -6,6 +6,8 @@ extends Node2D
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
 	$Achivement.connect("body_entered", self, "_on_Achivement_body_entered")
+	print("id")
+	print(get_tree().get_network_unique_id())
 
 
 func _on_enter_door(collision_body):
