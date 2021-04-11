@@ -38,8 +38,8 @@ __meta__ = {
 }
 
 [node name="SettingBackgrounbd" type="Sprite" parent="."]
-position = Vector2( 888.173, 104.955 )
-scale = Vector2( 1.55619, 0.9812 )
+position = Vector2( 888.173, 112.226 )
+scale = Vector2( 1.55619, 0.912924 )
 texture = ExtResource( 3 )
 
 [node name="ItemList" type="ItemList" parent="."]

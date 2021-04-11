@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/font/GameFont_Homepage.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/font/QuizHPFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://quiz/SinglePlayerQuiz/AnswerField.tscn" type="PackedScene" id=2]
 [ext_resource path="res://quiz/SinglePlayerQuiz/QuizField.gd" type="Script" id=3]
 [ext_resource path="res://quiz/summary/Summary.tscn" type="PackedScene" id=4]
@@ -10,8 +10,7 @@
 [ext_resource path="res://assets/widgets/button_pressed (53).png" type="Texture" id=8]
 [ext_resource path="res://assets/widgets/button_normal (55).png" type="Texture" id=9]
 [ext_resource path="res://quiz/SinglePlayerQuiz/SettingButton.gd" type="Script" id=10]
-
-[sub_resource type="DynamicFont" id=1]
+[ext_resource path="res://assets/font/QuizTimeFont.tres" type="DynamicFont" id=11]
 
 [node name="QuizField" type="Control"]
 anchor_right = 1.0
@@ -48,14 +47,14 @@ margin_bottom = 0.014328
 text = "Loading Questions"
 
 [node name="PlayerHPLabel" type="Label" parent="."]
-anchor_left = 0.088
-anchor_top = 0.282
-anchor_right = 0.166
-anchor_bottom = 0.342
-margin_left = 0.306633
-margin_top = 0.103592
-margin_right = -43.5654
-margin_bottom = -21.8964
+anchor_left = 0.031
+anchor_top = 0.213
+anchor_right = 0.102
+anchor_bottom = 0.3
+margin_left = 0.255999
+margin_top = 0.199989
+margin_right = -36.448
+margin_bottom = -26.0
 rect_scale = Vector2( 2, 2 )
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
@@ -67,33 +66,14 @@ __meta__ = {
 }
 
 [node name="PlayerHP" type="Label" parent="."]
-anchor_left = 0.184
-anchor_top = 0.285
-anchor_right = 0.254
-anchor_bottom = 0.345
-margin_left = -1.41302
-margin_top = 0.72319
-margin_right = -37.093
-margin_bottom = -17.2768
-rect_scale = Vector2( 2, 2 )
-size_flags_stretch_ratio = 0.0
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_constants/line_spacing = 0
-text = "0"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EnemyHP" type="Label" parent="."]
-anchor_left = 0.797
-anchor_top = 0.299
-anchor_right = 0.867
-anchor_bottom = 0.359
-margin_left = -2.64404
-margin_top = -3.72517
-margin_right = -38.3241
-margin_bottom = -21.7252
+anchor_left = 0.117
+anchor_top = 0.213
+anchor_right = 0.188
+anchor_bottom = 0.293
+margin_left = 0.191994
+margin_top = 0.199989
+margin_right = -36.512
+margin_bottom = -21.8
 rect_scale = Vector2( 2, 2 )
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
@@ -105,14 +85,14 @@ __meta__ = {
 }
 
 [node name="EnemyHPLabel" type="Label" parent="."]
-anchor_left = 0.701
-anchor_top = 0.293
-anchor_right = 0.771
-anchor_bottom = 0.353
-margin_left = -0.823975
-margin_top = -2.8
-margin_right = -34.504
-margin_bottom = -20.8
+anchor_left = 0.844
+anchor_top = 0.213
+anchor_right = 0.93
+anchor_bottom = 0.333
+margin_left = -0.256042
+margin_top = 0.199989
+margin_right = -44.3201
+margin_bottom = -35.8
 rect_scale = Vector2( 2, 2 )
 size_flags_stretch_ratio = 0.0
 custom_fonts/font = ExtResource( 1 )
@@ -123,12 +103,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="EnemyHP" type="Label" parent="."]
+anchor_left = 0.922
+anchor_top = 0.213
+anchor_right = 0.992
+anchor_bottom = 0.3
+margin_left = -0.128113
+margin_top = 0.199989
+margin_right = -35.8082
+margin_bottom = -26.0
+rect_scale = Vector2( 2, 2 )
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PlayerSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 73.7053, 231.825 )
+position = Vector2( 64, 256 )
+scale = Vector2( 2, 2 )
 playing = true
 
 [node name="EnemySprite" type="AnimatedSprite" parent="."]
-position = Vector2( 688.546, 236.235 )
+position = Vector2( 896, 256 )
+scale = Vector2( 2, 2 )
 playing = true
 flip_h = true
 
@@ -183,16 +184,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="QuestionLabel" type="Label" parent="."]
+anchor_left = 0.25
+anchor_top = 0.027
+anchor_right = 0.25
+anchor_bottom = 0.027
+margin_top = -0.200001
+margin_right = 185.0
+margin_bottom = 48.8
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Question:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-anchor_left = 0.3
-anchor_top = 0.122
-anchor_right = 0.637
-anchor_bottom = 0.601
-margin_left = 5.36401
-margin_top = 0.264809
-margin_right = 5.276
-margin_bottom = -0.135193
-custom_fonts/mono_font = SubResource( 1 )
+anchor_left = 0.242
+anchor_top = 0.107
+anchor_right = 0.75
+anchor_bottom = 0.333
+margin_left = 8.19199
+margin_top = -0.200005
+margin_right = -6.10352e-05
+margin_bottom = 0.199997
+custom_fonts/mono_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 1 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Question Area"
 fit_content_height = true
@@ -204,17 +221,17 @@ __meta__ = {
 wait_time = 20.0
 
 [node name="TimeLabel" type="Label" parent="."]
-anchor_right = 0.151
-anchor_bottom = 0.202
-margin_left = -1.0
-margin_top = 1.0
-margin_right = -103.624
-margin_bottom = -80.2
-rect_scale = Vector2( 3, 3 )
+margin_left = 14.2544
+margin_top = 14.2544
+margin_right = 182.254
+margin_bottom = 63.2544
+custom_fonts/font = ExtResource( 11 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Time:10"
+text = "Time: 10"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="animation_finished" from="PlayerSprite" to="." method="_on_PlayerSprite_animation_finished"]
+[connection signal="animation_finished" from="EnemySprite" to="." method="_on_EnemySprite_animation_finished"]

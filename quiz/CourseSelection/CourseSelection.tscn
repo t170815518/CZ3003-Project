@@ -181,4 +181,6 @@ custom_fonts/font = ExtResource( 6 )
 text = "Return"
 align = 1
 valign = 1
+
+[node name="TopicListHTTPRequest" type="HTTPRequest" parent="."]
 [connection signal="button_down" from="ReturnButton" to="." method="_on_ReturnButton_button_down"]
