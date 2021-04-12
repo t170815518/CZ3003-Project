@@ -1,7 +1,7 @@
 extends Node2D
 # The URL we will connect to
 export var websocket_url = "ws://127.0.0.1:8080/"
-#export var websocket_url = "ws://ssad-ws.azurewebsites.net"
+#export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
 
 # Our WebSocketClient instance
 var _client = WebSocketClient.new()
@@ -34,7 +34,7 @@ func _connected(proto = ""):
 	print("Connected with protocol: ", proto)
 	# You MUST always use get_peer(1).put_packet to send data to server,
 	# and not put_packet directly when not using the MultiplayerAPI.
-	_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":global.username}).to_utf8())
+	_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"jeff wong1"}).to_utf8())
 	#_client.get_peer(1).put_packet(JSON.print({"method":"test_pack"}).to_utf8())
 
 func _on_data():
