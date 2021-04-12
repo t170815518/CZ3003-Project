@@ -1,6 +1,7 @@
 extends Node2D
 # The URL we will connect to
 export var websocket_url = "ws://127.0.0.1:8080/"
+#export var websocket_url = "ws://ssad-ws.azurewebsites.net"
 
 # Our WebSocketClient instance
 var _client = WebSocketClient.new()
@@ -49,7 +50,7 @@ func _process(delta):
 	_client.poll()
 		
 func _send():
-	_client.get_peer(1).put_packet(JSON.print({"method":"test","username":"jeff Wong"}).to_utf8())				
+	_client.get_peer(1).put_packet(JSON.print({"method":"createRoom","username":"jeff Wong","roomNumber":"10"}).to_utf8())				
 
 
 func _on_Button_button_down():
