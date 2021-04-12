@@ -17,6 +17,7 @@ func _ready():
 
 
 func _on_world_1_button_down():
+	global.selected_world = 1
 	#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -26,6 +27,7 @@ func _on_world_1_button_down():
 
 
 func _on_world_2_button_down():
+	global.selected_world = 2
 		#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -35,6 +37,7 @@ func _on_world_2_button_down():
 
 
 func _on_world_3_button_down():
+	global.selected_world = 3
 			#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -44,6 +47,7 @@ func _on_world_3_button_down():
 
 
 func _on_world_4_button_down():
+	global.selected_world = 4
 		#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -53,6 +57,7 @@ func _on_world_4_button_down():
 
 
 func _on_world_5_button_down():
+	global.selected_world = 5
 		#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -62,6 +67,7 @@ func _on_world_5_button_down():
 
 
 func _on_world_6_button_down():
+	global.selected_world = 6
 			#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -71,6 +77,7 @@ func _on_world_6_button_down():
 
 
 func _on_world_7_button_down():
+	global.selected_world = 7
 			#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -80,6 +87,7 @@ func _on_world_7_button_down():
 
 
 func _on_world_8_button_down():
+	global.selected_world = 8
 			#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()
@@ -89,6 +97,7 @@ func _on_world_8_button_down():
 
 
 func _on_world_9_button_down():
+	global.selected_world = 9
 		#get_tree().change_scene("res://room/PlayerInvites.tscn")
 	var root = get_tree().get_root()
 	var next_scnene = load("res://room/PlayerInvites.tscn").instance()

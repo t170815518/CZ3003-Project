@@ -134,7 +134,6 @@ playing = true
 flip_h = true
 
 [node name="Summary" parent="." instance=ExtResource( 4 )]
-visible = false
 anchor_left = 0.176
 anchor_top = 0.178
 anchor_right = 0.882

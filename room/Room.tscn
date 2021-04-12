@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/room.tres" type="TileSet" id=1]
 [ext_resource path="res://room/Room.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/widgets/world map.png" type="Texture" id=8]
 [ext_resource path="res://assets/widgets/leaderboard.tres.png" type="Texture" id=9]
 [ext_resource path="res://assets/background/Black_Background.PNG" type="Texture" id=10]
+[ext_resource path="res://room/AcceptInvitePop.tscn" type="PackedScene" id=11]
 
 [sub_resource type="LineShape2D" id=1]
 normal = Vector2( 0.999999, -0.00107941 )
@@ -130,6 +131,13 @@ texture = ExtResource( 9 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="leaderboard"]
 position = Vector2( 941.335, 292.189 )
 shape = SubResource( 7 )
+
+[node name="AcceptInvitePop" parent="." instance=ExtResource( 11 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 816.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 100, 100 )
 [connection signal="body_entered" from="Achivement" to="." method="_on_Achivement_body_entered"]
 [connection signal="body_shape_entered" from="world" to="." method="_on_world_body_shape_entered"]
 [connection signal="body_entered" from="leaderboard" to="." method="_on_leaderboard_body_entered"]

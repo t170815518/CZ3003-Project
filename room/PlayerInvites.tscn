@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://room/PlayerInvites.gd" type="Script" id=1]
-[ext_resource path="res://assets/background/2.png" type="Texture" id=2]
 [ext_resource path="res://assets/font/PlayerInvitesPageButtonFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/font/AvatarSelectionBigTitle.tres" type="DynamicFont" id=4]
 [ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=5]
@@ -11,17 +10,6 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_left = -2.66968
-margin_top = 3.8147e-06
-margin_right = 37.3303
-margin_bottom = 40.0
-rect_scale = Vector2( 25.4831, 14.9646 )
-texture = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -98,32 +86,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="skip_btn" type="Button" parent="."]
-margin_left = 312.0
-margin_top = 472.0
-margin_right = 696.0
-margin_bottom = 552.0
-custom_styles/hover = ExtResource( 5 )
-custom_styles/pressed = ExtResource( 5 )
-custom_styles/focus = ExtResource( 5 )
-custom_styles/normal = ExtResource( 6 )
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="skip_btn"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_fonts/font = ExtResource( 3 )
-text = "Single Player Game"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
 [connection signal="pressed" from="invite_btn" to="." method="_on_invite_btn_pressed"]
 [connection signal="button_down" from="cancel_btn" to="." method="_on_cancel_btn_button_down"]
-[connection signal="button_down" from="skip_btn" to="." method="_on_skip_btn_button_down"]

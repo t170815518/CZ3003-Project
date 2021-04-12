@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://room/AcceptInvitePop.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/RegisterPageEmailPopup.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/font/SettingPageButtonFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=5]
+
+[node name="AcceptInvitePop" type="PopupDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -8.0
+margin_right = -8.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+anchor_left = 0.32
+anchor_top = 0.16
+anchor_right = 0.742
+anchor_bottom = 0.32
+margin_left = 0.319977
+margin_top = -7.62939e-06
+margin_right = 0.191895
+margin_bottom = -1.52588e-05
+custom_fonts/font = ExtResource( 2 )
+text = "Title"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Acceptbutton" type="Button" parent="."]
+anchor_left = 0.32
+anchor_top = 0.64
+anchor_right = 0.445
+anchor_bottom = 0.704
+margin_left = 0.319977
+margin_top = -3.05176e-05
+margin_right = 85.32
+margin_bottom = 25.6
+rect_scale = Vector2( 0.6, 0.6 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Acceptbutton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Accept"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CancelButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.64
+anchor_right = 0.633
+anchor_bottom = 0.707
+margin_left = 8.00006
+margin_right = 84.808
+margin_bottom = 23.8
+rect_scale = Vector2( 0.6, 0.6 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CancelButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 3 )
+text = "Cancel"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="Acceptbutton" to="." method="_on_Acceptbutton_button_down"]
+[connection signal="button_down" from="CancelButton" to="." method="_on_CancelButton_button_down"]

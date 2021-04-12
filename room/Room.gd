@@ -8,7 +8,7 @@ func _ready():
 	$Achivement.connect("body_entered", self, "_on_Achivement_body_entered")
 	print("id")
 	print(get_tree().get_network_unique_id())
-
+	#$AcceptInvitePop.popup_centered()
 
 func _on_enter_door(collision_body):
 	print("Go to world selection...")
@@ -46,8 +46,3 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 			root.remove_child(self)
 			OS.delay_msec(50)  # for user response  
 			root.add_child(next_scnene)
-
-
-
-
-
