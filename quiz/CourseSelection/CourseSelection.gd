@@ -7,8 +7,8 @@ var topic_url = "https://ssad-api.herokuapp.com/api/v1/list/topic"
 var current_course_id = -1  # for browsing courses from 0 
 var course_ids = []
 var course_names = []
-var topics_names = []
-var topics = []
+var topics_dict = {}
+var topics = [] 
 var background_node = null
 var background_path = ""
 
@@ -19,6 +19,7 @@ const BACKGROUND_ID_UPPER_LIMIT = 4
 func _ready():
 	# connect signals 
 	$CourseHTTPRequest.connect("request_completed", self, "_refresh_course_list")
+	$TopicListHTTPRequest.connect("request_completed", self, "TopicListHTTPRequest_list")
 	$SubmitSelection.connect("pressed", self, "submit_selection")
 	$LeftButton.connect("pressed", self, "fresh_topic_list_left")
 	$RightButton.connect("pressed", self, "fresh_topic_list_right")
@@ -42,13 +43,29 @@ func _refresh_course_list(result, response_code, headers, body):
 				print(course)
 				course_ids.append(course["_id"])
 				course_names.append(course["course_name"])
-				topics.append(course["topic_list"])
-			remove_child($PopupDialog)
-			# display the first course by default 
-			fresh_topic_list_right()
+				topics.append(course["topic_list"]) #topics is an array that stores multiple arrays
+			$TopicListHTTPRequest.request(topic_url)
+
 	else:
 		print("Http Request fails")
 			
+
+func TopicListHTTPRequest_list(result, response_code, headers, body):
+	if result == HTTPRequest.RESULT_SUCCESS:
+		if response_code == 200:
+			body = JSON.parse(body.get_string_from_utf8()).result
+			for topic in body:
+				for array1 in topics:
+					for item in array1:
+						if item == topic["_id"]:
+							topics_dict[topic["_id"]] = topic["topic_name"]
+			remove_child($PopupDialog)
+			# display the first course by default 
+			fresh_topic_list_right()
+
+	else:
+		print("Http Request fails")
+
 
 # to display the topics of a course
 func fresh_topic_list_right():
@@ -71,7 +88,8 @@ func fresh_topic_list_right():
 	$TopicList.clear()
 	var topics_list = topics[current_course_id]
 	for topic in topics_list:
-		$TopicList.add_item(topic)
+		if topic in topics_dict:
+			$TopicList.add_item(topics_dict[topic])
 	$CourseTitle.set_text(course_names[current_course_id])
 
 
@@ -118,3 +136,5 @@ func _on_ReturnButton_button_down():
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)
+
+

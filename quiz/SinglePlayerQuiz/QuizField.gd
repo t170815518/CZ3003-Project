@@ -15,8 +15,8 @@ var enemy_hp
 
 # assest
 var background_path = "res://assets/background/background_4.tscn"
-var player_sprite_id = 1
-var enemy_sprite_id = 2
+var player_sprite_id = global.avatar_id
+var rng = RandomNumberGenerator.new()
 
 
 var start_time
@@ -34,6 +34,8 @@ signal lose
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng.randomize()
+	var enemy_sprite_id = rng.randi_range(1,5)
 	# load sprites 
 	var player_frames = load("res://avatars/Avatar_%s.tres" % str(player_sprite_id))
 	var enemy_frames = load("res://avatars/Avatar_%s.tres" % str(enemy_sprite_id))
@@ -93,7 +95,7 @@ func _on_wrong_answer():
 		$EnemySprite.play("attack")
 		$PlayerHP.set_text(str(player_hp))
 		$PlayerSprite.play("hit")
-		update_question()
+
 	else:
 		end_time = OS.get_unix_time()
 		var next_scene = $Summary
@@ -161,6 +163,7 @@ func _on_question_runs_out():
 
 			
 func update_question():
+
 	# display the question description and options 
 	# TODO: support multiple types of questions 
 	$RichTextLabel.text = ""
@@ -202,3 +205,11 @@ func _on_SettingButton_button_down():
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)
+
+
+func _on_PlayerSprite_animation_finished():
+	$PlayerSprite.play('idle')
+
+
+func _on_EnemySprite_animation_finished():
+	$EnemySprite.play('idle')
