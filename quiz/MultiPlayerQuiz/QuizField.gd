@@ -20,7 +20,7 @@ var player_sprite_id = global.avatar_id
 var rng = RandomNumberGenerator.new()
 
 # user_id for test purpose 
-var user_id = "6074046587cf380015bf1108"
+var user_id = "605235a72ad01200153a3f03"
 
 
 var start_time
@@ -28,7 +28,7 @@ var end_time
 
 const QUESTION_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/question"
 const QUIZ_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/quiz"
-const ATTEMPT_POST_URL = "https://ssad-api.herokuapp.com/api/v1/quiz/attempt/"
+const ATTEMPT_POST_URL = "https://ssad-api.herokuapp.com/api/v1/question/attemptt"
 
 
 signal complete_request
@@ -82,6 +82,7 @@ func _on_correct_answer(option):
 		$PlayerSprite.play("attack")
 		$EnemyHP.set_text(str(enemy_hp))
 		$EnemySprite.play("hit")
+		update_question()
 	else:
 		end_time = OS.get_unix_time()
 		var next_scene = $Summary
@@ -140,6 +141,7 @@ func _on_request_completed(result, response_code, headers, body):
 					yield(self, "complete_request")
 				print(question_id)
 			remove_child($LoadingPopUp)
+			update_question()
 
 
 func _on_question_request_completed(result, response_code, headers, body):

@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="Control" type="Control"]
+anchor_right = 0.375
+anchor_bottom = 0.537
+margin_right = -3.05176e-05
+margin_bottom = -0.200012
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.997
+margin_right = 2.0
+margin_bottom = -0.0340271
+text = "Default Question"

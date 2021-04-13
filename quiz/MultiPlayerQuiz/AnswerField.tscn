@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://quiz/SinglePlayerQuiz/AnswerField.gd" type="Script" id=1]
+[ext_resource path="res://assets/widgets/panel_big_2.png" type="Texture" id=2]
+[ext_resource path="res://assets/widgets/panel_big_1.png" type="Texture" id=3]
+[ext_resource path="res://assets/widgets/button_normal (56).png" type="Texture" id=4]
+[ext_resource path="res://assets/widgets/button_pressed (54).png" type="Texture" id=5]
+
+[node name="AnswerField" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 0.355
+margin_top = 1.0
+margin_right = -3.0
+margin_bottom = -1.52588e-05
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnswerBackground" type="Sprite" parent="."]
+position = Vector2( 379.791, 111.983 )
+scale = Vector2( 3.22622, 1.46664 )
+texture = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+anchor_left = 0.587
+anchor_top = 0.462
+anchor_right = 0.695
+anchor_bottom = 0.736
+margin_left = 0.172974
+margin_top = 0.0560074
+margin_right = -0.0950317
+margin_bottom = -0.0319977
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingBackgrounbd" type="Sprite" parent="."]
+position = Vector2( 888.173, 112.226 )
+scale = Vector2( 1.55619, 0.912924 )
+texture = ExtResource( 3 )
+
+[node name="ItemList" type="ItemList" parent="."]
+anchor_left = 0.069
+anchor_top = 0.262
+anchor_right = 0.487
+anchor_bottom = 0.606
+margin_left = -0.449013
+margin_top = -0.0440102
+margin_right = -0.22702
+margin_bottom = 0.0280151
+allow_reselect = true
+max_text_lines = 5
+auto_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

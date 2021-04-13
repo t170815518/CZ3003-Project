@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/Avatars/test/quiz_sprite_test.png" type="Texture" id=1]
+[ext_resource path="res://quiz/SinglePlayerQuiz/Enemy.gd" type="Script" id=2]
+
+[node name="Enemy" type="Control"]
+anchor_right = 0.189
+anchor_bottom = 0.433
+margin_right = 0.463989
+margin_bottom = 0.199982
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+displayedName = "ttes_ishrc"
+image = ExtResource( 1 )
+
+[node name="Name" type="Label" parent="."]
+anchor_left = 0.113
+anchor_top = 0.235
+anchor_right = 0.314
+anchor_bottom = 0.262
+margin_left = 0.0779991
+margin_top = -7.1
+margin_right = 0.0839996
+margin_bottom = -0.120003
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HpLabel" type="Label" parent="."]
+anchor_left = 0.117
+anchor_top = 0.281
+anchor_right = 0.323
+anchor_bottom = 0.308
+margin_left = 0.0300255
+margin_top = -6.94209
+margin_right = 0.0660248
+margin_bottom = 0.0379105
+text = "HP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HpValue" type="Label" parent="."]
+anchor_left = 0.455
+anchor_top = 0.256
+anchor_right = 0.661
+anchor_bottom = 0.31
+margin_left = 0.0594025
+margin_top = 0.0744553
+margin_right = 0.0953979
+margin_bottom = 0.034462
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="avartar" type="Sprite" parent="."]
+position = Vector2( 32, 100 )
+flip_h = true
+region_rect = Rect2( 32, 0, 0, 0 )

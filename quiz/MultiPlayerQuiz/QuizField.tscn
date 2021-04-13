@@ -1,0 +1,245 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/font/QuizHPFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://quiz/SinglePlayerQuiz/AnswerField.tscn" type="PackedScene" id=2]
+[ext_resource path="res://quiz/SinglePlayerQuiz/QuizField.gd" type="Script" id=3]
+[ext_resource path="res://quiz/summary/Summary.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/background/background_4.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/widgets/button_pressed (52).png" type="Texture" id=6]
+[ext_resource path="res://assets/widgets/button_normal (54).png" type="Texture" id=7]
+[ext_resource path="res://assets/widgets/button_pressed (53).png" type="Texture" id=8]
+[ext_resource path="res://assets/widgets/button_normal (55).png" type="Texture" id=9]
+[ext_resource path="res://quiz/SinglePlayerQuiz/SettingButton.gd" type="Script" id=10]
+[ext_resource path="res://assets/font/QuizTimeFont.tres" type="DynamicFont" id=11]
+
+[node name="QuizField" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" parent="." instance=ExtResource( 5 )]
+
+[node name="HTTPRequestQuiz" type="HTTPRequest" parent="."]
+
+[node name="HTTPRequestQuestion" type="HTTPRequest" parent="."]
+
+[node name="LoadingPopUp" type="PopupDialog" parent="."]
+anchor_left = 0.224
+anchor_top = 0.232
+anchor_right = 0.695
+anchor_bottom = 0.74
+margin_left = -0.376007
+margin_top = -0.200012
+margin_right = 0.319946
+
+[node name="Label" type="Label" parent="LoadingPopUp"]
+anchor_left = 0.262
+anchor_top = 0.295
+anchor_right = 0.689
+anchor_bottom = 0.574
+margin_left = 0.0760574
+margin_top = 0.109329
+margin_right = -0.164948
+margin_bottom = 0.014328
+text = "Loading Questions"
+
+[node name="PlayerHPLabel" type="Label" parent="."]
+anchor_left = 0.031
+anchor_top = 0.213
+anchor_right = 0.102
+anchor_bottom = 0.3
+margin_left = 0.255999
+margin_top = 0.199989
+margin_right = -36.448
+margin_bottom = -26.0
+rect_scale = Vector2( 2, 2 )
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 0
+text = "HP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerHP" type="Label" parent="."]
+anchor_left = 0.117
+anchor_top = 0.213
+anchor_right = 0.188
+anchor_bottom = 0.293
+margin_left = 0.191994
+margin_top = 0.199989
+margin_right = -36.512
+margin_bottom = -21.8
+rect_scale = Vector2( 2, 2 )
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyHPLabel" type="Label" parent="."]
+anchor_left = 0.844
+anchor_top = 0.213
+anchor_right = 0.93
+anchor_bottom = 0.333
+margin_left = -0.256042
+margin_top = 0.199989
+margin_right = -44.3201
+margin_bottom = -35.8
+rect_scale = Vector2( 2, 2 )
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 0
+text = "HP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyHP" type="Label" parent="."]
+anchor_left = 0.922
+anchor_top = 0.213
+anchor_right = 0.992
+anchor_bottom = 0.3
+margin_left = -0.128113
+margin_top = 0.199989
+margin_right = -35.8082
+margin_bottom = -26.0
+rect_scale = Vector2( 2, 2 )
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_constants/line_spacing = 0
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 64, 256 )
+scale = Vector2( 2, 2 )
+playing = true
+
+[node name="EnemySprite" type="AnimatedSprite" parent="."]
+position = Vector2( 896, 256 )
+scale = Vector2( 2, 2 )
+playing = true
+flip_h = true
+
+[node name="Summary" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.176
+anchor_top = 0.178
+anchor_right = 0.882
+anchor_bottom = 0.804
+margin_left = -9.68343
+margin_top = 1.42625
+margin_right = -1.62744
+margin_bottom = 1.82623
+
+[node name="AnswerField" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.001
+anchor_top = 0.652
+anchor_bottom = 1.005
+margin_left = 0.0240346
+margin_top = 0.0188599
+margin_right = -1.95197
+margin_bottom = 0.218872
+
+[node name="SettingButton" type="TextureButton" parent="AnswerField"]
+anchor_left = 0.824
+anchor_top = 0.722
+anchor_right = 0.932
+anchor_bottom = 0.825
+margin_left = 1.30853
+margin_top = -114.729
+margin_right = 1.71655
+margin_bottom = -78.565
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 8 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="TextureButton" parent="AnswerField"]
+anchor_left = 0.824
+anchor_top = 0.575
+anchor_right = 0.932
+anchor_bottom = 0.848
+margin_left = 0.492981
+margin_top = -0.0651703
+margin_right = 0.225037
+margin_bottom = 0.0588226
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuestionLabel" type="Label" parent="."]
+anchor_left = 0.25
+anchor_top = 0.027
+anchor_right = 0.25
+anchor_bottom = 0.027
+margin_top = -0.200001
+margin_right = 185.0
+margin_bottom = 48.8
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Question:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.242
+anchor_top = 0.107
+anchor_right = 0.75
+anchor_bottom = 0.333
+margin_left = 8.19199
+margin_top = -0.200005
+margin_right = -6.10352e-05
+margin_bottom = 0.199997
+custom_fonts/mono_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Question Area"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+
+[node name="TimeLabel" type="Label" parent="."]
+margin_left = 14.2544
+margin_top = 14.2544
+margin_right = 182.254
+margin_bottom = 63.2544
+custom_fonts/font = ExtResource( 11 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Time: 10"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequestPostAttempt" type="HTTPRequest" parent="."]
+
+[node name="ItemList" type="ItemList" parent="."]
+margin_left = 752.984
+margin_top = 2.46851
+margin_right = 1026.98
+margin_bottom = 124.469
+auto_height = true
+[connection signal="animation_finished" from="PlayerSprite" to="." method="_on_PlayerSprite_animation_finished"]
+[connection signal="animation_finished" from="EnemySprite" to="." method="_on_EnemySprite_animation_finished"]
