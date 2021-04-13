@@ -6,8 +6,9 @@ var current_ques_id = -1  # to facilitate access questions by index from 0
 var questions_num = 0
 var correct_answer = 0 
 var questions = []
-var quiz_id = "6038511a21ef180015b2176f"
+var quiz_id = "60652e8becd0f6001569a181"
 var attempts = {}
+var attempt_records = []
 
 # HP values 
 export var player_hp = 5
@@ -18,12 +19,16 @@ var background_path = "res://assets/background/background_4.tscn"
 var player_sprite_id = global.avatar_id
 var rng = RandomNumberGenerator.new()
 
+# user_id for test purpose 
+var user_id = "605235a72ad01200153a3f03"
+
 
 var start_time
 var end_time
 
 const QUESTION_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/question"
 const QUIZ_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/quiz"
+const ATTEMPT_POST_URL = "https://ssad-api.herokuapp.com/api/v1/question/attempt"
 
 
 signal complete_request
@@ -50,6 +55,7 @@ func _ready():
 	$HTTPRequestQuestion.connect("request_completed", self, "_on_question_request_completed")
 	$Summary.get_node("OKButton").connect("pressed", self, "_on_finish_quiz")
 	$Timer.connect("timeout", self, "_on_time_out")
+	$HTTPRequestPostAttempt.connect("request_completed", self, "_on_attempt_posted")
 	
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
@@ -67,10 +73,11 @@ func _process(delta):
 
 
 # when the user gives the correct answer 
-func _on_correct_answer():
+func _on_correct_answer(option):
 	$Timer.stop()
 	correct_answer += 1
 	enemy_hp -= 1
+	_record_attempt(option)
 	if enemy_hp > 0: 
 		$PlayerSprite.play("attack")
 		$EnemyHP.set_text(str(enemy_hp))
@@ -87,10 +94,11 @@ func _on_correct_answer():
 		$Summary.popup_centered()
 
 
-func _on_wrong_answer():
+func _on_wrong_answer(option):
 	# Assume not to update the question 
 	$Timer.stop()
 	player_hp -= 1
+	_record_attempt(option)
 	if player_hp > 0: 
 		$EnemySprite.play("attack")
 		$PlayerHP.set_text(str(player_hp))
@@ -188,6 +196,7 @@ func update_question():
 
 
 func _on_finish_quiz():
+	_post_attempt()
 	self.queue_free()
 	var main_node = load("res://room/Room.tscn").instance()
 	var root = get_tree().get_root()
@@ -196,7 +205,7 @@ func _on_finish_quiz():
 
 
 func _on_time_out():
-	$AnswerField.emit_signal("wrong_answer")
+	$AnswerField.emit_signal("wrong_answer", -1)
 
 
 func _on_SettingButton_button_down():
@@ -213,3 +222,34 @@ func _on_PlayerSprite_animation_finished():
 
 func _on_EnemySprite_animation_finished():
 	$EnemySprite.play('idle')
+
+
+func _record_attempt(option):
+	attempt_records.append([questions[current_ques_id], option])
+
+
+func _post_attempt():
+	# reformat attempt records 
+	var attemps = []
+	for i in range(len(attempt_records)):
+		attemps.append({"question_id": attempt_records[i][0]["_id"], 
+		"option": attempt_records[i][1]})
+	# generate the query string 
+	var query = {}
+	query["quiz_id"] = quiz_id
+	query["selection"] = attemps
+	query["score"] = correct_answer
+	query["overall"] = correct_answer * 10
+	query["user_id"] = user_id
+	# time format 
+	var time = OS.get_datetime()
+	var time_str = str(time["year"]) + "-" + str(time["month"]) + "-" + str(time["day"]) + " " + str(time["hour"]) + ":" + str(time["minute"]) + ":" + str(time["second"])
+	query["created_date"] = time_str
+	# convert the query data to json string 
+	var json_str = JSON.print(query)
+	# start request 
+	var headers = ["Content-Type: application/json"]
+	$HTTPRequestPostAttempt.request(ATTEMPT_POST_URL, headers, true, HTTPClient.METHOD_POST, json_str)
+
+func _on_attempt_posted():
+	print("Attempt posted")
