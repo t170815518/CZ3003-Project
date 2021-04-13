@@ -4,8 +4,8 @@ extends Control
 const MCQ_TYPE = "mcq"
 var correct_answer_id = -1
 
-signal correct_answer
-signal wrong_answer
+signal correct_answer(option)
+signal wrong_answer(option)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,11 +25,11 @@ func check_if_correct():
 	var selected_id = $ItemList.get_selected_items()
 	if len(selected_id) == 0:  # no answer 
 		print("Emit wrong answer")
-		emit_signal("wrong_answer")
+		emit_signal("wrong_answer", -1)
 	else:
 		if selected_id[0] == correct_answer_id:
 			print("Emit correct answer")
-			emit_signal("correct_answer")
+			emit_signal("correct_answer", selected_id[0])
 		else:
 			print("Emit wrong answer")
-			emit_signal("wrong_answer")
+			emit_signal("wrong_answer", selected_id[0])
