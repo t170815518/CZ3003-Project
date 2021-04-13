@@ -6,6 +6,10 @@ export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
 # Our WebSocketClient instance
 var _client = WebSocketClient.new()
 
+var timer = 0
+var timer_limit = 25 # in seconds
+
+
 func _ready():
 	# Connect base signals to get notified of connection open, close, and errors.
 	_client.connect("connection_closed", self, "_closed")
@@ -51,7 +55,7 @@ func _process(delta):
 		
 func _send():
 	
-	_client.get_peer(1).put_packet(JSON.print({"method":"createRoom","username":"jeff Wong","roomNumber":"10"}).to_utf8())				
+	_client.get_peer(1).put_packet(JSON.print({"method":"inviteFriends","username":"jeff wong2","roomNumber":"1","worldNumber":"1","Friends":["jeff wong1", "jeff wong"]}).to_utf8())				
 
 
 func _on_Button_button_down():
@@ -63,3 +67,19 @@ func _reconnection():
 	if err != OK:
 		print("Unable to connect")
 		set_process(false)	
+
+
+func _on_Button2_pressed():
+	_client.get_peer(1).put_packet(JSON.print({"method":"getQuiz","quizID":"60652b78ecd0f6001569a163","username":"jeff wong","roomNumber":"1","worldNumber":"1"}).to_utf8())
+	# for acceptInvitation
+	#_client.get_peer(1).put_packet(JSON.print({"method":"acceptInvitation","username":"jeff wong","roomNumber":"1","worldNumber":"1"}).to_utf8())				
+
+
+func _physics_process(delta):
+	timer += delta
+	
+	if (timer > timer_limit):
+		_client.get_peer(1).put_packet(JSON.print({"method":"ping"}).to_utf8())
+		timer -= timer_limit
+		
+		# REST OF THE CODE
