@@ -1,18 +1,20 @@
+# combat interface for multi-player mode 
 extends Control
 
 
 # Declare member variables here. Examples:
-var current_ques_id = -1  # to facilitate access questions by index from 0 
+var current_ques_id = -1  # starts from -1 to facilitate access questions by index from 0 
 var questions_num = 0
 var correct_answer = 0 
 var questions = []
 var quiz_id = "60652e8becd0f6001569a181"
 var attempts = {}
 var attempt_records = []
+var latest_option = -2  # dummy value (not-dummy value: -1 to 4)
 
-# HP values 
-export var player_hp = 5
-var enemy_hp
+# HP values (dummy one)
+export var player_hp = 10
+var enemy_hp = 10
 
 # assest
 var background_path = "res://assets/background/background_4.tscn"
@@ -22,10 +24,9 @@ var rng = RandomNumberGenerator.new()
 # user_id for test purpose 
 var user_id = "605235a72ad01200153a3f03"
 
-# for networking, default values are for testing 
-var peers = [["Peer1", 0], ["Peer2", 0]]
-var question_id  # the question got from web-socket server 
-
+# for networking, default values are for testing if any 
+var peers = []
+var question_id  # the question id got from web-socket server 
 
 var start_time
 var end_time
@@ -33,7 +34,6 @@ var end_time
 const QUESTION_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/question"
 const QUIZ_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/quiz"
 const ATTEMPT_POST_URL = "https://ssad-api.herokuapp.com/api/v1/question/attemptt"
-
 
 signal complete_request
 signal question_runs_out
@@ -83,6 +83,7 @@ func _on_post_answer(option):
 	"givenAnswer": option}
 	var json = JSON.print(data_dict)
 	global.websocket.send(json)
+	latest_option = option
 
 
 func _on_question_request_completed(result, response_code, headers, body):
@@ -221,4 +222,30 @@ func _on_receive_data(data_str):
 	if json["method"] == "get_question":
 		question_id = json["question_id"]
 		var status = $HTTPRequestQuestion.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
-	
+	if json["method"] == "Answer":
+		if json["correct"] == "true":
+			_on_correct_answer(latest_option)
+		else:
+			_on_wrong_answer(latest_option)
+
+
+func _on_wrong_answer(option):
+	# Assume not to update the question 
+	$Timer.stop()
+	player_hp -= 1
+	_record_attempt(option)
+	$EnemySprite.play("attack")
+	$PlayerHP.set_text(str(player_hp))
+	$PlayerSprite.play("hit")
+	update_question()
+
+
+func _on_correct_answer(option):
+	$Timer.stop()
+	correct_answer += 1
+	enemy_hp -= 1
+	_record_attempt(option)
+	$PlayerSprite.play("attack")
+	$EnemyHP.set_text(str(enemy_hp))
+	$EnemySprite.play("hit")
+	update_question()
