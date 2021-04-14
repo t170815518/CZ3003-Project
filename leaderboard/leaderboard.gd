@@ -1,7 +1,5 @@
 extends Control
 
-
-
 onready  var http=$HTTPRequest
 
 # Called when the node enters the scene tree for the first time.
@@ -12,10 +10,10 @@ func _ready():
 
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	$ItemList.remove_item(0)
-	$ItemList.add_item("Dave - 10")
-	$ItemList.add_item("James - 5")
-	$ItemList.add_item("Cherry - 2")
-	$ItemList.add_item("User3 - 2")
+#	$ItemList.add_item("Dave - 10")
+#	$ItemList.add_item("James - 5")
+#	$ItemList.add_item("Cherry - 2")
+#	$ItemList.add_item("User3 - 2")
 	var json =JSON.parse(body.get_string_from_utf8())
 	for k in json.result.users.size():
 			print(json.result.users[k])

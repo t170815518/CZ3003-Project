@@ -5,10 +5,11 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
-	$Achivement.connect("body_entered", self, "_on_Achivement_body_entered")
-	print("id")
-	print(get_tree().get_network_unique_id())
-	#$AcceptInvitePop.popup_centered()
+#	print("id")
+#	print(get_tree().get_network_unique_id())
+	if global.invitationPopUp == true:
+		$AcceptInvitePop.popup_centered()
+
 
 func _on_enter_door(collision_body):
 	print("Go to world selection...")
@@ -21,6 +22,7 @@ func _on_enter_door(collision_body):
 
 func _on_Achivement_body_entered(body):
 	print(body.get_name())
+	print(body.get_position())
 	if body.get_name()=='KinematicBody2D':
 			var root = get_tree().get_root()
 			var next_scnene = preload("res://room/Acheivement list.tscn").instance()

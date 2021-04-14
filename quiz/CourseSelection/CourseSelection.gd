@@ -112,7 +112,8 @@ func fresh_topic_list_left():
 	$TopicList.clear()
 	var topics_list = topics[current_course_id]
 	for topic in topics_list:
-		$TopicList.add_item(topic)
+		if topic in topics_dict:
+			$TopicList.add_item(topics_dict[topic])
 	$CourseTitle.set_text(course_names[current_course_id])
 	
 			

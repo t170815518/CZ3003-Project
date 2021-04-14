@@ -12,9 +12,12 @@ onready var next_button = get_node("background/VBoxContainer/NextButton")
 const USER_LOGIN_POST_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/user/login"
 const ALLUSER_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/user"
 
+
 func _ready():
 	$HTTPlogin.connect("request_completed", self, "_on_HTTPlogin_request_completed")
 	$HTTPAllUser.connect("request_completed", self, "_on_HTTPAllUser_request_completed")
+
+
 
 func _on_NextButton_pressed():
 	if login_email_input.get_text() == "":
@@ -64,9 +67,15 @@ func _on_HTTPAllUser_request_completed(result, response_code, _headers, body):
 					global.avatar_id = int(userInfo["head_color"])
 					print (global.userID)
 					print (global.email)
+					print (global.avatar_id)
 					var info={"method":"connection","username":userInfo["username"]}
-					websocket.send(info)
-					get_tree().change_scene("res://room/Room.tscn")
+					Websocket._send(info)
+					print(info)
+					var root = get_tree().get_root()
+					var next_scnene = load("res://room/Room.tscn").instance()
+					root.remove_child(self)
+					OS.delay_msec(50)  # for user response  
+					root.add_child(next_scnene)
 		else:
 			print("http get all user fails")
 

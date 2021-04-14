@@ -31,7 +31,7 @@ func _on_connection_closed(was_clean = false):
 
 
 func _send():
-	client.get_peer(1).put_packet(JSON.print("test":"Test"))
+	client.get_peer(1).put_packet(JSON.print({"test":"Test"}))
 
 
 func _on_connection_established(proto = ""):
