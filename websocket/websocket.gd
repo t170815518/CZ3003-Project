@@ -1,7 +1,7 @@
 extends Node2D
 # The URL we will connect to
-#export var websocket_url = "ws://127.0.0.1:8080/"
-export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
+export var websocket_url = "ws://127.0.0.1:8080/"
+#export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
 
 # Our WebSocketClient instance
 var _client = WebSocketClient.new()
@@ -41,16 +41,16 @@ func _connected(proto = ""):
 	print("Connected with protocol: ", proto)
 	# You MUST always use get_peer(1).put_packet to send data to server,
 	# and not put_packet directly when not using the MultiplayerAPI.
-	_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"jeff wong2"}).to_utf8())
+	#_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"jeff wong2"}).to_utf8())
 	#_client.get_peer(1).put_packet(JSON.print({"method":"test_pack"}).to_utf8())
 
 func _on_data():
 	# Print the received packet, you MUST always use get_peer(1).get_packet
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
-	print("Got data from server: ", _client.get_peer(1).get_packet().get_string_from_utf8())
-	emit_signal("receive_data", _client.get_peer(1).get_packet().get_string_from_utf8())
-	var returnMsg= JSON.parse(_client.get_peer(1).get_packet().get_string_from_utf8())
+	var rawSinal=_client.get_peer(1).get_packet().get_string_from_utf8()
+	emit_signal("receive_data", rawSinal)
+	var returnMsg= JSON.parse(rawSinal)
 	print("Got data from server: ",returnMsg.result.method)
 	if(returnMsg.result.method=="createRoom"&& returnMsg.result.created==true):
 		global.roomNumber=returnMsg.result.roomNumber
