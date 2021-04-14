@@ -29,6 +29,7 @@ script = ExtResource( 2 )
 margin_right = 1038.0
 margin_bottom = 615.0
 texture = ExtResource( 10 )
+region_rect = Rect2( 1625, 246, 4, 0 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false

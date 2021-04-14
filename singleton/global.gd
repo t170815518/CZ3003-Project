@@ -17,3 +17,11 @@ var excludedFriendsInList=""
 var quizThemeId=""
 var incorrectAnswer=false 
 var playersVectors=[]
+
+var is_multiplayer_mode = false 
+
+# global nodes 
+var websocket
+
+func _ready():
+	websocket = load("res://websocket/websocket.tscn").instance()

@@ -46,13 +46,24 @@ func submit_selection():
 	var selections = $QuizList.get_selected_items()  # selection is length of 1
 	var topic_id = quiz_ids[selections[0]]
 	print(topic_id)  # for log-in info 
-	# change scene to quiz 
-	var next_scene = preload("res://quiz/SinglePlayerQuiz/QuizField.tscn").instance()
-	next_scene.quiz_id = topic_id
-	# next_scene.background_path = background_path
-	var root = get_tree().get_root()
-	root.remove_child(self)
-	root.add_child(next_scene)
+	if global.is_multiplayer_mode == false: 
+		# change scene to quiz 
+		var next_scene = preload("res://quiz/SinglePlayerQuiz/QuizField.tscn").instance()
+		next_scene.quiz_id = topic_id
+		# next_scene.background_path = background_path
+		var root = get_tree().get_root()
+		root.remove_child(self)
+		root.add_child(next_scene)
+	else:
+		# reformat the json 
+		var data_dict = {"quizID": topic_id, "username": global.username, "roomNumber": global.roomNumber, 
+		"worldNumber": global.worldNumber}
+		global.websocket.send(JSON.print(data_dict))  # send web-socket the data 
+		# go back to the multi-player world 
+		var next_scene = preload("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
+		var root = get_tree().get_root()
+		root.remove_child(self)
+		root.add_child(next_scene)
 
 
 func _on_Backbutton_button_down():

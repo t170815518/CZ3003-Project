@@ -12,6 +12,7 @@ func _ready():
 func _on_enter_door(collision_body):
 	print("Go to world selection...")
 	var root = get_tree().get_root()
+	global.is_multiplayer_mode = true 
 	var next_scnene = preload("res://quiz/CourseSelection/CourseSelection.tscn").instance()
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
@@ -20,11 +21,11 @@ func _on_enter_door(collision_body):
 func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 	print(body.get_name())
 	if body.get_name()=='KinematicBody2D':
-			var root = get_tree().get_root()
-			var next_scnene = preload("res://world/world.tscn").instance()
-			root.remove_child(self)
-			OS.delay_msec(50)  # for user response  
-			root.add_child(next_scnene)
+		var root = get_tree().get_root()
+		var next_scnene = preload("res://world/world.tscn").instance()
+		root.remove_child(self)
+		OS.delay_msec(50)  # for user response  
+		root.add_child(next_scnene)
 
 
 
