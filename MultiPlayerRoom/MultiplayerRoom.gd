@@ -26,13 +26,17 @@ func _ready():
 
 
 func _on_enter_door(collision_body):
-	print("Go to world selection...")
-	var root = get_tree().get_root()
-	global.is_multiplayer_mode = true 
-	var next_scnene = preload("res://quiz/CourseSelection/CourseSelection.tscn").instance()
-	root.remove_child(self)
-	OS.delay_msec(50)  # for user response  
-	root.add_child(next_scnene)
+	# only admin can choose
+	if global.roomAdmin:
+		print("Go to world selection...")
+		var root = get_tree().get_root()
+		global.is_multiplayer_mode = true 
+		var next_scnene = preload("res://quiz/CourseSelection/CourseSelection.tscn").instance()
+		root.remove_child(self)
+		OS.delay_msec(50)  # for user response  
+		root.add_child(next_scnene)
+	else:
+		pass 
 
 func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 	print(body.get_name())
