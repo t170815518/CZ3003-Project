@@ -65,7 +65,7 @@ func _ready():
 	self.connect("question_loaded", self, "update_question")
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("post_answer", self, "_on_post_answer")
-	global.websocket.connect("receive_data", self, "_on_receive_data")
+	Websocket.connect("receive_data", self, "_on_receive_data")
 	
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
@@ -82,7 +82,7 @@ func _on_post_answer(option):
 	"username": global.username, "roomNumber": global.roomNumber, "worldNumber": global.worldNumber, 
 	"givenAnswer": option}
 	var json = JSON.print(data_dict)
-	global.websocket.send(json)
+	Websocket.send(json)
 	latest_option = option
 
 

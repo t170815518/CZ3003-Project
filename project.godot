@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 global="*res://singleton/global.gd"
+BackgroundMusic="*res://singleton/Background_Music.tscn"
 Websocket="*res://websocket/websocket.gd"
 
 [rendering]
