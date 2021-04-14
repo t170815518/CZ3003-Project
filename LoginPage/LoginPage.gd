@@ -64,6 +64,8 @@ func _on_HTTPAllUser_request_completed(result, response_code, _headers, body):
 					global.avatar_id = int(userInfo["head_color"])
 					print (global.userID)
 					print (global.email)
+					var info={"method":"connection","username":userInfo["username"]}
+					websocket.send(info)
 					get_tree().change_scene("res://room/Room.tscn")
 		else:
 			print("http get all user fails")
