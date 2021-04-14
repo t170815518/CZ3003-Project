@@ -60,7 +60,7 @@ func submit_selection():
 		"worldNumber": global.worldNumber}
 		var json = JSON.print(data_dict)
 		print("Sending to websocket: ", json)
-		global.websocket.send(json)  # send web-socket the data 
+		Websocket.send(json)  # send web-socket the data 
 		# go back to the multi-player world 
 		var next_scene = preload("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
 		var root = get_tree().get_root()
