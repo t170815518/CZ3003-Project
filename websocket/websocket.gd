@@ -1,7 +1,7 @@
 extends Node2D
 # The URL we will connect to
-export var websocket_url = "ws://127.0.0.1:8080/"
-#export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
+#export var websocket_url = "ws://127.0.0.1:8080/"
+export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
 
 # Our WebSocketClient instance
 var _client = WebSocketClient.new()
@@ -89,17 +89,10 @@ func _process(delta):
 	# emission will only happen when calling this function.
 	_client.poll()
 		
-func _send():
-	#{"method":"inviteFriends","username":"jeff wong2","roomNumber":"1","worldNumber":"1","Friends":["jeff wong1", "jeff wong"]}
-	_client.get_peer(1).put_packet(JSON.print("test").to_utf8())				
-
-
-func _on_Button_button_down():
-	_send()
 
 # json: String 
 func send(json):
-	_client.get_peer(1).put_packet(json.to_utf8())  # to utf8 because param is PoolByteArray
+	_client.get_peer(1).put_packet(JSON.print(json).to_utf8())  # to utf8 because param is PoolByteArray
 
 	
 func _reconnection():
