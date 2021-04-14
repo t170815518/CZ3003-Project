@@ -64,7 +64,7 @@ func _ready():
 	self.connect("question_loaded", self, "update_question")
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("post_answer", self, "_on_post_answer")
-	Config.websocket.connect("receive_data", self, "_on_receive_data")
+	global.websocket.connect("receive_data", self, "_on_receive_data")
 	
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
@@ -73,7 +73,7 @@ func _ready():
 	# inform the web-socket server joining the quiz 
 	var data_dict = {"method": "join_quiz", "userid": user_id}
 	var json = JSON.print(data_dict)
-	Config.websocket.send(json)
+	global.websocket.send(json)
 
 
 func _process(delta):
@@ -82,9 +82,11 @@ func _process(delta):
 
 func _on_post_answer(option):
 	# prepare for message to post in json format 
-	var data_dict = {"method": "post_attempt", "question_id": question_id, "option": option, "userid": user_id}
+	var data_dict = {"method": "SelectedQuizAndUpdateSource", "questionID": question_id, 
+	"username": global.username, "roomNumber": global.roomNumber, "worldNumber": global.worldNumber, 
+	"givenAnswer": option}
 	var json = JSON.print(data_dict)
-	Config.websocket._send(json)
+	global.websocket._send(json)
 	
 
 func _on_request_completed(result, response_code, headers, body):

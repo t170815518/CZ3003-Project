@@ -7,7 +7,7 @@ extends Control
 export var topic_url = "https://ssad-api.herokuapp.com/api/v1/topic/quizzes/"
 var quiz_ids = []
 var topic_id = ""
-var background_path = ""
+var background_path = "res://assets/background/background_10.tscn"
 
 
 # Called when the node enters the scene tree for the first time.
