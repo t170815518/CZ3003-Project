@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://quiz/QuizSelection/QuizSelectionUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/Quiz Selection.png" type="Texture" id=2]
+[ext_resource path="res://assets/font/RegisterPageErrorPopup.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=4]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=5]
+
+[node name="QuizSelection" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SubmitSelection" type="Button" parent="."]
+anchor_left = 0.384
+anchor_top = 0.627
+anchor_right = 0.571
+anchor_bottom = 0.693
+margin_left = -0.216003
+margin_top = -0.200012
+margin_right = 18.296
+margin_bottom = 11.2
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
+text = "Select this"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Backbutton" type="Button" parent="."]
+anchor_left = 0.384
+anchor_top = 0.756
+anchor_right = 0.574
+anchor_bottom = 0.828
+margin_left = -1.216
+margin_top = -5.59998
+margin_right = 14.224
+margin_bottom = 2.19998
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupDialog" type="PopupDialog" parent="."]
+anchor_left = 0.287
+anchor_top = 0.307
+anchor_right = 0.701
+anchor_bottom = 0.683
+margin_left = -0.416779
+margin_top = -5.68048
+margin_right = -0.352844
+margin_bottom = -0.280487
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PopupDialog"]
+anchor_left = 0.182
+anchor_top = 0.195
+anchor_right = 0.786
+anchor_bottom = 0.762
+margin_left = 0.172821
+margin_top = -0.0178108
+margin_right = 0.0768433
+margin_bottom = 0.00518799
+text = "Loading Quizzes"
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 496.56, 72.0813 )
+scale = Vector2( 1.08959, 0.967041 )
+texture = ExtResource( 2 )
+
+[node name="QuizList" type="ItemList" parent="."]
+margin_left = 180.871
+margin_top = 136.154
+margin_right = 781.871
+margin_bottom = 359.154
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[connection signal="button_down" from="Backbutton" to="." method="_on_Backbutton_button_down"]
