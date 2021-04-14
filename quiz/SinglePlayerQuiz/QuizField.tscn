@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/font/QuizHPFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://quiz/SinglePlayerQuiz/AnswerField.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/widgets/button_normal (55).png" type="Texture" id=9]
 [ext_resource path="res://quiz/SinglePlayerQuiz/SettingButton.gd" type="Script" id=10]
 [ext_resource path="res://assets/font/QuizTimeFont.tres" type="DynamicFont" id=11]
+[ext_resource path="res://quiz/MultiPlayerQuiz/AnswerField.gd" type="Script" id=12]
 
 [node name="QuizField" type="Control"]
 anchor_right = 1.0
@@ -151,6 +152,7 @@ margin_left = 0.0240346
 margin_top = 0.0188599
 margin_right = -1.95197
 margin_bottom = 0.218872
+script = ExtResource( 12 )
 
 [node name="SettingButton" type="TextureButton" parent="AnswerField"]
 anchor_left = 0.824

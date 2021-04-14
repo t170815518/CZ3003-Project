@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 global="*res://singleton/global.gd"
 BackgroundMusic="*res://singleton/Background_Music.tscn"
+Config="*res://config/config.gd"
 Websocket="*res://websocket/websocket.gd"
 
 [rendering]
