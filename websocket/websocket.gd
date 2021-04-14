@@ -9,6 +9,9 @@ var _client = WebSocketClient.new()
 var timer = 0
 var timer_limit = 25 # in seconds
 
+# signal for control & sync other class 
+signal receive_data(data_str)
+
 
 func _ready():
 	# Connect base signals to get notified of connection open, close, and errors.
@@ -46,6 +49,7 @@ func _on_data():
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
 	print("Got data from server: ", _client.get_peer(1).get_packet().get_string_from_utf8())
+	emit_signal("receive_data", _client.get_peer(1).get_packet().get_string_from_utf8())
 	
 
 func _process(delta):
@@ -60,6 +64,9 @@ func _send():
 
 func _on_Button_button_down():
 	_send()
+# json: String 
+func send(json):
+	_client.get_peer(1).put_packet(json.to_utf8())  # to utf8 because param is PoolByteArray
 	
 func _reconnection():
 	_client = WebSocketClient.new()
