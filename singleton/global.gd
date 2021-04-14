@@ -12,7 +12,7 @@ var worldNumber=-1 setget setworldNumber
 var roomCreated=false 
 var roomAdmin=false
 var invitationPopUp=false setget setinvitationPopUP
-var enterRoom=false setget setRoomNum
+var enterRoom=false setget setenterRoom
 var excludedFriendsInList=[username]
 var quizThemeId=""
 var incorrectAnswer=false 
@@ -24,11 +24,12 @@ signal invitationPopUp_changed
 signal worldNumber_changed
 signal enterRoom_changed
 
+
 func setinvitationPopUP(value):
 	emit_signal("invitationPopUp_changed", invitationPopUp)
 
 func setworldNumber(value):
 	emit_signal("worldNumber_changed", worldNumber)
 
-func setRoomNum(value):
+func setenterRoom(value):
 	emit_signal("enterRoom_changed", enterRoom)

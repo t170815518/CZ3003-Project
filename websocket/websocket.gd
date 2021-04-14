@@ -47,17 +47,19 @@ func _on_data():
 	emit_signal("receive_data", rawSinal)
 	var returnMsg= JSON.parse(rawSinal)
 	print("Got data from server: ",returnMsg.result.method)
-	if(returnMsg.result.method=="createRoom"&& returnMsg.result.created==true):
+	if(returnMsg.result.method=="createRoom"and returnMsg.result.created==true):
+		print(returnMsg.result)
 		global.roomNumber=returnMsg.result.roomNumber
 		global.worldNumber=returnMsg.result.worldNumber
 		global.roomCreated=returnMsg.result.created 
 		global.roomAdmin=returnMsg.result.roomAdmin
-	elif(returnMsg.result.method=="inviteFriends"&&returnMsg.result==global.username):	
+	elif(returnMsg.result.method=="inviteFriends"&&returnMsg.result.username==global.username):	
+		print(returnMsg.result)
 		global.invitationPopUp=true
 		global.roomNumber=returnMsg.result.roomNumber
 		global.worldNumber=returnMsg.result.worldNumber
 		global.roomAdmin=returnMsg.result.roomAdmin
-	elif(returnMsg.result.method=="enterRoom"&&returnMsg.result==global.username):
+	elif(returnMsg.result.method=="enterRoom"&&returnMsg.result.username==global.username):
 		global.enterRoom=returnMsg.result.enter
 		global.roomNumber=returnMsg.result.roomNumber
 		global.worldNumber=returnMsg.result.worldNumber
