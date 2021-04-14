@@ -46,6 +46,7 @@ signal question_loaded
 func _ready():
 	rng.randomize()
 	var enemy_sprite_id = rng.randi_range(1,5)
+	global.is_multiplayer_mode = true
 	# load sprites 
 	var player_frames = load("res://avatars/Avatar_%s.tres" % str(player_sprite_id))
 	var enemy_frames = load("res://avatars/Avatar_%s.tres" % str(enemy_sprite_id))
@@ -69,11 +70,6 @@ func _ready():
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
 	$HTTPRequestQuestion.timeout = 100
-	
-	# inform the web-socket server joining the quiz 
-	var data_dict = {"method": "join_quiz", "userid": user_id}
-	var json = JSON.print(data_dict)
-	global.websocket.send(json)
 
 
 func _process(delta):
@@ -86,36 +82,7 @@ func _on_post_answer(option):
 	"username": global.username, "roomNumber": global.roomNumber, "worldNumber": global.worldNumber, 
 	"givenAnswer": option}
 	var json = JSON.print(data_dict)
-	global.websocket._send(json)
-	
-
-func _on_request_completed(result, response_code, headers, body):
-	# retrive information of questions 
-	# TODO: support multi-size mcq
-	if result == HTTPRequest.RESULT_SUCCESS:
-		if response_code == 200:
-			print("========Loading Question ids=======")
-			
-			body = JSON.parse(body.get_string_from_utf8()).result
-			
-			var question_ids = body["question_list"]
-			$EnemyHP.set_text(str(len(question_ids)))
-			enemy_hp = len(question_ids)
-			player_hp = enemy_hp / 2 + 1
-			$PlayerHP.set_text(str(player_hp))
-			print(question_ids)
-			for question_id in question_ids:
-				questions_num += 1
-				var status = $HTTPRequestQuestion.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
-				# when the server is busy
-				while status != 0:
-					OS.delay_msec(1000)
-					status = $HTTPRequestQuestion.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
-				if status == 0:
-					yield(self, "complete_request")
-				print(question_id)
-			remove_child($LoadingPopUp)
-			update_question()
+	global.websocket.send(json)
 
 
 func _on_question_request_completed(result, response_code, headers, body):
@@ -131,17 +98,6 @@ static func delete_children(node):
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
-
-
-func _on_question_runs_out():
-	end_time = OS.get_unix_time()
-	var next_scene = $Summary
-	next_scene.is_win = true
-	next_scene.time = end_time - start_time
-	next_scene.total_questions = questions_num 
-	next_scene.correct_answers = correct_answer
-	$Summary.refresh()
-	$Summary.popup_centered()
 
 			
 func update_question():
@@ -256,6 +212,7 @@ class MyCustomSorter:
 		return false
 
 func _on_receive_data(data_str):
+	print("Receiving data from websocket: ", data_str)
 	# parse data to json 
 	var json = JSON.parse(data_str).result
 	# handle different types of messages differently 
