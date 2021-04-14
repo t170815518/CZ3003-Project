@@ -5,10 +5,9 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
+	global.connect("invitationPopUp_changed", self, "on_invitationPopUp_changed")
 #	print("id")
 #	print(get_tree().get_network_unique_id())
-	if global.invitationPopUp == true:
-		$AcceptInvitePop.popup_centered()
 
 
 func _on_enter_door(collision_body):
@@ -48,3 +47,8 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 			root.remove_child(self)
 			OS.delay_msec(50)  # for user response  
 			root.add_child(next_scnene)
+
+func on_invitationPopUp_changed(value):
+	if global.invitationPopUp == true:
+		$AcceptInvitePop.refresh()
+		$AcceptInvitePop.popup_centered()

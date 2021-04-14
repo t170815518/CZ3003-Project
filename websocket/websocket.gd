@@ -34,6 +34,7 @@ func _connected(proto = ""):
 	# This is called on connection, "proto" will be the selected WebSocket
 	# sub-protocol (which is optional)
 	print("Connected with protocol: ", proto)
+	_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"ssad"}).to_utf8())
 	# You MUST always use get_peer(1).put_packet to send data to server,
 	# and not put_packet directly when not using the MultiplayerAPI.
 	#_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"jeff wong2"}).to_utf8())
@@ -94,10 +95,12 @@ func _reconnection():
 	if err != OK:
 		print("Unable to connect")
 		set_process(false)	
+		
 func _on_Button2_pressed():
 	_client.get_peer(1).put_packet(JSON.print({"method":"getQuiz","quizID":"60652b78ecd0f6001569a163","username":"jeff wong","roomNumber":"1","worldNumber":"1"}).to_utf8())
 	# for acceptInvitation
 	#_client.get_peer(1).put_packet(JSON.print({"method":"acceptInvitation","username":"jeff wong","roomNumber":"1","worldNumber":"1"}).to_utf8())				
+
 func _physics_process(delta):
 	timer += delta
 	

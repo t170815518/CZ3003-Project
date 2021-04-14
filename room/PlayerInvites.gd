@@ -47,7 +47,7 @@ func _on_invite_btn_pressed():
 			"Friends": selected_friend
 			}
 		print(sendInfo)
-		Websocket._send(sendInfo)
+		Websocket.send(sendInfo)
 		print(global.excludedFriendsInList)
 		#get_tree().change_scene("res://room/Room.tscn")
 		var root = get_tree().get_root()

@@ -2,6 +2,7 @@ extends Control
 var text = "A player has invited you to a game"
 
 func _ready():
+	global.connect("enterRoom_changed", self, "on_enterRoom_changed")
 	$Title.set_text(text)
 
 func _on_Acceptbutton_button_down():
@@ -11,7 +12,9 @@ func _on_Acceptbutton_button_down():
 		"roomNumber": global.roomNumber,
 		"worldNumber": global.worldNumber
 	}
-	Websocket._send(acceptInfo)
+	Websocket.send(acceptInfo)
+	
+func on_enterRoom_changed(value):
 	if global.enterRoom == true:
 		global.invitationPopUp = false
 		var root = get_tree().get_root()

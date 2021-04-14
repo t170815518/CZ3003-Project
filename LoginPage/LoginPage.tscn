@@ -99,7 +99,6 @@ __meta__ = {
 }
 
 [node name="Invalid" type="Popup" parent="background"]
-visible = true
 margin_left = 599.161
 margin_top = 491.919
 margin_right = 1108.16
@@ -115,7 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
-text = "Invalid username or password"
+text = "Invalid email or password"
 align = 1
 valign = 1
 
