@@ -7,7 +7,7 @@ export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
 var _client = WebSocketClient.new()
 
 var timer = 0
-var timer_limit = 25 # in seconds
+var timer_limit = 23 # in seconds
 
 # signal for control & sync other class 
 signal receive_data(data_str)
@@ -50,23 +50,57 @@ func _on_data():
 	# using the MultiplayerAPI.
 	print("Got data from server: ", _client.get_peer(1).get_packet().get_string_from_utf8())
 	emit_signal("receive_data", _client.get_peer(1).get_packet().get_string_from_utf8())
-	
+	var returnMsg= JSON.parse(_client.get_peer(1).get_packet().get_string_from_utf8())
+	print("Got data from server: ",returnMsg.result.method)
+	if(returnMsg.result.method=="createRoom"&& returnMsg.result.created==true):
+		global.roomNumber=returnMsg.result.roomNumber
+		global.worldNumber=returnMsg.result.worldNumber
+		global.roomCreated=returnMsg.result.created 
+		global.roomAdmin=returnMsg.result.roomAdmin
+	elif(returnMsg.result.method=="inviteFriends"&&returnMsg.result==global.username):	
+		global.invitationPopUp=true
+		global.roomNumber=returnMsg.result.roomNumber
+		global.worldNumber=returnMsg.result.worldNumber
+		global.roomAdmin=returnMsg.result.roomAdmin
+	elif(returnMsg.result.method=="enterRoom"&&returnMsg.result==global.username):
+		global.enterRoom=returnMsg.result.enter
+		global.roomNumber=returnMsg.result.roomNumber
+		global.worldNumber=returnMsg.result.worldNumber
+		global.roomAdmin=returnMsg.result.roomAdmin	
+	elif(returnMsg.result.method=="usersEnterRoom"):	
+		global.excludedFriendsInList=returnMsg.result.username
+	elif(returnMsg.result.method=="get_question"):	
+		global.quizThemeId=returnMsg.result.quizLinkID
+	elif(returnMsg.result.method=="info"):	
+		pass
+	elif(returnMsg.result.method=="Answer"):	
+		global.incorrectAnswer=returnMsg.result.correct	
+	elif(returnMsg.result.method=="playersVectors"):	
+		if(global.playersVectors.size()>=1&&global.playersVectors.size()<=5):
+			var players={"ClientUserName":returnMsg.result.ClientUserName,
+			"roomNumber":returnMsg.result.roomNumber,
+			"worldNumber":returnMsg.result.worldNumber,
+			"playerMovement":returnMsg.result.playerMovement}
+			global.playersVectors.append(players)
+			
 
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals
 	# emission will only happen when calling this function.
 	_client.poll()
 		
-func _send():
-	
-	_client.get_peer(1).put_packet(JSON.print({"method":"inviteFriends","username":"jeff wong2","roomNumber":"1","worldNumber":"1","Friends":["jeff wong1", "jeff wong"]}).to_utf8())				
+func _send(json):
+	#{"method":"inviteFriends","username":"jeff wong2","roomNumber":"1","worldNumber":"1","Friends":["jeff wong1", "jeff wong"]}
+	_client.get_peer(1).put_packet(JSON.print(json).to_utf8())				
 
 
 func _on_Button_button_down():
 	_send()
+
 # json: String 
 func send(json):
 	_client.get_peer(1).put_packet(json.to_utf8())  # to utf8 because param is PoolByteArray
+
 	
 func _reconnection():
 	_client = WebSocketClient.new()

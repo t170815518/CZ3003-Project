@@ -122,7 +122,7 @@ func submit_selection():
 		var topic_id = topics[current_course_id][selections[0]]
 		print(topic_id)  # for log-in info 
 		# change scene to quiz 
-		var next_scene = preload("res://quiz/QuizSelection/QuizSelectionUI.tscn").instance()
+		var next_scene = load("res://quiz/QuizSelection/QuizSelectionUI.tscn").instance()
 		next_scene.background_path = background_path
 		next_scene.topic_id = topic_id
 		var root = get_tree().get_root()
