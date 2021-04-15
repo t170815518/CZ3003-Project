@@ -26,6 +26,11 @@ func post_attempt():
 	var selected_id = $ItemList.get_selected_items()
 	if len(selected_id) == 0:  # no answer 
 		print("Emit wrong answer")
-		emit_signal("post_answer", -1)
+		emit_signal("wrong_answer")
 	else:
-		emit_signal("post_answer", selected_id[0])
+		if selected_id[0] == correct_answer_id:
+			print("Emit correct answer")
+			emit_signal("correct_answer", selected_id[0])
+		else:
+			print("Emit wrong answer")
+			emit_signal("wrong_answer", selected_id[0])

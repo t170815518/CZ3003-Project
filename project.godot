@@ -16,14 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Game"
-run/main_scene="res://LoginPage/LoginPage.tscn"
+run/main_scene="res://room/Room.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 global="*res://singleton/global.gd"
-Websocket="*res://websocket/websocket.gd"
 BackgroundMusic="*res://singleton/Background_Music.tscn"
+Websocket="*res://websocket/websocket.gd"
 
 [rendering]
 
