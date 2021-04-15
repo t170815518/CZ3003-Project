@@ -5,6 +5,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
+	Websocket.connect("receive_data", self, "_on_data_received")
 #	print("id")
 #	print(get_tree().get_network_unique_id())'
 	print(self.get_path())
@@ -48,6 +49,11 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 		root.add_child(next_scnene)
 
 
-
-
-
+func _on_data_received(data_str):
+	var json = JSON.parse(data_str).result
+	if json["method"] == "getQuiz":
+		var root = get_tree().get_root()
+		var next_scnene = load("res://quiz/MultiPlayerQuiz/SinglePlayerQuiz.tscn").instance()
+		root.remove_child(self)
+		OS.delay_msec(50)  # for user response  
+		root.add_child(next_scnene)

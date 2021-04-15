@@ -121,6 +121,7 @@ func update_question():
 
 
 func _on_finish_quiz():
+	global.is_multiplayer_mode = false 
 	_post_attempt()
 
 

@@ -11,6 +11,8 @@ var timer = 0
 var timer_limit = 23 # in seconds
 # signal for control & sync other class 
 signal receive_data(data_str)
+
+
 func _ready():
 	# Connect base signals to get notified of connection open, close, and errors.
 	_client.connect("connection_closed", self, "_closed")
