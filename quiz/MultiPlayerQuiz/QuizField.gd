@@ -113,18 +113,18 @@ static func delete_children(node):
 func update_question(json):
 	# display the question description and options 
 	# TODO: support multiple types of questions 
-	global.current_question_id = json["_id"]
 	$RichTextLabel.text = ""
 	# OS.delay_msec(50)  # for user response  
 	# $PlayerSprite.set_animation("idle")
 	# $EnemySprite.set_animation("idle")
-	$AnswerField.clear_options()
-	questions.append(json)
 	current_ques_id += 1
+	$AnswerField.clear_options()
+	questions.append(json["question_Answer"][current_ques_id])
 	if current_ques_id >= json["question_num"]:
 		print("Quiz ends!")
 	var question = questions[current_ques_id]
 	var options = question["option"]
+	global.current_question_id = question["_id"]
 	$RichTextLabel.add_text(question["question_desc"])
 	for i in range(options.size()):
 		$AnswerField.update_question(options[i]["answer_desc"])
