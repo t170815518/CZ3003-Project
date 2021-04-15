@@ -55,7 +55,7 @@ func _on_HTTPlogin_request_completed(result, response_code, _headers, body):
 
 func _on_HTTPAllUser_request_completed(result, response_code, _headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:
-		#TODO: more if case for response code
+
 		if response_code == 200:
 			#alluser is an array of dictionary consisting of all users information
 			var alluser = JSON.parse(body.get_string_from_utf8()).result["users"]

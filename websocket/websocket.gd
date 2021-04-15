@@ -52,24 +52,32 @@ func _on_data():
 	var another = load('res://MultiPlayerRoom/OtherPlayer.tscn').instance()
 	print("Got data from server: ",returnMsg.result.method)
 	if(returnMsg.result.method=="createRoom"):
+		var temp = returnMsg.result
+		global.roomNumber = temp.roomNumber
+		global.worldNumber = temp.roomNumber
+		global.roomCreated = temp.created
+		global.roomAdmin = temp.roomAdmin
 #		global.roomNumber=returnMsg.result.roomNumber
 #		global.worldNumber=returnMsg.result.worldNumber
 #		global.roomCreated=returnMsg.result.created 
 #		global.roomAdmin=returnMsg.result.roomAdmin
-		print("global.gd: " + str(global.roomNumber))
-		print(str(global.worldNumber))
+		print("global.roomNumber: " + str(global.roomNumber))
+		print("global.worldNumber:" + str(global.worldNumber))
 	elif(returnMsg.result.method=="inviteFriends"):
 #	&&returnMsg.result.username==global.username):
-		print(returnMsg.result)
-#		global.invitationPopUp=true
-#		global.roomNumber=returnMsg.result.roomNumber
-#		global.worldNumber=returnMsg.result.worldNumber
-#		global.roomAdmin=returnMsg.result.roomAdmin
-#		if get_tree().get_current_scene().get_name() == "Room":
-
+		var temp = returnMsg.result
+		print(temp)
+		global.invitationPopUp=true
+		global.roomNumber=temp.roomNumber
+		global.worldNumber=temp.worldNumber
+		global.roomAdmin=temp.roomAdmin
+		print("invite friends to")
+		print(global.roomNumber)
+		print(global.worldNumber)
 		$'/root/Room/AcceptInvitePop'.popup_centered()
 		global.already_in_room.append(returnMsg.result.username)
 		print(global.already_in_room)
+		
 	elif(returnMsg.result.method=="enterRoom" and returnMsg.result.enter == true):
 		var temp = returnMsg.result
 		print(temp)
@@ -109,7 +117,7 @@ func _on_data():
 		var temp = returnMsg.result
 		print(temp)
 		if global.already_in_room_except_self.has(returnMsg.result.ClientUserName):
-			for n in global.already_in_room_except_self:
+			for n in global.already_in_room_except_self.size():
 				if global.already_in_room_except_self[n] == temp.ClientUserName:
 					another.set_avatar_position(child_node_players[n], temp.playerMovement)
 
