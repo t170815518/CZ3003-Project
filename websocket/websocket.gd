@@ -44,7 +44,6 @@ func _on_data():
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
 	var rawSinal=_client.get_peer(1).get_packet().get_string_from_utf8()
-	emit_signal("receive_data", rawSinal)
 	var returnMsg= JSON.parse(rawSinal)
 #	var already_in_room = []
 #	var already_in_room_except_self = []
@@ -92,7 +91,6 @@ func _on_data():
 			if global.already_in_room[n] != global.username:
 				global.already_in_room_except_self.append(global.already_in_room[n])
 		print(global.already_in_room_except_self)
-		
 		if (temp.username == global.username):
 			var root = get_tree().get_root()
 			root.remove_child(self)
