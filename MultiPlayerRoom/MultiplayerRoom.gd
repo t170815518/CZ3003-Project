@@ -47,7 +47,12 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 		OS.delay_msec(50)  # for user response  
 		root.add_child(next_scnene)
 
+func add_other_players(username, position, avatar_id):
+	var another = load('res://MultiPlayerRoom/OtherPlayer.tscn').instance()
+	add_child(another)
+	another.init(username, position, avatar_id)
+	global.child_node_players.append(another.get_index)
 
-
-
-
+func set_other_players_position(username, index, position):
+	var child = get_child(index)
+	child.set_position = position
