@@ -33,3 +33,11 @@ func _on_CancelButton_button_down():
 	global.excludedFriendsInList.erase(global.username)
 	global.invitationPopUp = false
 	hide()
+
+func _physics_process(delta):
+	if global.enterRoom == true:
+		var root = get_tree().get_root()
+		var next_scnene = preload("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
+		root.remove_child(self)
+		OS.delay_msec(50)  # for user response  
+		root.add_child(next_scnene)

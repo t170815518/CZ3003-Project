@@ -21,7 +21,7 @@ var rng = RandomNumberGenerator.new()
 
 # user_id for test purpose 
 var user_id = "6074046587cf380015bf1108"
-
+var user_score = -1
 
 var start_time
 var end_time
@@ -265,15 +265,32 @@ func _on_attempt_posted(result, response_code, headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:
 		if response_code == 200:
 			print("Result posted")
-			$HTTPRequestUserGet.request("")
+			$HTTPRequestUserGet.request(user_edit_get_url)
 		else:
 			print("Error Code", response_code)
 	else:
 		print("Http connection fails")
-	_switch_scene()
+
 	
 func _on_HTTPRequestUserGet_completed(result, response_code, headers, body):
-	pass
+	if result == HTTPRequest.RESULT_SUCCESS:
+		if response_code == 200:
+			var user = JSON.parse(body.get_string_from_utf8()).result
+			user_score = int(user["score"])
+			print(user_score)
+			var total_score = user_score + correct_answer
+			var userInfoField = {
+			"username": global.username,
+			"score": total_score,
+			}
+			var userString = JSON.print(userInfoField)
+			var send_headers = ["Content-Type: application/json"]
+			$HTTPRequestUserEditScore.request(user_edit_put_url, send_headers, true, HTTPClient.METHOD_PUT, userString)
 	
 func _on_HTTPRequestUserEditScore_completed(result, response_code, headers, body):
-	pass
+	if result == HTTPRequest.RESULT_SUCCESS:
+		if response_code == 200:
+			print("update score successfully")
+		else:
+			print("HTTP put method failed")
+		_switch_scene()
