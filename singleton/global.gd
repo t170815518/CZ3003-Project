@@ -1,6 +1,6 @@
 extends Node
 
-var username = "chris"
+var username = "Student1"
 var email = "Student123@gmail.com"
 var userID = "605235a72ad01200153a3f03"
 var password = ""
@@ -23,9 +23,14 @@ var already_in_room_except_self = []
 var already_in_room = []
 var child_node_players = []
 
+# Websocket_2 attribute 
+var roomId
+var sync_questionNum = 0 setget set_sync_questionNum
+
 signal invitationPopUp_changed
 signal worldNumber_changed
 signal enterRoom_changed
+signal update_question
 
 
 func setinvitationPopUP(value):
@@ -36,3 +41,6 @@ func setworldNumber(value):
 
 func setenterRoom(value):
 	emit_signal("enterRoom_changed", enterRoom)
+
+func set_sync_questionNum(value):
+	emit_signal("update_question")

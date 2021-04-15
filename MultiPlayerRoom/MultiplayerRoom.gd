@@ -46,8 +46,3 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 		root.remove_child(self)
 		OS.delay_msec(50)  # for user response  
 		root.add_child(next_scnene)
-
-
-
-
-
