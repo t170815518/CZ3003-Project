@@ -70,7 +70,7 @@ func _on_HTTPAllUser_request_completed(result, response_code, _headers, body):
 					print (global.avatar_id)
 					var info={"method":"connection","username":userInfo["username"]}
 					Websocket.send(info)
-					print(info)
+#					print(info)
 					var root = get_tree().get_root()
 					var next_scnene = load("res://room/Room.tscn").instance()
 					root.remove_child(self)
