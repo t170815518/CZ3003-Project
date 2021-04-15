@@ -60,6 +60,7 @@ func _ready():
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
 	get_node("AnswerField").connect("wrong_answer", self, "_on_wrong_answer")	
+	get_node("AnswerField").connect("post_answer", self, "")
 	
 	global.connect("update_question", self, "update_question")
 	
@@ -181,7 +182,7 @@ func update_question():
 	# display the question description and options 
 	# TODO: support multiple types of questions 
 	$RichTextLabel.text = ""
-	
+	$WaitingToStartPopUp.hide()
 	# OS.delay_msec(50)  # for user response  
 	# $PlayerSprite.set_animation("idle")
 	# $EnemySprite.set_animation("idle")
