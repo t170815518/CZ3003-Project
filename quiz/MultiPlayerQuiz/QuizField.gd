@@ -72,7 +72,7 @@ func _ready():
 	
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
-	$HTTPRequestQuestion.timeout = 100
+	$HTTPRequestQuestion.timeout = 500
 	
 	# set the hp_label 
 	$EnemyHP.set_text(str(questions_num))
@@ -100,6 +100,9 @@ func _on_question_request_completed(result, response_code, headers, body):
 			body = JSON.parse(body.get_string_from_utf8()).result
 			questions.append(body)
 			emit_signal("question_loaded")
+		else:
+			print("Error , response code != 200")
+	print("result is not successful")
 
 			
 static func delete_children(node):
@@ -255,5 +258,5 @@ func _on_correct_answer():
 
 func _on_receive_question_id(question_id):
 	$HTTPRequestQuiz.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
+	print("trying to request ", QUESTION_GET_BASE_URL+"/"+question_id)
 	global.current_question_id = question_id
-
