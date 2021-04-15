@@ -81,10 +81,10 @@ func _on_data():
 	elif(returnMsg.result.method=="enterRoom" and returnMsg.result.enter == true):
 		var temp = returnMsg.result
 		print(temp)
-#		global.enterRoom=returnMsg.result.enter
-#		global.roomNumber=returnMsg.result.roomNumber
-#		global.worldNumber=returnMsg.result.worldNumber
-#		global.roomAdmin=returnMsg.result.roomAdmin	
+		global.enterRoom=temp.enter
+		global.roomNumber=temp.roomNumber
+		global.worldNumber=temp.worldNumber
+		global.roomAdmin=temp.roomAdmin	
 		global.already_in_room.append(returnMsg.result.username)
 		print(global.already_in_room)
 		if (temp.username == global.username):
@@ -105,14 +105,18 @@ func _on_data():
 			global.child_node_players.append(another.get_child_index)
 		print(global.child_node_players)
 				
-	elif(returnMsg.result.method=="usersEnterRoom"):	
-		global.excludedFriendsInList=returnMsg.result.username
+	elif(returnMsg.result.method=="usersEnterRoom"):
+		var temp = returnMsg.result	
+		
+		global.excludedFriendsInList=temp.username
 	elif(returnMsg.result.method=="get_question"):	
-		global.quizThemeId=returnMsg.result.quizLinkID
+		var temp = returnMsg.result	
+		global.quizThemeId=temp.quizLinkID
 	elif(returnMsg.result.method=="info"):	
 		pass
 	elif(returnMsg.result.method=="Answer"):	
-		global.incorrectAnswer=returnMsg.result.correct	
+		var temp = returnMsg.result	
+		global.incorrectAnswer=temp.correct	
 	elif(returnMsg.result.method=="playersVectors"):
 		var temp = returnMsg.result
 		print(temp)

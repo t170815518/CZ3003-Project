@@ -42,8 +42,8 @@ func _on_invite_btn_pressed():
 		var sendInfo = {
 			"method": "inviteFriend",
 			"username": global.username,
-			"worldNumber": 4,
-			"roomNumber": 1,
+			"worldNumber": global.worldNumber,
+			"roomNumber": global.roomNumber,
 			"Friends": selected_friend
 			}
 
