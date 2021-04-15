@@ -11,6 +11,12 @@ var timer = 0
 var timer_limit = 23 # in seconds
 # signal for control & sync other class 
 signal receive_data(data_str)
+signal go_to_quiz
+signal update_question(question_json)
+signal update_leaderboard(info_json)
+signal give_correct_answer
+signal give_wrong_answer
+
 func _ready():
 	# Connect base signals to get notified of connection open, close, and errors.
 	_client.connect("connection_closed", self, "_closed")
@@ -86,12 +92,6 @@ func _on_data():
 		global.roomAdmin=temp.roomAdmin	
 		global.already_in_room.append(returnMsg.result.username)
 		print(global.already_in_room)
-		
-
-
-
-
-				
 	elif(returnMsg.result.method=="usersEnterRoom"):
 		var temp = returnMsg.result	
 		for n in global.already_in_room.size():
@@ -101,15 +101,16 @@ func _on_data():
 #		for n in global.already_in_room_except_self.size():
 #			next_scnene.add_other_players(global.already_in_room_except_self[n], Vector2(517, 200), 3)
 #			print(global.child_node_players)
-
 	elif(returnMsg.result.method=="get_question"):	
 		var temp = returnMsg.result	
 		global.quizThemeId=temp.quizLinkID
-	elif(returnMsg.result.method=="info"):	
-		pass
+		emit_signal("update_question", returnMsg.result.question_id)
 	elif(returnMsg.result.method=="Answer"):	
 		var temp = returnMsg.result	
 		global.incorrectAnswer=temp.correct	
+	elif(returnMsg.result.method=="getQuiz"):
+		global.question_num = returnMsg.result.question_num
+		emit_signal("go_to_quiz")
 	elif(returnMsg.result.method=="playersVectors"):
 		var temp = returnMsg.result
 		print(temp)
@@ -117,7 +118,13 @@ func _on_data():
 #			for n in global.already_in_room_except_self.size():
 #				if global.already_in_room_except_self[n] == temp.ClientUserName:
 #					next_scnene.set_other_players_position(temp.ClientUserName,child_node_players[n], temp.playerMovement)
-
+	elif (returnMsg.result.method=="info"):
+		emit_signal("update_leaderboard", returnMsg.result.peers)
+	elif returnMsg.result.method == "Answer":
+		if returnMsg.result.correct == "true":
+			emit_signal("give_correct_answer")
+		else:
+			emit_signal("give_wrong_answer")
 			
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals

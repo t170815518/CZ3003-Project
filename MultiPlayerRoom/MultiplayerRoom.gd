@@ -5,6 +5,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
+	Websocket.connect("go_to_quiz", self, "_switch_to_quiz")
 #	print("id")
 #	print(get_tree().get_network_unique_id())'
 	print(self.get_path())
@@ -50,3 +51,11 @@ func add_other_players(username, position, avatar_id):
 func set_other_players_position(username, index, position):
 	var child = get_child(index)
 	child.set_position(position)
+
+
+func _switch_to_quiz():
+	var root = get_tree().get_root()
+	var next_scnene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
+	root.remove_child(self)
+	OS.delay_msec(50)  # for user response  
+	root.add_child(next_scnene)

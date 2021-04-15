@@ -21,10 +21,15 @@ func clear_options():
 	$ItemList.clear()
 
 
+# it is done by remote server 
 func check_if_correct():
 	var selected_id = $ItemList.get_selected_items()
+	var option
 	if len(selected_id) == 0:  # no answer 
 		print("Emit wrong answer")
-		emit_signal("post_answer", -1)
+		option = -1
 	else:
-		emit_signal("post_answer", selected_id[0])
+		option = selected_id[0]
+	var data_dict = {"method": "SelectedQuizAndUpdateSource", "username": global.username, "roomNumber": global.roomNumber, 
+	"worldNumber": global.worldNumber, "givenAnswer": option, "questionID": global.current_question_id}
+	Websocket.send(data_dict)

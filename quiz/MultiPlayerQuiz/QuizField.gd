@@ -33,7 +33,7 @@ var end_time
 
 const QUESTION_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/question"
 const QUIZ_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/quiz"
-const ATTEMPT_POST_URL = "https://ssad-api.herokuapp.com/api/v1/question/attemptt"
+const ATTEMPT_POST_URL = "https://ssad-api.herokuapp.com/api/v1/question/attempt"
 
 signal complete_request
 signal question_runs_out
@@ -59,13 +59,16 @@ func _ready():
 	self.connect("question_runs_out", self, "_on_question_runs_out")
 	$HTTPRequestQuiz.connect("request_completed", self, "_on_request_completed")
 	$HTTPRequestQuestion.connect("request_completed", self, "_on_question_request_completed")
-	$Summary.get_node("OKButton").connect("pressed", self, "_on_finish_quiz")
+	$Summary.get_node("OKButton").connect("pressed", self, "_switch_scene")
 	$Timer.connect("timeout", self, "_on_time_out")
 	$HTTPRequestPostAttempt.connect("request_completed", self, "_on_attempt_posted")
 	self.connect("question_loaded", self, "update_question")
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("post_answer", self, "_on_post_answer")
-	Websocket.connect("receive_data", self, "_on_receive_data")
+	Websocket.connect("update_question", self, "_on_receive_question_id")
+	Websocket.connect("update_leaderboard", self, "_update_leader_board")
+	Websocket.connect("give_correct_answer", self, "_on_correct_answer")
+	Websocket.connect("give_wrong_answer", self, "_on_wrong_answer")
 	
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
@@ -78,11 +81,9 @@ func _process(delta):
 
 func _on_post_answer(option):
 	# prepare for message to post in json format 
-	var data_dict = {"method": "SelectedQuizAndUpdateSource", "questionID": question_id, 
-	"username": global.username, "roomNumber": global.roomNumber, "worldNumber": global.worldNumber, 
-	"givenAnswer": option}
-	var json = JSON.print(data_dict)
-	Websocket.send(json)
+	var data_dict = {"method": "SelectedQuizAndUpdateSource", "username": global.username, "roomNumber": global.roomNumber, 
+	"worldNumber": global.worldNumber, "givenAnswer": option, "questionID": global.current_question_id}
+	Websocket.send(data_dict)
 	latest_option = option
 
 
@@ -109,6 +110,7 @@ func update_question():
 	# $PlayerSprite.set_animation("idle")
 	# $EnemySprite.set_animation("idle")
 	$AnswerField.clear_options()
+	current_ques_id += 1
 	var question = questions[current_ques_id]
 	var options = question["option"]
 	$RichTextLabel.add_text(question["question_desc"])
@@ -120,8 +122,16 @@ func update_question():
 	$Timer.start()
 
 
-func _on_finish_quiz():
+func _on_finish_quiz(is_win):
 	global.is_multiplayer_mode = false 
+	end_time = OS.get_unix_time()
+	var next_scene = $Summary
+	next_scene.is_win = is_win
+	next_scene.time = end_time - start_time
+	next_scene.total_questions = global.question_num 
+	next_scene.correct_answers = correct_answer
+	$Summary.refresh()
+	$Summary.popup_centered()
 	_post_attempt()
 
 
@@ -135,7 +145,7 @@ func _switch_scene():
 
 
 func _on_time_out():
-	$AnswerField.emit_signal("wrong_answer", -1)
+	$AnswerField.emit_signal("post_answer", -1)
 
 
 func _on_SettingButton_button_down():
@@ -190,7 +200,6 @@ func _on_attempt_posted(result, response_code, headers, body):
 			print("Error Code", response_code)
 	else:
 		print("Http connection fails")
-	_switch_scene()
 
 
 # peers: json array 
@@ -213,40 +222,30 @@ class MyCustomSorter:
 			return true
 		return false
 
-func _on_receive_data(data_str):
-	print("Receiving data from websocket: ", data_str)
-	# parse data to json 
-	var json = JSON.parse(data_str).result
-	# handle different types of messages differently 
-	if json["method"] == "info":
-		_update_leader_board(json["peers"])
-	if json["method"] == "get_question":
-		question_id = json["question_id"]
-		var status = $HTTPRequestQuestion.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
-	if json["method"] == "Answer":
-		if json["correct"] == "true":
-			_on_correct_answer(latest_option)
-		else:
-			_on_wrong_answer(latest_option)
-
-
-func _on_wrong_answer(option):
+func _on_wrong_answer():
 	# Assume not to update the question 
 	$Timer.stop()
 	player_hp -= 1
-	_record_attempt(option)
+	_record_attempt(latest_option)
 	$EnemySprite.play("attack")
 	$PlayerHP.set_text(str(player_hp))
 	$PlayerSprite.play("hit")
-	update_question()
+	if current_ques_id >= global.question_num:
+		_on_finish_quiz(false)
 
 
-func _on_correct_answer(option):
+func _on_correct_answer():
 	$Timer.stop()
 	correct_answer += 1
 	enemy_hp -= 1
-	_record_attempt(option)
+	_record_attempt(latest_option)
 	$PlayerSprite.play("attack")
 	$EnemyHP.set_text(str(enemy_hp))
 	$EnemySprite.play("hit")
-	update_question()
+	if current_ques_id >= global.question_num:
+		_on_finish_quiz(true)
+
+
+func _on_receive_question_id(question_id):
+	$HTTPRequestQuiz.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
+	global.current_question_id = question_id

@@ -22,6 +22,8 @@ var is_multiplayer_mode = false
 var already_in_room_except_self = []
 var already_in_room = []
 var child_node_players = []
+var current_question_id
+var question_num
 
 signal invitationPopUp_changed
 signal worldNumber_changed
