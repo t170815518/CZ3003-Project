@@ -11,8 +11,6 @@ var timer = 0
 var timer_limit = 23 # in seconds
 # signal for control & sync other class 
 signal receive_data(data_str)
-
-
 func _ready():
 	# Connect base signals to get notified of connection open, close, and errors.
 	_client.connect("connection_closed", self, "_closed")
@@ -46,11 +44,12 @@ func _on_data():
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
 	var rawSinal=_client.get_peer(1).get_packet().get_string_from_utf8()
+	emit_signal("receive_data", rawSinal)
 	var returnMsg= JSON.parse(rawSinal)
 #	var already_in_room = []
 #	var already_in_room_except_self = []
 	var child_node_players = []
-	var another = load('res://MultiPlayerRoom/OtherPlayer.tscn').instance()
+	var next_scnene = load("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
 	print("Got data from server: ",returnMsg.result.method)
 	if(returnMsg.result.method=="createRoom"):
 		var temp = returnMsg.result
@@ -88,23 +87,23 @@ func _on_data():
 		global.roomAdmin=temp.roomAdmin	
 		global.already_in_room.append(returnMsg.result.username)
 		print(global.already_in_room)
-		if (temp.username == global.username):
-			var root = get_tree().get_root()
-			var next_scnene = load("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
-			root.remove_child(self)
-			OS.delay_msec(50)  # for user response  
-			root.add_child(next_scnene)
-		# ^work fine
+		
 		for n in global.already_in_room.size():
 			if global.already_in_room[n] != global.username:
 				global.already_in_room_except_self.append(global.already_in_room[n])
 		print(global.already_in_room_except_self)
-				
-		for n in global.already_in_room_except_self.size():
-			$'/root/MultiplayerRoom'.add_child(another)
-			another.init(name, Vector2(517, 200), temp.avatarID)
-			global.child_node_players.append(another.get_child_index)
-		print(global.child_node_players)
+		
+		if (temp.username == global.username):
+			var root = get_tree().get_root()
+			root.remove_child(self)
+			OS.delay_msec(50)  # for user response  
+			root.add_child(next_scnene)
+		# ^work fine
+#			for n in global.already_in_room_except_self.size():
+#				next_scnene.add_other_players(global.already_in_room_except_self[n], Vector2(517, 200), 3)
+#				print(global.child_node_players)
+
+
 				
 	elif(returnMsg.result.method=="usersEnterRoom"):
 		var temp = returnMsg.result	
@@ -115,19 +114,17 @@ func _on_data():
 		global.quizThemeId=temp.quizLinkID
 	elif(returnMsg.result.method=="info"):	
 		pass
-	elif(returnMsg.result.method=="getQuiz"):
-		pass 
 	elif(returnMsg.result.method=="Answer"):	
 		var temp = returnMsg.result	
 		global.incorrectAnswer=temp.correct	
 	elif(returnMsg.result.method=="playersVectors"):
 		var temp = returnMsg.result
 		print(temp)
-		if global.already_in_room_except_self.has(returnMsg.result.ClientUserName):
-			for n in global.already_in_room_except_self.size():
-				if global.already_in_room_except_self[n] == temp.ClientUserName:
-					another.set_avatar_position(child_node_players[n], temp.playerMovement)
-	emit_signal("receive_data", rawSinal)
+#		if global.already_in_room_except_self.has(returnMsg.result.ClientUserName):
+#			for n in global.already_in_room_except_self.size():
+#				if global.already_in_room_except_self[n] == temp.ClientUserName:
+#					next_scnene.set_other_players_position(temp.ClientUserName,child_node_players[n], temp.playerMovement)
+
 			
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals

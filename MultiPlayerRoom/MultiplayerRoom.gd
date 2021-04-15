@@ -5,7 +5,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
-	Websocket.connect("receive_data", self, "_on_data_received")
 #	print("id")
 #	print(get_tree().get_network_unique_id())'
 	print(self.get_path())
@@ -32,7 +31,7 @@ func _on_enter_door(collision_body):
 		print("Go to world selection...")
 		var root = get_tree().get_root()
 		global.is_multiplayer_mode = true 
-		var next_scnene = load("res://quiz/CourseSelection/CourseSelection.tscn").instance()
+		var next_scnene = preload("res://quiz/CourseSelection/CourseSelection.tscn").instance()
 		root.remove_child(self)
 		OS.delay_msec(50)  # for user response  
 		root.add_child(next_scnene)
@@ -48,12 +47,12 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 		OS.delay_msec(50)  # for user response  
 		root.add_child(next_scnene)
 
+func add_other_players(username, position, avatar_id):
+	var another = load('res://MultiPlayerRoom/OtherPlayer.tscn').instance()
+	add_child(another)
+	another.init(username, position, avatar_id)
+	global.child_node_players.append(another.get_index)
 
-func _on_data_received(data_str):
-	var json = JSON.parse(data_str).result
-	if json["method"] == "getQuiz":
-		var root = get_tree().get_root()
-		var next_scnene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
-		root.remove_child(self)
-		OS.delay_msec(50)  # for user response  
-		root.add_child(next_scnene)
+func set_other_players_position(username, index, position):
+	var child = get_child(index)
+	child.set_position = position
