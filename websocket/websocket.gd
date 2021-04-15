@@ -34,7 +34,7 @@ func _connected(proto = ""):
 	# This is called on connection, "proto" will be the selected WebSocket
 	# sub-protocol (which is optional)
 	print("Connected with protocol: ", proto)
-	#_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"ssad"}).to_utf8())
+#	_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"ssad"}).to_utf8())
 	# You MUST always use get_peer(1).put_packet to send data to server,
 	# and not put_packet directly when not using the MultiplayerAPI.
 	#_client.get_peer(1).put_packet(JSON.print({"method":"connection","username":"jeff wong2"}).to_utf8())
@@ -46,24 +46,57 @@ func _on_data():
 	var rawSinal=_client.get_peer(1).get_packet().get_string_from_utf8()
 	emit_signal("receive_data", rawSinal)
 	var returnMsg= JSON.parse(rawSinal)
+#	var already_in_room = []
+#	var already_in_room_except_self = []
+	var child_node_players = []
+	var another = load('res://MultiPlayerRoom/OtherPlayer.tscn').instance()
 	print("Got data from server: ",returnMsg.result.method)
-	if(returnMsg.result.method=="createRoom"and returnMsg.result.created==true):
+	if(returnMsg.result.method=="createRoom"):
+#		global.roomNumber=returnMsg.result.roomNumber
+#		global.worldNumber=returnMsg.result.worldNumber
+#		global.roomCreated=returnMsg.result.created 
+#		global.roomAdmin=returnMsg.result.roomAdmin
+		print("global.gd: " + str(global.roomNumber))
+		print(str(global.worldNumber))
+	elif(returnMsg.result.method=="inviteFriends"):
+#	&&returnMsg.result.username==global.username):
 		print(returnMsg.result)
-		global.roomNumber=returnMsg.result.roomNumber
-		global.worldNumber=returnMsg.result.worldNumber
-		global.roomCreated=returnMsg.result.created 
-		global.roomAdmin=returnMsg.result.roomAdmin
-	elif(returnMsg.result.method=="inviteFriends"&&returnMsg.result.username==global.username):	
-		print(returnMsg.result)
-		global.invitationPopUp=true
-		global.roomNumber=returnMsg.result.roomNumber
-		global.worldNumber=returnMsg.result.worldNumber
-		global.roomAdmin=returnMsg.result.roomAdmin
-	elif(returnMsg.result.method=="enterRoom"&&returnMsg.result.username==global.username):
-		global.enterRoom=returnMsg.result.enter
-		global.roomNumber=returnMsg.result.roomNumber
-		global.worldNumber=returnMsg.result.worldNumber
-		global.roomAdmin=returnMsg.result.roomAdmin	
+#		global.invitationPopUp=true
+#		global.roomNumber=returnMsg.result.roomNumber
+#		global.worldNumber=returnMsg.result.worldNumber
+#		global.roomAdmin=returnMsg.result.roomAdmin
+#		if get_tree().get_current_scene().get_name() == "Room":
+
+		$'/root/Room/AcceptInvitePop'.popup_centered()
+		global.already_in_room.append(returnMsg.result.username)
+		print(global.already_in_room)
+	elif(returnMsg.result.method=="enterRoom" and returnMsg.result.enter == true):
+		var temp = returnMsg.result
+		print(temp)
+#		global.enterRoom=returnMsg.result.enter
+#		global.roomNumber=returnMsg.result.roomNumber
+#		global.worldNumber=returnMsg.result.worldNumber
+#		global.roomAdmin=returnMsg.result.roomAdmin	
+		global.already_in_room.append(returnMsg.result.username)
+		print(global.already_in_room)
+		if (temp.username == global.username):
+			var root = get_tree().get_root()
+			var next_scnene = load("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
+			root.remove_child(self)
+			OS.delay_msec(50)  # for user response  
+			root.add_child(next_scnene)
+		# ^work fine
+		for n in global.already_in_room.size():
+			if global.already_in_room[n] != global.username:
+				global.already_in_room_except_self.append(global.already_in_room[n])
+		print(global.already_in_room_except_self)
+				
+		for n in global.already_in_room_except_self.size():
+			$'/root/MultiplayerRoom'.add_child(another)
+			another.init(name, Vector2(517, 200), temp.avatarID)
+			global.child_node_players.append(another.get_child_index)
+		print(global.child_node_players)
+				
 	elif(returnMsg.result.method=="usersEnterRoom"):	
 		global.excludedFriendsInList=returnMsg.result.username
 	elif(returnMsg.result.method=="get_question"):	
@@ -72,13 +105,14 @@ func _on_data():
 		pass
 	elif(returnMsg.result.method=="Answer"):	
 		global.incorrectAnswer=returnMsg.result.correct	
-	elif(returnMsg.result.method=="playersVectors"):	
-		if(global.playersVectors.size()>=1&&global.playersVectors.size()<=5):
-			var players={"ClientUserName":returnMsg.result.ClientUserName,
-			"roomNumber":returnMsg.result.roomNumber,
-			"worldNumber":returnMsg.result.worldNumber,
-			"playerMovement":returnMsg.result.playerMovement}
-			global.playersVectors.append(players)
+	elif(returnMsg.result.method=="playersVectors"):
+		var temp = returnMsg.result
+		print(temp)
+		if global.already_in_room_except_self.has(returnMsg.result.ClientUserName):
+			for n in global.already_in_room_except_self:
+				if global.already_in_room_except_self[n] == temp.ClientUserName:
+					another.set_avatar_position(child_node_players[n], temp.playerMovement)
+
 			
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals
@@ -99,10 +133,9 @@ func _reconnection():
 		set_process(false)	
 		
 func _on_Button2_pressed():
-	pass
-	#_client.get_peer(1).put_packet(JSON.print({"method":"getQuiz","quizID":"60652b78ecd0f6001569a163","username":"jeff wong","roomNumber":"1","worldNumber":"1"}).to_utf8())
+	_client.get_peer(1).put_packet(JSON.print({"method":"getQuiz","quizID":"60652b78ecd0f6001569a163","username":"jeff wong","roomNumber":"1","worldNumber":"1"}).to_utf8())
 	# for acceptInvitation
-	
+	#_client.get_peer(1).put_packet(JSON.print({"method":"acceptInvitation","username":"jeff wong","roomNumber":"1","worldNumber":"1"}).to_utf8())				
 
 func _physics_process(delta):
 	timer += delta
