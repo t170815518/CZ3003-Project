@@ -9,8 +9,8 @@ func _on_Acceptbutton_button_down():
 	var acceptInfo = {
 		"method": "acceptInvitation",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 6,
+		"roomNumber": global.roomNumber,
+		"worldNumber": global.worldNumber,
 		"avatarID": global.avatar_id
 	}
 	Websocket.send(acceptInfo)

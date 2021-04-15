@@ -42,8 +42,8 @@ func _physics_process(delta):
 		var userInfo = {
 		"method": "playerMovement",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
+		"roomNumber": global.roomNumber,
+		"worldNumber": global.worldNumber,
 		"playerMovement": sprite_position
 		}
 		print (userInfo)
@@ -55,8 +55,8 @@ func _physics_process(delta):
 		var userInfo = {
 		"method": "playerMovement",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
+		"roomNumber": global.roomNumber,
+		"worldNumber": global.worldNumber,
 		"playerMovement": sprite_position
 		}
 		print (userInfo)
@@ -67,8 +67,8 @@ func _physics_process(delta):
 		var userInfo = {
 		"method": "playerMovement",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
+		"roomNumber": global.roomNumber,
+		"worldNumber": global.worldNumber,
 		"playerMovement": sprite_position
 		}
 		print (userInfo)
@@ -79,8 +79,8 @@ func _physics_process(delta):
 		var userInfo = {
 		"method": "playerMovement",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
+		"roomNumber": global.roomNumber,
+		"worldNumber": global.worldNumber,
 		"playerMovement": sprite_position
 		}
 		print (userInfo)
