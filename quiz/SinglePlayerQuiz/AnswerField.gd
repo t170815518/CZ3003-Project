@@ -22,6 +22,16 @@ func clear_options():
 
 
 # it is done by remote server 
+#func check_if_correct():
+#	var selected_id = $ItemList.get_selected_items()
+#	var option
+#	if len(selected_id) == 0:  # no answer 
+#		print("Emit wrong answer")
+#		emit_signal("correct_answer", -1)
+#	else:
+#		option = selected_id[0]
+#		emit_signal("wrong_answer", option)
+#
 func check_if_correct():
 	var selected_id = $ItemList.get_selected_items()
 	var option
@@ -30,4 +40,9 @@ func check_if_correct():
 		emit_signal("correct_answer", -1)
 	else:
 		option = selected_id[0]
-		emit_signal("wrong_answer", option)
+		if selected_id[0] == correct_answer_id:
+			print("Emit correct answer")
+			emit_signal("correct_answer", -1)
+		else:
+			print("Emit wrong answer")
+			emit_signal("wrong_answer", option)

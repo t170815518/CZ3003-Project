@@ -278,9 +278,25 @@ func _on_HTTPRequestUserGet_completed(result, response_code, headers, body):
 			user_score = int(user["score"])
 			print(user_score)
 			var total_score = user_score + correct_answer
+			var achievement_list = []
+			if total_score >=5 and total_score<=9:
+				achievement_list.append("60787ddee3fdc20015468598") #5 scores
+			elif total_score>=10 and total_score<=14:
+				achievement_list.append("60787ddee3fdc20015468598")
+				achievement_list.append("60787e35e3fdc20015468599")
+			elif total_score>=15 and total_score<=19:
+				achievement_list.append("60787ddee3fdc20015468598")
+				achievement_list.append("60787e35e3fdc20015468599")
+				achievement_list.append("60787e40e3fdc2001546859a")
+			elif total_score>=20:
+				achievement_list.append("60787ddee3fdc20015468598")
+				achievement_list.append("60787e35e3fdc20015468599")
+				achievement_list.append("60787e40e3fdc2001546859a")
+				achievement_list.append("60787e49e3fdc2001546859b")
 			var userInfoField = {
 			"username": global.username,
 			"score": total_score,
+			"achievement": achievement_list
 			}
 			var userString = JSON.print(userInfoField)
 			var send_headers = ["Content-Type: application/json"]

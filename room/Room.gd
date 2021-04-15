@@ -1,6 +1,6 @@
 extends Node2D
 
-
+const ACHIEVEMENT_GET_ALL_URL = "https://ssad-api.herokuapp.com/api/v1/achievement_all"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,7 +8,17 @@ func _ready():
 #	global.connect("invitationPopUp_changed", self, "on_invitationPopUp_changed")
 #	print("id")
 #	print(get_tree().get_network_unique_id())
-
+#	var movement = {
+#		"method":"playerMovement",
+#		"username":"scse",
+#		"roomNumber": 1,
+#		"worldNumber": 1,
+#		"playerMovement": Vector2(200,200)
+#
+#	}
+#	Websocket.send(movement)
+#	$HTTPAllAchievement.connect("request_completed", self, "_on_HTTPAllAchievement_completed")
+#	$HTTPAllAchievement.request(ACHIEVEMENT_GET_ALL_URL)
 
 func _on_enter_door(collision_body):
 	print("Go to world selection...")
@@ -58,7 +68,13 @@ func _physics_process(delta):
 		OS.delay_msec(50)  # for user response  
 		root.add_child(next_scnene)
 
-	
+#func _on_HTTPRequestAllAchievement_completed(result, response_code, headers, body):
+#	if result == HTTPRequest.RESULT_SUCCESS:
+#		if response_code == 200:
+#			var allAchievement = JSON.parse(body.get_string_from_utf8()).result["achievements"]
+#			print("HTTP All Achievement success")
+#		else:
+#			print("HTTP request failed")
 #func on_invitationPopUp_changed(value):
 #	if global.invitationPopUp == true:
 #		$AcceptInvitePop.refresh()
