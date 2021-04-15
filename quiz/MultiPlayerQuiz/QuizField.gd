@@ -77,6 +77,8 @@ func _process(delta):
 
 # when the user gives the correct answer 
 func _on_correct_answer(option):
+	var data_dir = {"method": "updateAttempt", "isCorrect": "true", "roomId": global.roomId}
+	Websocket.send(JSON.print(data_dir))
 	$Timer.stop()
 	correct_answer += 1
 	enemy_hp -= 1
@@ -100,6 +102,8 @@ func _on_wrong_answer(option):
 	# Assume not to update the question 
 	$Timer.stop()
 	player_hp -= 1
+	var data_dir = {"method": "updateAttempt", "isCorrect": "false", "roomId": global.roomId}
+	Websocket.send(JSON.print(data_dir))
 	_record_attempt(option)
 	if player_hp > 0: 
 		$EnemySprite.play("attack")
