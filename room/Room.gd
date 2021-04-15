@@ -51,7 +51,7 @@ func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
 
 
 func _on_create_multiQuiz():
-	var data = {"method": "createRoom", "username": global.username, "quizId": "60652e8becd0f6001569a181"}
+	var data = {"method": "createRoom", "username": "Student1", "quizId": "60652e8becd0f6001569a181"}
 	Websocket.send(JSON.print(data))
 
 
