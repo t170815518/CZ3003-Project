@@ -85,7 +85,6 @@ func _on_correct_answer(option):
 		$PlayerSprite.play("attack")
 		$EnemyHP.set_text(str(enemy_hp))
 		$EnemySprite.play("hit")
-		update_question()
 	else:
 		end_time = OS.get_unix_time()
 		var next_scene = $Summary
@@ -106,8 +105,6 @@ func _on_wrong_answer(option):
 		$EnemySprite.play("attack")
 		$PlayerHP.set_text(str(player_hp))
 		$PlayerSprite.play("hit")
-		update_question()
-
 	else:
 		end_time = OS.get_unix_time()
 		var next_scene = $Summary
