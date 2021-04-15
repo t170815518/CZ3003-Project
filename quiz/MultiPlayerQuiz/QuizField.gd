@@ -85,10 +85,10 @@ func _process(delta):
 	$TimeLabel.set_text("Time:%s" % str(int($Timer.get_time_left())))
 
 
-func _on_post_answer(option):
+func _on_post_answer(option, desc):
 	# prepare for message to post in json format 
 	var data_dict = {"method": "SelectedQuizAndUpdateSource", "username": global.username, "roomNumber": global.roomNumber, 
-	"worldNumber": global.worldNumber, "givenAnswer": option, "questionID": global.current_question_id}
+	"worldNumber": global.worldNumber, "givenAnswer": desc, "questionID": global.current_question_id}
 	Websocket.send(data_dict)
 	latest_option = option
 
