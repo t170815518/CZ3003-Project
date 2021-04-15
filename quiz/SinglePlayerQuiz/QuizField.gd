@@ -29,7 +29,8 @@ var end_time
 const QUESTION_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/question"
 const QUIZ_GET_BASE_URL = "https://ssad-api.herokuapp.com/api/v1/quiz"
 const ATTEMPT_POST_URL = "https://ssad-api.herokuapp.com/api/v1/quiz/attempt/"
-
+onready var user_edit_put_url = "https://ssad-api.herokuapp.com/api/v1/user/%s"%global.userID
+onready var user_edit_get_url = "https://ssad-api.herokuapp.com/api/v1/user/%s"%global.userID
 
 signal complete_request
 signal question_runs_out
@@ -56,6 +57,8 @@ func _ready():
 	$Summary.get_node("OKButton").connect("pressed", self, "_on_finish_quiz")
 	$Timer.connect("timeout", self, "_on_time_out")
 	$HTTPRequestPostAttempt.connect("request_completed", self, "_on_attempt_posted")
+	$HTTPRequestUserEditScore.connect("request_completed", self, "_on_HTTPRequestUserEditScore_completed")
+	$HTTPRequestUserGet.connect("request_completed", self, "_on_HTTPRequestUserGet_completed")	
 	
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("correct_answer", self, "_on_correct_answer")
@@ -216,7 +219,7 @@ func _on_time_out():
 
 func _on_SettingButton_button_down():
 	var root = get_tree().get_root()
-	var next_scnene = preload("res://SettingPage/SettingPage.tscn").instance()
+	var next_scnene = load("res://SettingPage/SettingPage.tscn").instance()
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)
@@ -262,9 +265,15 @@ func _on_attempt_posted(result, response_code, headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS:
 		if response_code == 200:
 			print("Result posted")
+			$HTTPRequestUserGet.request("")
 		else:
 			print("Error Code", response_code)
 	else:
 		print("Http connection fails")
 	_switch_scene()
 	
+func _on_HTTPRequestUserGet_completed(result, response_code, headers, body):
+	pass
+	
+func _on_HTTPRequestUserEditScore_completed(result, response_code, headers, body):
+	pass

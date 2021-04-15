@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 export var speed = 6
 var velocity = Vector2(0, 0)
-onready var player_id = -1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

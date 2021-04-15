@@ -19,7 +19,7 @@ func _ready():
 func _open_setting():
 	global.previous_scene = "res://room/Room.tscn"
 	var root = get_tree().get_root()
-	var next_scnene = preload("res://SettingPage/SettingPage.tscn").instance()
+	var next_scnene = load("res://SettingPage/SettingPage.tscn").instance()
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)

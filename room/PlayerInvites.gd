@@ -20,7 +20,7 @@ func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	print("This is a test: "+ str(global.worldNumber) + "and" + str(global.roomNumber))
 	#json.result.users.size()
 	for n in json.result.users.size():
-		if json.result.users[n].username !='admin (Do not edit/delete this account)' and global.excludedFriendsInList.has(json.result.users[n].username) ==false and global.username!=json.result.users[n].username:
+		if json.result.users[n].username !='admin (Do not edit/delete this account)' and global.already_in_room.has(json.result.users[n].username) ==false and global.username!=json.result.users[n].username:
 			$ItemList.add_item(str(json.result.users[n].username))
 #			available_friend[n] = str(json.result.users[n].username)
 #

@@ -210,26 +210,6 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-
-[node name="StartMultiQuizButton" type="Button" parent="."]
-margin_left = 862.67
-margin_top = 9.89948
-margin_right = 1012.67
-margin_bottom = 45.8995
-text = "Start Quiz with Friend"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="JoinQuizButton" type="Button" parent="."]
-margin_left = 712.485
-margin_top = 6.92955
-margin_right = 842.485
-margin_bottom = 51.9296
-text = "Join Quiz"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="body_entered" from="Achivement" to="." method="_on_Achivement_body_entered"]
 [connection signal="body_shape_entered" from="world" to="." method="_on_world_body_shape_entered"]
 [connection signal="body_entered" from="leaderboard" to="." method="_on_leaderboard_body_entered"]

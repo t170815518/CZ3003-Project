@@ -48,7 +48,7 @@ func _on_data():
 #	var already_in_room = []
 #	var already_in_room_except_self = []
 	var child_node_players = []
-	var next_scnene = load("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
+
 	print("Got data from server: ",returnMsg.result.method)
 	if(returnMsg.result.method=="createRoom"):
 		var temp = returnMsg.result
@@ -87,26 +87,21 @@ func _on_data():
 		global.already_in_room.append(returnMsg.result.username)
 		print(global.already_in_room)
 		
-		for n in global.already_in_room.size():
-			if global.already_in_room[n] != global.username:
-				global.already_in_room_except_self.append(global.already_in_room[n])
-		print(global.already_in_room_except_self)
-		if (temp.username == global.username):
-			var root = get_tree().get_root()
-			root.remove_child(self)
-			OS.delay_msec(50)  # for user response  
-			root.add_child(next_scnene)
-		# ^work fine
-#			for n in global.already_in_room_except_self.size():
-#				next_scnene.add_other_players(global.already_in_room_except_self[n], Vector2(517, 200), 3)
-#				print(global.child_node_players)
+
+
 
 
 				
 	elif(returnMsg.result.method=="usersEnterRoom"):
 		var temp = returnMsg.result	
-		
-		global.excludedFriendsInList=temp.username
+		for n in global.already_in_room.size():
+			if global.already_in_room[n] != global.username and global.already_in_room.has(temp[n])==false:
+				global.already_in_room_except_self.append(global.already_in_room[n])
+		print(global.already_in_room_except_self)
+#		for n in global.already_in_room_except_self.size():
+#			next_scnene.add_other_players(global.already_in_room_except_self[n], Vector2(517, 200), 3)
+#			print(global.child_node_players)
+
 	elif(returnMsg.result.method=="get_question"):	
 		var temp = returnMsg.result	
 		global.quizThemeId=temp.quizLinkID

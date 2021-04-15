@@ -9,12 +9,6 @@ func _ready():
 #	print(get_tree().get_network_unique_id())'
 	print(self.get_path())
 
-#	var players={"ClientUserName":returnMsg.result.ClientUserName,
-#			"roomNumber":returnMsg.result.roomNumber,
-#			"worldNumber":returnMsg.result.worldNumber,
-#			"playerMovement":returnMsg.result.playerMovement}
-#			global.playersVectors.append(players)
-
 #	if global.playersVectors.empty() != true:
 #		for numPlayer in global.playersVectors.size():
 #			if global.playersVectors[numPlayer].ClientUserName != global.username and global.playersVectors[numPlayer].roomNumber == global.roomNumber and global.playersVectors[numPlayer].worldNumber == global.worldNumber:
@@ -38,21 +32,21 @@ func _on_enter_door(collision_body):
 	else:
 		pass 
 
-func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
-	print(body.get_name())
-	if body.get_name()=='KinematicBody2D':
-		var root = get_tree().get_root()
-		var next_scnene = preload("res://world/world.tscn").instance()
-		root.remove_child(self)
-		OS.delay_msec(50)  # for user response  
-		root.add_child(next_scnene)
+#func _on_world_body_shape_entered(body_id, body, body_shape, area_shape):
+#	print(body.get_name())
+#	if body.get_name()=='KinematicBody2D':
+#		var root = get_tree().get_root()
+#		var next_scnene = preload("res://world/world.tscn").instance()
+#		root.remove_child(self)
+#		OS.delay_msec(50)  # for user response  
+#		root.add_child(next_scnene)
 
 func add_other_players(username, position, avatar_id):
 	var another = load('res://MultiPlayerRoom/OtherPlayer.tscn').instance()
 	add_child(another)
 	another.init(username, position, avatar_id)
-	global.child_node_players.append(another.get_index)
+	global.child_node_players.append(another.get_index())
 
 func set_other_players_position(username, index, position):
 	var child = get_child(index)
-	child.set_position = position
+	child.set_position(position)

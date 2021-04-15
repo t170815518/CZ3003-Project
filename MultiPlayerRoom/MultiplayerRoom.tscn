@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/room.tres" type="TileSet" id=1]
 [ext_resource path="res://MultiPlayerRoom/MultiplayerRoom.gd" type="Script" id=2]
 [ext_resource path="res://avatars/Avatar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/widgets/SettingButton.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/widgets/SettingButton.gd" type="Script" id=5]
+[ext_resource path="res://assets/font/RegisterPageErrorPopup.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/widgets/door.png" type="Texture" id=7]
 [ext_resource path="res://assets/background/Black_Background.PNG" type="Texture" id=10]
 
@@ -89,3 +90,18 @@ texture = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( 242.856, 468.019 )
 shape = SubResource( 4 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 124.453
+margin_top = 447.357
+margin_right = 389.453
+margin_bottom = 478.357
+custom_fonts/font = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Multiplayer quiz selectiom"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
