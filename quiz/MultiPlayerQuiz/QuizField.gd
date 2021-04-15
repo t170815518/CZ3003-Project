@@ -75,7 +75,7 @@ func _ready():
 	$HTTPRequestQuestion.timeout = 100
 	
 	# set the hp_label 
-	$EnemyHP.set_text(questions_num)
+	$EnemyHP.set_text(str(questions_num))
 	enemy_hp = questions_num
 	player_hp = enemy_hp / 2 + 1
 	$PlayerHP.set_text(str(player_hp))
