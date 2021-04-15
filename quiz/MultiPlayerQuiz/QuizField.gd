@@ -114,7 +114,6 @@ func _on_wrong_answer(option):
 		next_scene.correct_answers = correct_answer
 		$Summary.refresh()
 		$Summary.popup_centered()
-	update_question()
 	
 
 func _on_request_completed(result, response_code, headers, body):
