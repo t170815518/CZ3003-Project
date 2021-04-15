@@ -46,7 +46,6 @@ func _on_data():
 	# to receive data from server, and not get_packet directly when not
 	# using the MultiplayerAPI.
 	var rawSinal=_client.get_peer(1).get_packet().get_string_from_utf8()
-	emit_signal("receive_data", rawSinal)
 	var returnMsg= JSON.parse(rawSinal)
 #	var already_in_room = []
 #	var already_in_room_except_self = []
@@ -116,6 +115,8 @@ func _on_data():
 		global.quizThemeId=temp.quizLinkID
 	elif(returnMsg.result.method=="info"):	
 		pass
+	elif(returnMsg.result.method=="getQuiz"):
+		pass 
 	elif(returnMsg.result.method=="Answer"):	
 		var temp = returnMsg.result	
 		global.incorrectAnswer=temp.correct	
@@ -126,7 +127,7 @@ func _on_data():
 			for n in global.already_in_room_except_self.size():
 				if global.already_in_room_except_self[n] == temp.ClientUserName:
 					another.set_avatar_position(child_node_players[n], temp.playerMovement)
-
+	emit_signal("receive_data", rawSinal)
 			
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals

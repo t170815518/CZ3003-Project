@@ -32,7 +32,7 @@ func _on_enter_door(collision_body):
 		print("Go to world selection...")
 		var root = get_tree().get_root()
 		global.is_multiplayer_mode = true 
-		var next_scnene = preload("res://quiz/CourseSelection/CourseSelection.tscn").instance()
+		var next_scnene = load("res://quiz/CourseSelection/CourseSelection.tscn").instance()
 		root.remove_child(self)
 		OS.delay_msec(50)  # for user response  
 		root.add_child(next_scnene)
@@ -53,7 +53,7 @@ func _on_data_received(data_str):
 	var json = JSON.parse(data_str).result
 	if json["method"] == "getQuiz":
 		var root = get_tree().get_root()
-		var next_scnene = load("res://quiz/MultiPlayerQuiz/SinglePlayerQuiz.tscn").instance()
+		var next_scnene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
 		root.remove_child(self)
 		OS.delay_msec(50)  # for user response  
 		root.add_child(next_scnene)

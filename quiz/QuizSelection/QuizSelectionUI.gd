@@ -74,4 +74,3 @@ func _on_Backbutton_button_down():
 	root.remove_child(self)
 	OS.delay_msec(50)  # for user response  
 	root.add_child(next_scnene)
-
