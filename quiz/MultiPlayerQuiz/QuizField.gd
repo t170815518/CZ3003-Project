@@ -65,7 +65,7 @@ func _ready():
 	self.connect("question_loaded", self, "update_question")
 	# link signals: cannot too early otherwise AnswerField cannot load itemlist etc 
 	get_node("AnswerField").connect("post_answer", self, "_on_post_answer")
-	Websocket.connect("update_question", self, "_on_receive_question_id")
+	Websocket.connect("update_question", self, "update_question")
 	Websocket.connect("update_leaderboard", self, "_update_leader_board")
 	Websocket.connect("give_correct_answer", self, "_on_correct_answer")
 	Websocket.connect("give_wrong_answer", self, "_on_wrong_answer")
@@ -110,15 +110,19 @@ static func delete_children(node):
 		node.remove_child(n)
 		n.queue_free()
 			
-func update_question():
+func update_question(json):
 	# display the question description and options 
 	# TODO: support multiple types of questions 
+	global.current_question_id = json["_id"]
 	$RichTextLabel.text = ""
 	# OS.delay_msec(50)  # for user response  
 	# $PlayerSprite.set_animation("idle")
 	# $EnemySprite.set_animation("idle")
 	$AnswerField.clear_options()
+	questions.append(json)
 	current_ques_id += 1
+	if current_ques_id >= json["question_num"]:
+		print("Quiz ends!")
 	var question = questions[current_ques_id]
 	var options = question["option"]
 	$RichTextLabel.add_text(question["question_desc"])
@@ -254,9 +258,3 @@ func _on_correct_answer():
 	$EnemySprite.play("hit")
 	if current_ques_id >= questions_num:
 		_on_finish_quiz(true)
-
-
-func _on_receive_question_id(question_id):
-	$HTTPRequestQuiz.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
-	print("trying to request ", QUESTION_GET_BASE_URL+"/"+question_id)
-	global.current_question_id = question_id

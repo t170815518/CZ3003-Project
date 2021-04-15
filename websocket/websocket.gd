@@ -106,13 +106,13 @@ func _on_data():
 	elif(returnMsg.result.method=="get_question"):	
 		if global.is_quiz_loaded:
 			var temp = returnMsg.result	
-			emit_signal("update_question", returnMsg.result.question_id)
+			emit_signal("update_question", returnMsg.result)
 		else:
 			var root = get_tree().get_root()
 			var next_scnene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
-			root.add_child(next_scnene)
 			next_scnene.questions_num = returnMsg.result.question_num
-			emit_signal("update_question", returnMsg.result.question_id)
+			root.add_child(next_scnene)
+			emit_signal("update_question", returnMsg.result)
 	elif(returnMsg.result.method=="Answer"):	
 		var temp = returnMsg.result	
 		global.incorrectAnswer=temp.correct	
