@@ -72,14 +72,14 @@ func _on_data():
 #	&&returnMsg.result.username==global.username):
 		var temp = returnMsg.result
 		print(temp)
-		global.invitationPopUp=true
+		global.invitationPopUp=1
 		global.roomNumber=temp.roomNumber
 		global.worldNumber=temp.worldNumber
 		global.roomAdmin=temp.roomAdmin
 		print("invite friends to")
 		print(global.roomNumber)
 		print(global.worldNumber)
-		$'/root/Room/AcceptInvitePop'.popup_centered()
+		print(global.invitationPopUp)
 		global.already_in_room.append(returnMsg.result.username)
 		print(global.already_in_room)
 		
@@ -92,12 +92,14 @@ func _on_data():
 		global.roomAdmin=temp.roomAdmin	
 		global.already_in_room.append(returnMsg.result.username)
 		print(global.already_in_room)
+		print(global.enterRoom)
 	elif(returnMsg.result.method=="usersEnterRoom"):
-		var temp = returnMsg.result	
-		for n in global.already_in_room.size():
-			if global.already_in_room[n] != global.username and global.already_in_room.has(temp[n])==false:
-				global.already_in_room_except_self.append(global.already_in_room[n])
-		print(global.already_in_room_except_self)
+		var temp = returnMsg.result
+		print(temp)	
+#		for n in global.already_in_room.size():
+#			if global.already_in_room[n] != global.username and global.already_in_room.has(temp[n])==false:
+#				global.already_in_room_except_self.append(global.already_in_room[n])
+#		print(global.already_in_room_except_self)
 #		for n in global.already_in_room_except_self.size():
 #			next_scnene.add_other_players(global.already_in_room_except_self[n], Vector2(517, 200), 3)
 #			print(global.child_node_players)
