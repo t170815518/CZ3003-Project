@@ -27,9 +27,7 @@ func check_if_correct():
 	var option
 	if len(selected_id) == 0:  # no answer 
 		print("Emit wrong answer")
-		option = -1
+		emit_signal("correct_answer", -1)
 	else:
 		option = selected_id[0]
-	var data_dict = {"method": "SelectedQuizAndUpdateSource", "username": global.username, "roomNumber": global.roomNumber, 
-	"worldNumber": global.worldNumber, "givenAnswer": option, "questionID": global.current_question_id}
-	Websocket.send(data_dict)
+		emit_signal("wrong_answer", option)

@@ -107,7 +107,6 @@ func _on_wrong_answer(option):
 		$PlayerHP.set_text(str(player_hp))
 		$PlayerSprite.play("hit")
 		update_question()
-
 	else:
 		end_time = OS.get_unix_time()
 		var next_scene = $Summary
