@@ -1,9 +1,7 @@
 extends Node2D
 # The URL we will connect to
-#export var websocket_url = "ws://127.0.0.1:8080/"
-#export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
-#export var websocket_url = "ws://127.0.0.1:8080/"
-export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
+
+export var websocket_url = "ws://localhost:8025/websockets/quiz/Student1"
 
 # Our WebSocketClient instance
 var _client = WebSocketClient.new()

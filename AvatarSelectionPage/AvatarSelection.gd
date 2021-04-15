@@ -22,7 +22,3 @@ func _on_HTTPAvatar_request_completed(result, response_code, headers, body):
 				get_tree().change_scene("res://WelcomePage/WelcomePage.tscn")
 		else:
 			print("HTTPrequest update user fails")
-
-
-
-

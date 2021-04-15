@@ -1,6 +1,6 @@
 extends Node
 
-var username = "Student1"
+var username = "chris"
 var email = "Student123@gmail.com"
 var userID = "605235a72ad01200153a3f03"
 var password = ""
