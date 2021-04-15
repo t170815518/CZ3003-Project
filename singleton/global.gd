@@ -24,5 +24,4 @@ var already_in_room = []
 var child_node_players = []
 var current_question_id
 var question_num
-
-
+var is_quiz_loaded = false

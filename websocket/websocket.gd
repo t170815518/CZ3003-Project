@@ -104,9 +104,14 @@ func _on_data():
 #			next_scnene.add_other_players(global.already_in_room_except_self[n], Vector2(517, 200), 3)
 #			print(global.child_node_players)
 	elif(returnMsg.result.method=="get_question"):	
-		var temp = returnMsg.result	
-		global.quizThemeId=temp.quizLinkID
-		emit_signal("update_question", returnMsg.result.question_id)
+		if global.is_quiz_loaded:
+			var temp = returnMsg.result	
+			emit_signal("update_question", returnMsg.result.question_id)
+		else:
+			var root = get_tree().get_root()
+			var next_scnene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
+			root.add_child(next_scnene)
+			emit_signal("update_question", returnMsg.result.question_id)
 	elif(returnMsg.result.method=="Answer"):	
 		var temp = returnMsg.result	
 		global.incorrectAnswer=temp.correct	

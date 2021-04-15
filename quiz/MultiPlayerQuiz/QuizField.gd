@@ -44,6 +44,7 @@ signal question_loaded
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	global.is_quiz_loaded = true
 	rng.randomize()
 	var enemy_sprite_id = rng.randi_range(1,5)
 	global.is_multiplayer_mode = true
@@ -100,7 +101,6 @@ static func delete_children(node):
 	for n in node.get_children():
 		node.remove_child(n)
 		n.queue_free()
-
 			
 func update_question():
 	# display the question description and options 
@@ -137,6 +137,8 @@ func _on_finish_quiz(is_win):
 
 # waits for post method completes 
 func _switch_scene():
+	global.is_multiplayer_mode = false 
+	global.is_quiz_loaded = false 
 	self.queue_free()
 	var main_node = load("res://room/Room.tscn").instance()
 	var root = get_tree().get_root()
