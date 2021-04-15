@@ -2,7 +2,7 @@ extends Node2D
 # The URL we will connect to
 #export var websocket_url = "ws://127.0.0.1:8080/"
 #export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
-#export var websocket_url = "ws://127.0.0.1:8080/"
+#xport var websocket_url = "ws://127.0.0.1:8080/"
 export var websocket_url = "ws://shielded-stream-65178.herokuapp.com/"
 
 # Our WebSocketClient instance
@@ -54,7 +54,7 @@ func _on_data():
 	if(returnMsg.result.method=="createRoom"):
 		var temp = returnMsg.result
 		global.roomNumber = temp.roomNumber
-		global.worldNumber = temp.roomNumber
+		global.worldNumber = temp.worldNumber
 		global.roomCreated = temp.created
 		global.roomAdmin = temp.roomAdmin
 #		global.roomNumber=returnMsg.result.roomNumber

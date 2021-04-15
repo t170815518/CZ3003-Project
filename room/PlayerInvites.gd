@@ -36,11 +36,13 @@ func _on_invite_btn_pressed():
 		$Popup.popup()
 	else:
 		for index in playerSelected:
-			selected_friend.append(str($ItemList.get_item_text(index)))
+			var peers=str($ItemList.get_item_text(index))
+			selected_friend.append(peers)
+			print(selected_friend)
 	
 		#send info to server
 		var sendInfo = {
-			"method": "inviteFriend",
+			"method": "inviteFriends",
 			"username": global.username,
 			"worldNumber": global.worldNumber,
 			"roomNumber": global.roomNumber,
