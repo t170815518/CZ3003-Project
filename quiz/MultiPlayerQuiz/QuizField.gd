@@ -58,7 +58,6 @@ func _ready():
 	$PlayerSprite.set_animation("idle")
 	$EnemySprite.set_animation("idle")
 	self.connect("question_runs_out", self, "_on_question_runs_out")
-	$HTTPRequestQuiz.connect("request_completed", self, "_on_request_completed")
 	$HTTPRequestQuestion.connect("request_completed", self, "_on_question_request_completed")
 	$Summary.get_node("OKButton").connect("pressed", self, "_switch_scene")
 	$Timer.connect("timeout", self, "_on_time_out")
@@ -74,7 +73,13 @@ func _ready():
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
 	$HTTPRequestQuestion.timeout = 100
-
+	
+	# set the hp_label 
+	$EnemyHP.set_text(questions_num)
+	enemy_hp = questions_num
+	player_hp = enemy_hp / 2 + 1
+	$PlayerHP.set_text(str(player_hp))
+			
 
 func _process(delta):
 	$TimeLabel.set_text("Time:%s" % str(int($Timer.get_time_left())))
@@ -232,7 +237,7 @@ func _on_wrong_answer():
 	$EnemySprite.play("attack")
 	$PlayerHP.set_text(str(player_hp))
 	$PlayerSprite.play("hit")
-	if current_ques_id >= global.question_num:
+	if current_ques_id >= questions_num:
 		_on_finish_quiz(false)
 
 
@@ -244,10 +249,11 @@ func _on_correct_answer():
 	$PlayerSprite.play("attack")
 	$EnemyHP.set_text(str(enemy_hp))
 	$EnemySprite.play("hit")
-	if current_ques_id >= global.question_num:
+	if current_ques_id >= questions_num:
 		_on_finish_quiz(true)
 
 
 func _on_receive_question_id(question_id):
 	$HTTPRequestQuiz.request(QUESTION_GET_BASE_URL+"/"+question_id, [])
 	global.current_question_id = question_id
+

@@ -111,6 +111,7 @@ func _on_data():
 			var root = get_tree().get_root()
 			var next_scnene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
 			root.add_child(next_scnene)
+			next_scnene.questions_num = returnMsg.result.question_num
 			emit_signal("update_question", returnMsg.result.question_id)
 	elif(returnMsg.result.method=="Answer"):	
 		var temp = returnMsg.result	

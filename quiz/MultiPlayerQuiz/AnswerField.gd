@@ -29,3 +29,6 @@ func post_attempt():
 		emit_signal("post_answer", -1)
 	else:
 		emit_signal("post_answer", selected_id[0])
+
+
+
