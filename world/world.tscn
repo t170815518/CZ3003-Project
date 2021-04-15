@@ -213,6 +213,7 @@ custom_fonts/font = ExtResource( 1 )
 text = "world 9"
 
 [node name="Popup" type="Popup" parent="."]
+visible = true
 margin_left = 264.0
 margin_top = 512.0
 margin_right = 752.0
