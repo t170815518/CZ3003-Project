@@ -17,7 +17,7 @@ var excludedFriendsInList=[username]
 var quizThemeId=""
 var incorrectAnswer=false 
 var playersVectors=[]
-
+var Friends=[]
 var is_multiplayer_mode = false 
 var already_in_room_except_self = []
 var already_in_room = []

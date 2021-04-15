@@ -38,6 +38,7 @@ func _on_invite_btn_pressed():
 		for index in playerSelected:
 			var peers=str($ItemList.get_item_text(index))
 			selected_friend.append(peers)
+			global.Friends.append(peers)
 			print(selected_friend)
 	
 		#send info to server

@@ -57,10 +57,10 @@ func submit_selection():
 	else:
 		# reformat the json 
 		var data_dict = {"method": "getQuiz", "quizID": topic_id, "username": global.username, "roomNumber": global.roomNumber, 
-		"worldNumber": global.worldNumber}
+		"worldNumber": global.worldNumber,"Friends":global.Friends}
 		var json = JSON.print(data_dict)
 		print("Sending to websocket: ", json)
-		Websocket.send(json)  # send web-socket the data 
+		Websocket.send(data_dict)  # send web-socket the data 
 		# go back to the multi-player world 
 		var next_scene = preload("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
 		var root = get_tree().get_root()
