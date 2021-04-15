@@ -7,8 +7,8 @@ var password = ""
 var avatar_id = 4
 var previous_scene = ""
 var selected_world = -1
-var roomNumber=-1
-var worldNumber=-1 setget setworldNumber
+var roomNumber=1
+var worldNumber=6 setget setworldNumber
 var roomCreated=false 
 var roomAdmin=false
 var invitationPopUp=false setget setinvitationPopUP
@@ -19,6 +19,9 @@ var incorrectAnswer=false
 var playersVectors=[]
 
 var is_multiplayer_mode = false 
+var already_in_room_except_self = []
+var already_in_room = []
+var child_node_players = []
 
 signal invitationPopUp_changed
 signal worldNumber_changed

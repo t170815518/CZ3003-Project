@@ -26,11 +26,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "attack",
@@ -39,6 +34,11 @@ animations = [ {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "hit",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
 "speed": 5.0
 } ]
 
@@ -54,7 +54,7 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
-frame = 2
+frame = 3
 playing = true
 
 [node name="GUI" type="Control" parent="."]

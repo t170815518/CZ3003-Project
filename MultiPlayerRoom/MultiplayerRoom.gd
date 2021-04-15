@@ -7,7 +7,7 @@ func _ready():
 	$Door.connect("body_entered", self, "_on_enter_door")
 #	print("id")
 #	print(get_tree().get_network_unique_id())'
-	
+	print(self.get_path())
 
 #	var players={"ClientUserName":returnMsg.result.ClientUserName,
 #			"roomNumber":returnMsg.result.roomNumber,

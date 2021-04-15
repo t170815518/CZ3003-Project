@@ -2,7 +2,7 @@
 
 [ext_resource path="res://avatars/avatar_3_4/C2 A1.png" type="Texture" id=1]
 [ext_resource path="res://avatars/avatar_3_4/C2 A2.png" type="Texture" id=2]
-[ext_resource path="res://avatars/KinematicBody2D.gd" type="Script" id=3]
+[ext_resource path="res://MultiPlayerRoom/OtherPlayer.gd" type="Script" id=3]
 [ext_resource path="res://avatars/avatar_3_4/C2 A4.png" type="Texture" id=4]
 [ext_resource path="res://avatars/avatar_3_4/C2 F1.png" type="Texture" id=5]
 [ext_resource path="res://avatars/avatar_3_4/C2 A3.png" type="Texture" id=6]
@@ -26,11 +26,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "run",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "attack",
@@ -40,26 +35,32 @@ animations = [ {
 "loop": true,
 "name": "hit",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
 } ]
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1.26276, 0 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 3
 playing = true
 
 [node name="GUI" type="Control" parent="."]
-margin_left = -32.7194
-margin_top = 28.2474
-margin_right = 36.2806
-margin_bottom = 47.2474
+margin_left = -28.4647
+margin_top = 37.0569
+margin_right = 40.5353
+margin_bottom = 56.0569
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false

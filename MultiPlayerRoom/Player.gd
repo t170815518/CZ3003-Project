@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 export var speed = 6
 var velocity = Vector2(0, 0)
-
+var sprite_position = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,24 +38,53 @@ func _physics_process(delta):
 	velocity = Vector2(0, 0)
 	if Input.is_action_pressed('ui_right'):
 		velocity.x = speed
-		global.sprite_position = $AnimatedSprite.get_position()
+		sprite_position = get_position()
 		var userInfo = {
 		"method": "playerMovement",
 		"username": global.username,
-		"roomNumber": global.roomNumber,
-		"worldNumber": global.worldNumber,
-		"playerMovement": global.sprite_position
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
 		}
+		print (userInfo)
 		Websocket._send(userInfo)
+		#didnt work
 	if Input.is_action_pressed('ui_left'):
 		velocity.x = -speed
-		global.sprite_position = $AnimatedSprite.get_position()
+		sprite_position = get_position()
+		var userInfo = {
+		"method": "playerMovement",
+		"username": global.username,
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
+		}
+		print (userInfo)
+		Websocket._send(userInfo)
 	if Input.is_action_pressed('ui_down'):
 		velocity.y = speed
-		global.sprite_position = $AnimatedSprite.get_position()
+		sprite_position = get_position()
+		var userInfo = {
+		"method": "playerMovement",
+		"username": global.username,
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
+		}
+		print (userInfo)
+		Websocket._send(userInfo)
 	if Input.is_action_pressed('ui_up'):
 		velocity.y = -speed
-		global.sprite_position = $AnimatedSprite.get_position()
+		sprite_position = get_position()
+		var userInfo = {
+		"method": "playerMovement",
+		"username": global.username,
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
+		}
+		print (userInfo)
+		Websocket._send(userInfo)
 	if velocity.x != 0 or velocity.y != 0:
 		$AnimatedSprite.set_animation("run")
 	else:

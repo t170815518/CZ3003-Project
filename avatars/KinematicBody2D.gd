@@ -4,7 +4,7 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 export var speed = 6
 var velocity = Vector2(0, 0)
-
+var sprite_position = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,15 +38,51 @@ func _physics_process(delta):
 	velocity = Vector2(0, 0)
 	if Input.is_action_pressed('ui_right'):
 		velocity.x = speed
+		sprite_position = get_position()
+		var userInfo = {
+		"method": "playerMovement",
+		"username": global.username,
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
+		}
+		print (userInfo)
 
 	if Input.is_action_pressed('ui_left'):
 		velocity.x = -speed
-
+		sprite_position = get_position()
+		var userInfo = {
+		"method": "playerMovement",
+		"username": global.username,
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
+		}
+		print (userInfo)
+		
 	if Input.is_action_pressed('ui_down'):
 		velocity.y = speed
+		sprite_position = get_position()
+		var userInfo = {
+		"method": "playerMovement",
+		"username": global.username,
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
+		}
+		print (userInfo)
 
 	if Input.is_action_pressed('ui_up'):
 		velocity.y = -speed
+		sprite_position = get_position()
+		var userInfo = {
+		"method": "playerMovement",
+		"username": global.username,
+		"roomNumber": 1,
+		"worldNumber": 1,
+		"playerMovement": sprite_position
+		}
+		print (userInfo)
 
 	if velocity.x != 0 or velocity.y != 0:
 		$AnimatedSprite.set_animation("run")

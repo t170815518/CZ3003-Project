@@ -17,7 +17,7 @@ func _ready():
 func _on_HTTPRequest_request_completed(result, response_code, headers, body):
 	$ItemList.remove_item(0)
 	var json =JSON.parse(body.get_string_from_utf8())
-	print(json.result.users[0])
+	print("This is a test: "+ str(global.worldNumber) + "and" + str(global.roomNumber))
 	#json.result.users.size()
 	for n in json.result.users.size():
 		if json.result.users[n].username !='admin (Do not edit/delete this account)' and global.excludedFriendsInList.has(json.result.users[n].username) ==false and global.username!=json.result.users[n].username:
@@ -36,19 +36,22 @@ func _on_invite_btn_pressed():
 		$Popup.popup()
 	else:
 		for index in playerSelected:
-			selected_friend.append($ItemList.get_item_text(index))
+			selected_friend.append(str($ItemList.get_item_text(index)))
 	
 		#send info to server
 		var sendInfo = {
-			"method": 'inviteFriends',
+			"method": "inviteFriend",
 			"username": global.username,
-			"worldNumber": global.worldNumber,
-			"roomNumber": global.roomNumber,
+			"worldNumber": 4,
+			"roomNumber": 1,
 			"Friends": selected_friend
 			}
+
 		print(sendInfo)
-		Websocket.send(sendInfo)
 		print(global.excludedFriendsInList)
+		Websocket.send(sendInfo)
+		print("This is a test. world number is  "+ str(global.worldNumber) + "and room number is" + str(global.roomNumber) + "and room admin" + str(global.roomAdmin))
+		print(global.invitationPopUp)
 		#get_tree().change_scene("res://room/Room.tscn")
 		var root = get_tree().get_root()
 		var next_scnene = load("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()

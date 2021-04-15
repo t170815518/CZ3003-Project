@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/font/AvatarSelectionBigTitle.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/font/RegisterPageErrorPopup.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/theme/non_select_button_theme.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/theme/select_button_theme.tres" type="StyleBox" id=4]
+[ext_resource path="res://room/PlayerInvites.gd" type="Script" id=5]
+[ext_resource path="res://assets/font/PlayerInvitesPageButtonFont.tres" type="DynamicFont" id=6]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemList" type="ItemList" parent="."]
+margin_left = 144.0
+margin_top = 120.0
+margin_right = 904.0
+margin_bottom = 432.0
+select_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Title" type="Label" parent="."]
+margin_left = 152.0
+margin_top = 48.0
+margin_right = 879.0
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Available Friends Lists for Invitation:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="invite_btn" type="Button" parent="."]
+margin_left = 272.0
+margin_top = 456.0
+margin_right = 456.0
+margin_bottom = 536.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="invite_btn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 6 )
+text = "Invite"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cancel_btn" type="Button" parent="."]
+margin_left = 584.0
+margin_top = 456.0
+margin_right = 770.0
+margin_bottom = 536.0
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="cancel_btn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 6 )
+text = "Cancel"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Popup" type="Popup" parent="."]
+margin_left = 184.0
+margin_top = 536.0
+margin_right = 560.0
+margin_bottom = 576.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "You can only select up to 4 friends"
+align = 1
+valign = 1
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_HTTPRequest_request_completed"]
+[connection signal="pressed" from="invite_btn" to="." method="_on_invite_btn_pressed"]
+[connection signal="button_down" from="cancel_btn" to="." method="_on_cancel_btn_button_down"]
