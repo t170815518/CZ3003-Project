@@ -72,7 +72,7 @@ func _on_data():
 #	&&returnMsg.result.username==global.username):
 		var temp = returnMsg.result
 		print(temp)
-		global.invitationPopUp=true
+		global.invitationPopUp=1
 		global.roomNumber=temp.roomNumber
 		global.worldNumber=temp.worldNumber
 		global.roomAdmin=temp.roomAdmin
@@ -94,7 +94,8 @@ func _on_data():
 		print(global.already_in_room)
 		print(global.enterRoom)
 	elif(returnMsg.result.method=="usersEnterRoom"):
-		var temp = returnMsg.result	
+		var temp = returnMsg.result
+		print(temp)	
 #		for n in global.already_in_room.size():
 #			if global.already_in_room[n] != global.username and global.already_in_room.has(temp[n])==false:
 #				global.already_in_room_except_self.append(global.already_in_room[n])
