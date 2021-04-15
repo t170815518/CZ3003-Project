@@ -112,8 +112,8 @@ static func delete_children(node):
 			
 func update_question(json):
 	# display the question description and options 
-	# TODO: support multiple types of questions 
 	$RichTextLabel.text = ""
+	$AnswerField.get_node("TextureButton").disabled = false # allow the user starts only once
 	# OS.delay_msec(50)  # for user response  
 	# $PlayerSprite.set_animation("idle")
 	# $EnemySprite.set_animation("idle")
@@ -244,7 +244,7 @@ func _on_wrong_answer():
 	$EnemySprite.play("attack")
 	$PlayerHP.set_text(str(player_hp))
 	$PlayerSprite.play("hit")
-	if current_ques_id >= questions_num:
+	if current_ques_id >= questions_num -1 :  # stop the quiz automatically
 		_on_finish_quiz(false)
 
 
@@ -256,5 +256,5 @@ func _on_correct_answer():
 	$PlayerSprite.play("attack")
 	$EnemyHP.set_text(str(enemy_hp))
 	$EnemySprite.play("hit")
-	if current_ques_id >= questions_num:
+	if current_ques_id >= questions_num - 1: # stop the quiz automatically
 		_on_finish_quiz(true)
