@@ -96,6 +96,36 @@ margin_right = 1025.84
 margin_bottom = 602.794
 script = ExtResource( 5 )
 
+[node name="RoomCreatedDialog" type="AcceptDialog" parent="."]
+margin_left = 331.708
+margin_top = 222.251
+margin_right = 646.708
+margin_bottom = 387.251
+window_title = "Room Created!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="RoomCreatedDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 307.0
+margin_bottom = 129.0
+text = "You have joined Room:
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomId" type="Label" parent="RoomCreatedDialog"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 307.0
+margin_bottom = 129.0
+text = "???"
+align = 1
+valign = 1
+
 [node name="Achivement" type="Area2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Achivement"]
@@ -141,7 +171,6 @@ position = Vector2( 921.335, 318.189 )
 shape = SubResource( 7 )
 
 [node name="AcceptInvitePop" parent="." instance=ExtResource( 11 )]
-visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -151,6 +180,61 @@ margin_top = -200.0
 margin_right = 412.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 100, 100 )
+
+[node name="JoinRoomPopUp" type="PopupDialog" parent="."]
+visible = true
+margin_left = 224.387
+margin_top = 145.703
+margin_right = 861.387
+margin_bottom = 441.703
+
+[node name="Label2" type="Label" parent="JoinRoomPopUp"]
+anchor_right = 0.391
+anchor_bottom = 0.177
+margin_left = 4.07138
+margin_top = 13.0511
+margin_right = 376.004
+margin_bottom = 212.659
+text = "Enter the Room to join:"
+
+[node name="TextEdit" type="TextEdit" parent="JoinRoomPopUp"]
+anchor_left = 0.051
+anchor_top = 0.193
+anchor_right = 0.893
+anchor_bottom = 0.685
+margin_left = 5.513
+margin_top = 5.80059
+margin_right = 1.15894
+margin_bottom = 0.168564
+text = "Enter Room Number Here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="JoinRoomPopUp"]
+anchor_left = 0.005
+anchor_top = 1.0
+anchor_right = 1.014
+anchor_bottom = 1.254
+margin_left = 78.692
+margin_top = -61.8326
+margin_right = -431.041
+margin_bottom = -96.0166
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="JoinRoomPopUp"]
+anchor_left = 0.455
+anchor_top = 0.79
+anchor_right = 0.656
+anchor_bottom = 0.929
+margin_left = -0.120667
+margin_top = 0.0683136
+margin_right = -0.157654
+margin_bottom = -0.0756836
+text = "Cancel"
 
 [node name="AchievementLabel" type="Label" parent="."]
 visible = false
@@ -217,21 +301,31 @@ __meta__ = {
 }
 
 [node name="StartMultiQuizButton" type="Button" parent="."]
-margin_left = 862.67
-margin_top = 9.89948
-margin_right = 1012.67
-margin_bottom = 45.8995
-text = "Start Quiz with Friend"
+margin_left = 854.081
+margin_top = 7.02698
+margin_right = 1004.08
+margin_bottom = 51.027
+text = "Create Quiz"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="JoinQuizButton" type="Button" parent="."]
-margin_left = 712.485
-margin_top = 6.92955
-margin_right = 842.485
-margin_bottom = 51.9296
+margin_left = 710.801
+margin_top = 6.36832
+margin_right = 840.801
+margin_bottom = 51.3684
 text = "Join Quiz"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartQuizButton" type="Button" parent="."]
+margin_left = 576.945
+margin_top = 7.29601
+margin_right = 696.945
+margin_bottom = 49.296
+text = "Start Quiz"
 __meta__ = {
 "_edit_use_anchors_": false
 }

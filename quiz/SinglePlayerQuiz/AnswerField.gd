@@ -23,6 +23,7 @@ func clear_options():
 
 func check_if_correct():
 	var selected_id = $ItemList.get_selected_items()
+	$TextureButton.disabled = true
 	if len(selected_id) == 0:  # no answer 
 		print("Emit wrong answer")
 		emit_signal("wrong_answer", -1)

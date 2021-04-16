@@ -18,6 +18,7 @@ var quizThemeId=""
 var incorrectAnswer=false 
 var playersVectors=[]
 
+
 var is_multiplayer_mode = false 
 var already_in_room_except_self = []
 var already_in_room = []
@@ -26,6 +27,9 @@ var child_node_players = []
 # Websocket_2 attribute 
 var roomId
 var sync_questionNum = 0 setget set_sync_questionNum
+var is_quiz_loaded = false
+var is_admin = false 
+var is_WebSocket_OK = false 
 
 signal invitationPopUp_changed
 signal worldNumber_changed

@@ -56,16 +56,9 @@ func submit_selection():
 		root.add_child(next_scene)
 	else:
 		# reformat the json 
-		var data_dict = {"method": "getQuiz", "quizID": topic_id, "username": global.username, "roomNumber": global.roomNumber, 
-		"worldNumber": global.worldNumber}
-		var json = JSON.print(data_dict)
-		print("Sending to websocket: ", json)
-		Websocket.send(json)  # send web-socket the data 
-		# go back to the multi-player world 
-		var next_scene = preload("res://MultiPlayerRoom/MultiplayerRoom.tscn").instance()
-		var root = get_tree().get_root()
-		root.remove_child(self)
-		root.add_child(next_scene)
+		var data = {"method": "createRoom", "username": global.username, "quizId": topic_id}
+		Websocket.send(JSON.print(data))
+		global.is_admin = true  
 
 
 func _on_Backbutton_button_down():

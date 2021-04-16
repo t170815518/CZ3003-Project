@@ -1,7 +1,7 @@
 extends Node2D
 # The URL we will connect to
 
-export var websocket_url = "ws://localhost:8025/websockets/multi_quiz/Student1"
+export var websocket_url = "ws://localhost:8025/websockets/multi_quiz/"
 
 # Our WebSocketClient instance
 var _client = WebSocketClient.new()
@@ -9,10 +9,15 @@ var timer = 0
 var timer_limit = 23 # in seconds
 # signal for control & sync other class 
 signal receive_data(data_str)
-signal update_question
+signal update_question(json)
+signal room_created(roomId)
+signal room_joined
 
 
 func _ready():
+	pass 
+
+func init(username):
 	# Connect base signals to get notified of connection open, close, and errors.
 	_client.connect("connection_closed", self, "_closed")
 	_client.connect("connection_error", self, "_closed")
@@ -21,11 +26,13 @@ func _ready():
 	# a full packet is received.
 	# Alternatively, you could check get_peer(1).get_available_packets() in a loop.
 	_client.connect("data_received", self, "_on_data")
+	websocket_url += username
 	# Initiate connection to the given URL.
 	var err = _client.connect_to_url(websocket_url)
 	if err != OK:
 		print("Unable to connect")
-		set_process(false)
+		set_process(false) 
+
 func _closed(was_clean = false):
 	# was_clean will tell you if the disconnection was correctly notified
 	# by the remote peer before closing the socket.
@@ -53,14 +60,23 @@ func _on_data():
 	var another = load('res://MultiPlayerRoom/OtherPlayer.tscn').instance()
 	print("Got data from server: ",returnMsg.result.method)
 	if returnMsg.result.method == "roomJoined":
-		var next_scene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
-		next_scene.quiz_id = returnMsg.result.quizId
-		var root = get_tree().get_root()
-		global.roomId = returnMsg.result.roomId
-		root.add_child(next_scene)
+		global.roomId = returnMsg.result["roomId"]
+		if global.is_admin:
+			var next_scene = load("res://room/Room.tscn").instance()
+			var root = get_tree().get_root()
+			root.add_child(next_scene)
+		else:
+			emit_signal("room_joined")
 	elif returnMsg.result.method == "updateQuestion":
-		print("update question")
-		global.sync_questionNum += 1
+		if global.is_quiz_loaded:
+			emit_signal("update_question", returnMsg.result) 
+		else: 
+			var next_scene = load("res://quiz/MultiPlayerQuiz/QuizField.tscn").instance()
+			next_scene.quiz_id = returnMsg.result.quizId
+			next_scene.jsonBuffer = returnMsg.result
+			var root = get_tree().get_root()
+			global.roomId = returnMsg.result.roomId
+			root.add_child(next_scene)	
 
 			
 func _process(delta):

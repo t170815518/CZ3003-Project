@@ -68,9 +68,8 @@ func _on_HTTPAllUser_request_completed(result, response_code, _headers, body):
 					print (global.userID)
 					print (global.email)
 					print (global.avatar_id)
-					var info={"method":"connection","username":userInfo["username"]}
-					Websocket.send(info)
-					print(info)
+					global.is_WebSocket_OK = true
+					Websocket.init(global.username)
 					var root = get_tree().get_root()
 					var next_scnene = load("res://room/Room.tscn").instance()
 					root.remove_child(self)

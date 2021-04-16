@@ -10,6 +10,8 @@ var quiz_id = "60652e8becd0f6001569a181"
 var attempts = {}
 var attempt_records = []
 
+var jsonBuffer = null
+
 # HP values 
 export var player_hp = 5
 var enemy_hp
@@ -44,6 +46,10 @@ func _ready():
 	# load sprites 
 	var player_frames = load("res://avatars/Avatar_%s.tres" % str(player_sprite_id))
 	var enemy_frames = load("res://avatars/Avatar_%s.tres" % str(enemy_sprite_id))
+	
+	# update global variables 
+	global.is_quiz_loaded = true 
+	
 	$PlayerSprite.set_sprite_frames(player_frames)
 	$EnemySprite.set_sprite_frames(enemy_frames)
 	
@@ -62,7 +68,7 @@ func _ready():
 	get_node("AnswerField").connect("wrong_answer", self, "_on_wrong_answer")	
 	get_node("AnswerField").connect("post_answer", self, "")
 	
-	global.connect("update_question", self, "update_question")
+	Websocket.connect("update_question", self, "update_question")
 	
 	$LoadingPopUp.popup_centered()
 	# request for quiz questions 
@@ -146,9 +152,7 @@ func _on_request_completed(result, response_code, headers, body):
 					yield(self, "complete_request")
 				print(question_id)
 			remove_child($LoadingPopUp)
-			
-			var data_dir = {"method": "quizReady", "username": global.username, "roomId": global.roomId}
-			Websocket.send(JSON.print(data_dir))
+			update_question(jsonBuffer)
 			$WaitingToStartPopUp.popup_centered()
 
 
@@ -178,10 +182,16 @@ func _on_question_runs_out():
 	$Summary.popup_centered()
 
 			
-func update_question():
+func update_question(json):
 	# display the question description and options 
 	# TODO: support multiple types of questions 
 	$RichTextLabel.text = ""
+	$LeaderBoard.clear()
+	var scores = json["scores"]
+	for i in range(scores.size()):
+		var username = scores[i]["name"]
+		var score = scores[i]["score"]
+		$LeaderBoard.add_item("Name:%s Score:%d" % [username, score])
 	$WaitingToStartPopUp.hide()
 	# OS.delay_msec(50)  # for user response  
 	# $PlayerSprite.set_animation("idle")
@@ -199,6 +209,7 @@ func update_question():
 			if options[i]["is_correct"] == true:
 				$AnswerField.correct_answer_id = i
 	start_time = OS.get_unix_time()
+	$AnswerField/TextureButton.disabled = false
 	$Timer.start()
 
 
@@ -208,6 +219,8 @@ func _on_finish_quiz():
 
 # waits for post method completes 
 func _switch_scene():
+	global.is_quiz_loaded = false 
+	global.is_admin = false  
 	self.queue_free()
 	var main_node = load("res://room/Room.tscn").instance()
 	var root = get_tree().get_root()
@@ -236,7 +249,7 @@ func _on_EnemySprite_animation_finished():
 
 
 func _record_attempt(option):
-	attempt_records.append([questions[current_ques_id], option])
+	attempt_records.append([questions[current_ques_id-1], option])
 
 
 func _post_attempt():
