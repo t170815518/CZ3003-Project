@@ -89,3 +89,23 @@ texture = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2( 242.856, 468.019 )
 shape = SubResource( 4 )
+
+[node name="ChatInput" type="LineEdit" parent="."]
+margin_left = 398.757
+margin_top = 558.119
+margin_right = 645.757
+margin_bottom = 597.119
+text = "[Type chat here...]"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChatSubmissionButton" type="Button" parent="."]
+margin_left = 659.0
+margin_top = 561.0
+margin_right = 780.0
+margin_bottom = 597.0
+text = "Send Message"
+__meta__ = {
+"_edit_use_anchors_": false
+}

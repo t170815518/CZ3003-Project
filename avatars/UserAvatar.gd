@@ -8,6 +8,7 @@ var sprite_position = Vector2(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$ClearMessage.connect("timeout", self, "_clear_message")
 	$GUI/Username.text = global.username
 	if global.avatar_id == 1:
 		var frames = preload("res://avatars/Avatar_1.tres")  # default frame
@@ -40,49 +41,53 @@ func _physics_process(delta):
 		velocity.x = speed
 		sprite_position = get_position()
 		var userInfo = {
-		"method": "playerMovement",
+		"method": "move",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
-		"playerMovement": sprite_position
+		"up": sprite_position[0],
+		"right": sprite_position[1], 
+		"roomKey": str(global.selected_world)
 		}
-		print (userInfo)
+		print(userInfo)
+		Websocket.send(userInfo)
 
 	if Input.is_action_pressed('ui_left'):
 		velocity.x = -speed
 		sprite_position = get_position()
 		var userInfo = {
-		"method": "playerMovement",
+		"method": "move",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
-		"playerMovement": sprite_position
+		"up": sprite_position[0],
+		"right": sprite_position[1], 
+		"roomKey": str(global.selected_world)
 		}
-		print (userInfo)
+		print(userInfo)
+		Websocket.send(userInfo)
 		
 	if Input.is_action_pressed('ui_down'):
 		velocity.y = speed
 		sprite_position = get_position()
 		var userInfo = {
-		"method": "playerMovement",
+		"method": "move",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
-		"playerMovement": sprite_position
+		"up": sprite_position[0],
+		"right": sprite_position[1], 
+		"roomKey": str(global.selected_world)
 		}
-		print (userInfo)
+		print(userInfo)
+		Websocket.send(userInfo)
 
 	if Input.is_action_pressed('ui_up'):
 		velocity.y = -speed
 		sprite_position = get_position()
 		var userInfo = {
-		"method": "playerMovement",
+		"method": "move",
 		"username": global.username,
-		"roomNumber": 1,
-		"worldNumber": 1,
-		"playerMovement": sprite_position
+		"up": sprite_position[0],
+		"right": sprite_position[1], 
+		"roomKey": str(global.selected_world)
 		}
-		print (userInfo)
+		print(userInfo)
+		Websocket.send(userInfo)
 
 	if velocity.x != 0 or velocity.y != 0:
 		$AnimatedSprite.set_animation("run")
@@ -91,4 +96,11 @@ func _physics_process(delta):
 	move_and_collide(velocity)
 
 
+func set_message(s):
+	$GUI/Message.text = s
+	$ClearMessage.start()
 
+
+func _clear_message():
+	$GUI/Message.text = ""
+	$ClearMessage.stop()

@@ -12,6 +12,9 @@ signal receive_data(data_str)
 signal update_question(json)
 signal room_created(roomId)
 signal room_joined
+signal user_joined_room(json)
+signal user_move(json)
+signal user_chat(json)
 
 
 func _ready():
@@ -77,7 +80,14 @@ func _on_data():
 			var root = get_tree().get_root()
 			global.roomId = returnMsg.result.roomId
 			root.add_child(next_scene)	
-
+	elif returnMsg.result.method == "joinMultiRoom":
+		if returnMsg.result.username != global.username:
+			emit_signal("user_joined_room", returnMsg.result)
+	elif returnMsg.result.method == "move":
+		if returnMsg.result.username != global.username:
+			emit_signal("user_move", returnMsg.result)
+	elif returnMsg.result.method == "chat":
+		emit_signal("user_chat", returnMsg.result)
 			
 func _process(delta):
 	# Call this in _process or _physics_process. Data transfer, and signals

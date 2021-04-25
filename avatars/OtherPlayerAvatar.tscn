@@ -2,7 +2,7 @@
 
 [ext_resource path="res://avatars/avatar_3_4/C2 A1.png" type="Texture" id=1]
 [ext_resource path="res://avatars/avatar_3_4/C2 A2.png" type="Texture" id=2]
-[ext_resource path="res://avatars/UserAvatar.gd" type="Script" id=3]
+[ext_resource path="res://avatars/OtherPlayerAvatar.gd" type="Script" id=3]
 [ext_resource path="res://avatars/avatar_3_4/C2 A4.png" type="Texture" id=4]
 [ext_resource path="res://avatars/avatar_3_4/C2 F1.png" type="Texture" id=5]
 [ext_resource path="res://avatars/avatar_3_4/C2 A3.png" type="Texture" id=6]
@@ -56,10 +56,10 @@ frame = 1
 playing = true
 
 [node name="GUI" type="Control" parent="."]
-margin_left = -30.6005
-margin_top = -41.5447
-margin_right = 38.3995
-margin_bottom = -22.5447
+margin_left = -33.2806
+margin_top = -43.7304
+margin_right = 35.7194
+margin_bottom = -24.7304
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -79,11 +79,10 @@ __meta__ = {
 }
 
 [node name="Message" type="Label" parent="GUI"]
-margin_right = 61.0
-margin_bottom = 15.0
+margin_right = 40.0
+margin_bottom = 14.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ClearMessage" type="Timer" parent="."]
-wait_time = 5.0
